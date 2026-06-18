@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesiones Reset · Miguel Ángel Montenegro</title>
+<meta name="description" content="3 sesiones de coaching online. Sabes que algo tiene que cambiar. No sabes por dónde empezar.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.video-bg{position:absolute;inset:0;z-index:0}
+.video-bg video{width:100%;height:100%;object-fit:cover;opacity:0.4}
+.video-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.55) 60%,rgba(0,0,0,1) 100%);z-index:1}
+.hero-content{position:relative;z-index:2;text-align:center;padding:4rem 2rem;max-width:700px}
+.eyebrow{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:2rem}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,8vw,72px);font-weight:300;line-height:1.1;color:#fff;margin-bottom:1.5rem}
+.hero-title em{font-style:italic;color:rgba(255,255,255,0.65)}
+.hero-sub{font-size:15px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.55);max-width:460px;margin:0 auto 2.5rem}
+.btn-hero{display:inline-block;background:#fff;color:#0a0a0a;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:15px 36px;border:none;cursor:pointer;transition:opacity 0.2s}
+.btn-hero:hover{opacity:0.85}
+.price-note{display:block;margin-top:1rem;font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.05em}
+.scroll-line{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:48px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.3));animation:fadeUp 2s ease-in-out infinite}
+@keyframes fadeUp{0%,100%{opacity:0}50%{opacity:1}}
+
+.section{padding:5rem 2rem;max-width:660px;margin:0 auto}
+.section-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);display:block;margin-bottom:2.5rem}
+.statement{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,44px);font-weight:300;line-height:1.25;color:rgba(255,255,255,0.9);margin-bottom:3rem}
+
+.result-list{list-style:none;border-top:0.5px solid rgba(255,255,255,0.1)}
+.result-list li{padding:1.5rem 0;border-bottom:0.5px solid rgba(255,255,255,0.1);display:grid;grid-template-columns:90px 1fr;gap:1rem}
+.r-num{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.22);padding-top:3px}
+.r-title{font-size:15px;font-weight:500;color:#fff;margin-bottom:4px}
+.r-desc{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.5)}
+
+.format-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.format-cell{background:#111;padding:1.75rem}
+.f-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.6rem}
+.f-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#fff;margin-bottom:1rem}
+.about-desc{font-size:13px;font-weight:300;line-height:1.9;color:rgba(255,255,255,0.5)}
+.cred-list{display:flex;flex-direction:column;gap:1rem}
+.cred{border-left:1px solid rgba(255,255,255,0.12);padding-left:1rem}
+.cred strong{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:2px}
+.cred span{font-size:11px;color:rgba(255,255,255,0.32)}
+
+.selector-section{background:#0d0d0d;padding:5rem 2rem;scroll-margin-top:2rem}
+.selector-inner{max-width:660px;margin:0 auto}
+.sel-titulo{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,38px);font-weight:300;color:#fff;margin-bottom:0.75rem}
+.sel-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:3rem;line-height:1.7}
+.rs-progress{display:flex;gap:6px;margin-bottom:2.5rem}
+.rs-dot{height:3px;flex:1;background:rgba(255,255,255,0.12);border-radius:2px;transition:background 0.3s}
+.rs-dot.done{background:#1D9E75}
+.rs-eyebrow{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem}
+.rs-step-title{font-size:18px;font-weight:400;color:#fff;margin-bottom:0.5rem}
+.rs-step-sub{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:2rem;line-height:1.6}
+.rs-step{display:none}.rs-step.active{display:block}
+.rs-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.rs-field label{display:block;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:6px}
+.rs-field input{width:100%;padding:12px 14px;font-size:14px;background:#1a1a1a;border:0.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:4px;outline:none}
+.rs-field input:focus{border-color:rgba(255,255,255,0.4)}
+.rs-cal{border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;overflow:hidden;margin-bottom:1.5rem}
+.rs-cal-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.rs-cal-nav{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.5);font-size:18px;padding:4px 8px;transition:color 0.15s}
+.rs-cal-nav:hover{color:#fff}
+.rs-cal-mes{font-size:13px;font-weight:500;color:#fff}
+.rs-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);padding:0.75rem}
+.rs-cal-dname{padding:6px 4px;text-align:center;font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.05em}
+.rs-dia{padding:8px 4px;text-align:center;font-size:13px;cursor:pointer;color:#fff;border-radius:4px;margin:2px;transition:background 0.15s}
+.rs-dia:hover:not(.dis):not(.sel){background:rgba(255,255,255,0.08)}
+.rs-dia.dis{color:rgba(255,255,255,0.2);cursor:default;pointer-events:none}
+.rs-dia.sel{background:#1D9E75;color:#fff;font-weight:500}
+.rs-horarios{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.5rem}
+.rs-h-btn{padding:10px 6px;text-align:center;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.7);transition:all 0.15s}
+.rs-h-btn:hover{border-color:#1D9E75;color:#1D9E75}
+.rs-h-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.rs-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(29,158,117,0.12);border:0.5px solid rgba(29,158,117,0.3);border-radius:100px;padding:5px 12px;font-size:11px;color:#1D9E75;margin-bottom:1.25rem}
+.rs-badge .dot{width:5px;height:5px;border-radius:50%;background:#1D9E75}
+.rs-btn{width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem}
+.rs-btn:hover{opacity:0.85}
+.rs-btn:disabled{opacity:0.25;cursor:default}
+.rs-btn-sec{width:100%;padding:12px;background:none;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.12);border-radius:4px;font-size:12px;cursor:pointer;margin-top:8px;transition:border-color 0.15s}
+.rs-btn-sec:hover{border-color:rgba(255,255,255,0.3)}
+.rs-carrito-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.rs-c-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28)}
+.rs-c-val{font-size:13px;color:#fff}
+.rs-total{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
+.rs-precio{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#fff}
+.rs-alert{background:rgba(29,158,117,0.08);border-left:2px solid #1D9E75;border-radius:0 4px 4px 0;padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;line-height:1.7}
+
+.closing{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.closing-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;font-style:italic;color:#fff;margin-bottom:1rem}
+.closing-price{font-size:12px;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-bottom:2rem;text-transform:uppercase}
+.closing-price span{color:rgba(255,255,255,0.75)}
+
+@media(max-width:600px){
+  .about-grid,.rs-form-row,.format-grid{grid-template-columns:1fr}
+  .rs-horarios{grid-template-columns:repeat(3,1fr)}
+  .result-list li{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Coaching online · 1 a 1 · Miguel Ángel Montenegro</p>
+    <h1 class="hero-title">Sabes que algo<br>tiene que cambiar.<br><em>No sabes por dónde empezar.</em></h1>
+    <p class="hero-sub">Tres sesiones. Sin rodeos. Sin procesos interminables. Con un primer paso real.</p>
+    <button class="btn-hero" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar mi lugar</button>
+    <span class="price-note">$199.000 CLP · 3 sesiones · pago único</span>
+  </div>
+  <div class="scroll-line"></div>
+</section>
+
+<div style="background:#0d0d0d">
+<div class="section">
+  <span class="section-tag">Qué obtienes</span>
+  <p class="statement">No es motivación.<br>Es movimiento real.</p>
+  <ul class="result-list">
+    <li><span class="r-num">Claridad</span><div><p class="r-title">Entiendes qué te frena de verdad</p><p class="r-desc">No la historia que te contabas. Lo que realmente está detrás de la parálisis.</p></div></li>
+    <li><span class="r-num">Dirección</span><div><p class="r-title">Sales con un primer paso concreto</p><p class="r-desc">No con una lista de propósitos. Con algo que puedes hacer esta semana.</p></div></li>
+    <li><span class="r-num">Movimiento</span><div><p class="r-title">En tres sesiones pasan cosas</p><p class="r-desc">No es terapia. No es un curso. Es acción con acompañamiento real.</p></div></li>
+  </ul>
+</div>
+</div>
+
+<div style="background:#111">
+<div class="section">
+  <span class="section-tag">Cómo funciona</span>
+  <div class="format-grid">
+    <div class="format-cell"><span class="f-label">Modalidad</span><span class="f-val">Online · Zoom</span></div>
+    <div class="format-cell"><span class="f-label">Duración</span><span class="f-val">1 hora por sesión</span></div>
+    <div class="format-cell"><span class="f-label">Frecuencia</span><span class="f-val">Cada 7 a 15 días</span></div>
+    <div class="format-cell"><span class="f-label">Inversión</span><span class="f-val">$199.000 CLP</span></div>
+  </div>
+</div>
+</div>
+
+<div style="background:#0d0d0d">
+<div class="section">
+  <span class="section-tag">Con quién</span>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-name">Miguel Ángel<br>Montenegro</h2>
+      <p class="about-desc">Más de 30 años acompañando personas en procesos de cambio real. Sin guiones. Sin procesos enlatados. Con presencia en cada sesión.</p>
+    </div>
+    <div class="cred-list">
+      <div class="cred"><strong>Coach IAC certificado</strong><span>Masteries Practitioner Level</span></div>
+      <div class="cred"><strong>Psicólogo</strong><span>Psicología Organizacional</span></div>
+      <div class="cred"><strong>Hipnoterapeuta clínico</strong><span>Practitioner NLP</span></div>
+      <div class="cred"><strong>Autor</strong><span>10 libros · Confía en Ti</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="selector-section" id="reservar">
+  <div class="selector-inner">
+    <h2 class="sel-titulo">Elige tus fechas.</h2>
+    <p class="sel-sub">Bloquea tus tres sesiones. Luego pagas. Simple.</p>
+    <div class="rs-progress">
+      <div class="rs-dot done" id="dot0"></div>
+      <div class="rs-dot" id="dot1"></div>
+      <div class="rs-dot" id="dot2"></div>
+      <div class="rs-dot" id="dot3"></div>
+      <div class="rs-dot" id="dot4"></div>
+    </div>
+
+    <div class="rs-step active" id="step0">
+      <p class="rs-eyebrow">Paso 1 de 4</p>
+      <p class="rs-step-title">¿Con quién estamos hablando?</p>
+      <p class="rs-step-sub">Necesito tus datos para reservar tu lugar y enviarte la confirmación.</p>
+      <div class="rs-form-row">
+        <div class="rs-field"><label>Nombre</label><input type="text" id="inp-nombre" placeholder="Tu nombre"></div>
+        <div class="rs-field"><label>Email</label><input type="email" id="inp-email" placeholder="tu@email.com"></div>
+      </div>
+      <button class="rs-btn" onclick="irPaso(1)">Continuar</button>
+    </div>
+
+    <div class="rs-step" id="step1">
+      <p class="rs-eyebrow">Paso 2 de 4</p>
+      <div class="rs-badge"><span class="dot"></span>Sesión 1</div>
+      <p class="rs-step-title">Elige la fecha de tu primera sesión</p>
+      <p class="rs-step-sub">Cualquier día disponible que te acomode.</p>
+      <div class="rs-cal" id="cal1"></div>
+      <div id="horarios1" style="display:none">
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:10px">Elige el horario</p>
+        <div class="rs-horarios" id="grid1"></div>
+      </div>
+      <button class="rs-btn" onclick="irPaso(2)" id="btn1" disabled>Continuar</button>
+      <button class="rs-btn-sec" onclick="irPaso(0)">← Volver</button>
+    </div>
+
+    <div class="rs-step" id="step2">
+      <p class="rs-eyebrow">Paso 3 de 4</p>
+      <div class="rs-badge"><span class="dot"></span>Sesión 2</div>
+      <p class="rs-step-title">Elige la fecha de tu segunda sesión</p>
+      <p class="rs-step-sub">Mínimo 7 días después de la primera.</p>
+      <div class="rs-cal" id="cal2"></div>
+      <div id="horarios2" style="display:none">
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:10px">Elige el horario</p>
+        <div class="rs-horarios" id="grid2"></div>
+      </div>
+      <button class="rs-btn" onclick="irPaso(3)" id="btn2" disabled>Continuar</button>
+      <button class="rs-btn-sec" onclick="irPaso(1)">← Volver</button>
+    </div>
+
+    <div class="rs-step" id="step3">
+      <p class="rs-eyebrow">Paso 4 de 4</p>
+      <div class="rs-badge"><span class="dot"></span>Sesión 3</div>
+      <p class="rs-step-title">Elige la fecha de tu tercera sesión</p>
+      <p class="rs-step-sub">Mínimo 7 días después de la segunda.</p>
+      <div class="rs-cal" id="cal3"></div>
+      <div id="horarios3" style="display:none">
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:10px">Elige el horario</p>
+        <div class="rs-horarios" id="grid3"></div>
+      </div>
+      <button class="rs-btn" onclick="irCarrito()" id="btn3" disabled>Ver mi carrito →</button>
+      <button class="rs-btn-sec" onclick="irPaso(2)">← Volver</button>
+    </div>
+
+    <div class="rs-step" id="step4">
+      <p class="rs-eyebrow">Tu carrito</p>
+      <p class="rs-step-title">Resumen de tu reserva</p>
+      <div class="rs-alert">Tus fechas quedan bloqueadas por 30 minutos mientras completas el pago.</div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Para</span><span class="rs-c-val" id="r-nombre"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Sesión 1</span><span class="rs-c-val" id="r-s1"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Sesión 2</span><span class="rs-c-val" id="r-s2"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Sesión 3</span><span class="rs-c-val" id="r-s3"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Modalidad</span><span class="rs-c-val">Online · Zoom · 1 hora c/u</span></div>
+      <div class="rs-total"><span class="rs-c-label">Total</span><span class="rs-precio">$199.000 CLP</span></div>
+      <button class="rs-btn" id="btn-pagar" onclick="irAPagar()">Ir a pagar</button>
+      <button class="rs-btn-sec" onclick="irPaso(3)">← Cambiar fechas</button>
+    </div>
+  </div>
+</div>
+
+<section class="closing">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+  <div style="position:relative;z-index:2;text-align:center;padding:4rem 2rem">
+    <h2 class="closing-title">¿Estás listo<br>para moverte?</h2>
+    <p class="closing-price">3 sesiones · <span>$199.000 CLP</span> · pago único</p>
+    <button class="btn-hero" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Empezar ahora</button>
+  </div>
+</section>
+
+<script>
+const BACKEND='https://disc-backend-production-0e6b.up.railway.app';
+const HORARIOS=['08:00','09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
+const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS_L=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const DIAS_C=['Do','Lu','Ma','Mi','Ju','Vi','Sa'];
+let E={nombre:'',email:'',s1:null,s2:null,s3:null,h1:null,h2:null,h3:null,
+  cal:[{m:new Date().getMonth(),a:new Date().getFullYear()},{m:new Date().getMonth(),a:new Date().getFullYear()},{m:new Date().getMonth(),a:new Date().getFullYear()}]};
+
+function irPaso(n){
+  if(n===1){
+    const nom=document.getElementById('inp-nombre').value.trim();
+    const em=document.getElementById('inp-email').value.trim();
+    if(!nom||!em||!em.includes('@')){alert('Por favor completa tu nombre y email.');return;}
+    E.nombre=nom;E.email=em;
+  }
+  document.querySelectorAll('.rs-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  for(let i=0;i<=4;i++) document.getElementById('dot'+i).classList.toggle('done',i<=n);
+  if(n>=1&&n<=3) renderCal(n);
+  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
+}
+
+function renderCal(ses){
+  const idx=ses-1;const{m,a}=E.cal[idx];
+  const hoy=new Date();hoy.setHours(0,0,0,0);
+  let minF=new Date(hoy);
+  if(ses===2&&E.s1){minF=new Date(E.s1);minF.setDate(minF.getDate()+7);}
+  if(ses===3&&E.s2){minF=new Date(E.s2);minF.setDate(minF.getDate()+7);}
+  const primer=new Date(a,m,1).getDay();
+  const dias=new Date(a,m+1,0).getDate();
+  let h=`<div class="rs-cal-header"><button class="rs-cal-nav" onclick="navM(${ses},-1)">‹</button><span class="rs-cal-mes">${MESES[m]} ${a}</span><button class="rs-cal-nav" onclick="navM(${ses},1)">›</button></div><div class="rs-cal-grid">`;
+  DIAS_C.forEach(d=>{h+=`<div class="rs-cal-dname">${d}</div>`;});
+  for(let i=0;i<primer;i++) h+='<div></div>';
+  for(let d=1;d<=dias;d++){
+    const f=new Date(a,m,d);
+    const dom=f.getDay()===0;const pas=f<minF;
+    const sel=E['s'+ses]&&f.toDateString()===E['s'+ses].toDateString();
+    let cls='rs-dia';
+    if(dom||pas) cls+=' dis';else if(sel) cls+=' sel';
+    h+=`<div class="${cls}" onclick="selD(${ses},${d},${m},${a})">${d}</div>`;
+  }
+  h+='</div>';
+  document.getElementById('cal'+ses).innerHTML=h;
+}
+
+function navM(ses,dir){
+  const idx=ses-1;let{m,a}=E.cal[idx];
+  m+=dir;if(m<0){m=11;a--;}if(m>11){m=0;a++;}
+  E.cal[idx]={m,a};renderCal(ses);
+}
+
+function selD(ses,d,m,a){
+  E['s'+ses]=new Date(a,m,d);E['h'+ses]=null;
+  renderCal(ses);
+  document.getElementById('horarios'+ses).style.display='block';
+  renderH(ses);document.getElementById('btn'+ses).disabled=true;
+}
+
+function renderH(ses){
+  document.getElementById('grid'+ses).innerHTML=HORARIOS.map(h=>
+    `<button class="rs-h-btn${E['h'+ses]===h?' sel':''}" onclick="selH(${ses},'${h}')">${h}</button>`
+  ).join('');
+}
+
+function selH(ses,h){E['h'+ses]=h;renderH(ses);document.getElementById('btn'+ses).disabled=false;}
+
+function fmt(f,h){
+  if(!f)return'';
+  return`${DIAS_L[f.getDay()]} ${f.getDate()} de ${MESES[f.getMonth()]} · ${h} hs`;
+}
+
+function irCarrito(){
+  document.querySelectorAll('.rs-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step4').classList.add('active');
+  for(let i=0;i<=4;i++) document.getElementById('dot'+i).classList.add('done');
+  document.getElementById('r-nombre').textContent=E.nombre;
+  document.getElementById('r-s1').textContent=fmt(E.s1,E.h1);
+  document.getElementById('r-s2').textContent=fmt(E.s2,E.h2);
+  document.getElementById('r-s3').textContent=fmt(E.s3,E.h3);
+  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
+}
+
+function toISO(f,h){
+  if(!f||!h)return'';
+  const[hh,mm]=h.split(':');const d=new Date(f);
+  d.setHours(parseInt(hh),parseInt(mm),0,0);return d.toISOString();
+}
+
+async function irAPagar(){
+  const btn=document.getElementById('btn-pagar');
+  btn.textContent='Procesando...';btn.disabled=true;
+  const payload={nombre:E.nombre,email:E.email,
+    sesion1_start:toISO(E.s1,E.h1),sesion2_start:toISO(E.s2,E.h2),sesion3_start:toISO(E.s3,E.h3)};
+  try{
+    const r1=await fetch(`${BACKEND}/reset/carrito`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const d1=await r1.json();if(!d1.carrito_id) throw new Error();
+    const r2=await fetch(`${BACKEND}/reset/pago/iniciar/${d1.carrito_id}`,{method:'POST'});
+    const d2=await r2.json();
+    if(d2.url_pago) window.location.href=d2.url_pago;else throw new Error();
+  }catch{btn.textContent='Error. Intenta de nuevo.';btn.disabled=false;}
+}
+
+renderCal(1);
+</script>
+</body>
+</html>
