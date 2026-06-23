@@ -46,7 +46,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 .cred strong{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:2px}
 .cred span{font-size:11px;color:rgba(255,255,255,0.32)}
 
-/* SELECTOR */
+/* ── SELECTOR ── */
 .selector-section{background:#0d0d0d;padding:5rem 2rem;scroll-margin-top:2rem}
 .selector-inner{max-width:660px;margin:0 auto}
 .sel-titulo{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,38px);font-weight:300;color:#fff;margin-bottom:0.75rem}
@@ -62,21 +62,22 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 .rs-field label{display:block;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:6px}
 .rs-field input{width:100%;padding:12px 14px;font-size:14px;background:#1a1a1a;border:0.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:4px;outline:none}
 .rs-field input:focus{border-color:rgba(255,255,255,0.4)}
-
-/* Slots */
-.rs-slots-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1.5rem;max-height:320px;overflow-y:auto;padding-right:4px}
-.rs-slot-btn{padding:12px 10px;text-align:left;font-size:13px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.7);transition:all 0.15s;line-height:1.4}
-.rs-slot-btn:hover{border-color:#1D9E75;color:#1D9E75}
-.rs-slot-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff}
-.rs-loading{font-size:13px;color:rgba(255,255,255,0.4);padding:1rem 0}
-.rs-no-slots{font-size:13px;color:rgba(255,255,255,0.4);padding:1rem 0;font-style:italic}
-
 .rs-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(29,158,117,0.12);border:0.5px solid rgba(29,158,117,0.3);border-radius:100px;padding:5px 12px;font-size:11px;color:#1D9E75;margin-bottom:1.25rem}
 .rs-badge .dot{width:5px;height:5px;border-radius:50%;background:#1D9E75}
+
+/* Slots grid */
+.rs-slots-loading{font-size:13px;color:rgba(255,255,255,0.4);padding:2rem 0;text-align:center}
+.rs-slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.5rem}
+.rs-slot-btn{padding:12px 8px;text-align:center;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.7);transition:all 0.15s;line-height:1.4}
+.rs-slot-btn:hover{border-color:#1D9E75;color:#1D9E75}
+.rs-slot-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.rs-no-slots{font-size:13px;color:rgba(255,255,255,0.4);padding:1.5rem;border:0.5px solid rgba(255,255,255,0.1);border-radius:4px;text-align:center;margin-bottom:1.5rem}
+
 .rs-btn{width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem}
 .rs-btn:hover{opacity:0.85}
 .rs-btn:disabled{opacity:0.25;cursor:default}
-.rs-btn-sec{width:100%;padding:12px;background:none;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.12);border-radius:4px;font-size:12px;cursor:pointer;margin-top:8px}
+.rs-btn-sec{width:100%;padding:12px;background:none;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.12);border-radius:4px;font-size:12px;cursor:pointer;margin-top:8px;transition:border-color 0.15s}
+.rs-btn-sec:hover{border-color:rgba(255,255,255,0.3)}
 .rs-carrito-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.08)}
 .rs-c-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28)}
 .rs-c-val{font-size:13px;color:#fff}
@@ -91,8 +92,8 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 
 @media(max-width:600px){
   .about-grid,.rs-form-row,.format-grid{grid-template-columns:1fr}
+  .rs-slots-grid{grid-template-columns:repeat(2,1fr)}
   .result-list li{grid-template-columns:1fr}
-  .rs-slots-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -161,7 +162,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 <div class="selector-section" id="reservar">
   <div class="selector-inner">
     <h2 class="sel-titulo">Elige tus fechas.</h2>
-    <p class="sel-sub">Selecciona los horarios disponibles para tus 3 sesiones. Luego pagas.</p>
+    <p class="sel-sub">Solo horarios disponibles en mi agenda. Bloqueas las 3 fechas y luego pagas.</p>
     <div class="rs-progress">
       <div class="rs-dot done" id="dot0"></div>
       <div class="rs-dot" id="dot1"></div>
@@ -187,8 +188,8 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <p class="rs-eyebrow">Paso 2 de 4</p>
       <div class="rs-badge"><span class="dot"></span>Sesión 1</div>
       <p class="rs-step-title">Elige la fecha de tu primera sesión</p>
-      <p class="rs-step-sub">Horarios disponibles — lunes a jueves.</p>
-      <div id="slots1-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
+      <p class="rs-step-sub">Horarios disponibles en mi agenda.</p>
+      <div id="slots1-container"><div class="rs-slots-loading">Cargando horarios disponibles...</div></div>
       <button class="rs-btn" onclick="irPaso(2)" id="btn1" disabled>Continuar</button>
       <button class="rs-btn-sec" onclick="irPaso(0)">← Volver</button>
     </div>
@@ -199,7 +200,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <div class="rs-badge"><span class="dot"></span>Sesión 2</div>
       <p class="rs-step-title">Elige la fecha de tu segunda sesión</p>
       <p class="rs-step-sub">Mínimo 7 días después de la primera.</p>
-      <div id="slots2-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
+      <div id="slots2-container"><div class="rs-slots-loading">Cargando horarios disponibles...</div></div>
       <button class="rs-btn" onclick="irPaso(3)" id="btn2" disabled>Continuar</button>
       <button class="rs-btn-sec" onclick="irPaso(1)">← Volver</button>
     </div>
@@ -210,7 +211,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <div class="rs-badge"><span class="dot"></span>Sesión 3</div>
       <p class="rs-step-title">Elige la fecha de tu tercera sesión</p>
       <p class="rs-step-sub">Mínimo 7 días después de la segunda.</p>
-      <div id="slots3-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
+      <div id="slots3-container"><div class="rs-slots-loading">Cargando horarios disponibles...</div></div>
       <button class="rs-btn" onclick="irCarrito()" id="btn3" disabled>Ver mi carrito →</button>
       <button class="rs-btn-sec" onclick="irPaso(2)">← Volver</button>
     </div>
@@ -219,7 +220,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
     <div class="rs-step" id="step4">
       <p class="rs-eyebrow">Tu carrito</p>
       <p class="rs-step-title">Resumen de tu reserva</p>
-      <div class="rs-alert">Tus fechas quedan reservadas mientras completas el pago.</div>
+      <div class="rs-alert">Tienes 30 minutos para completar el pago. Luego los horarios se liberan.</div>
       <div class="rs-carrito-row"><span class="rs-c-label">Para</span><span class="rs-c-val" id="r-nombre"></span></div>
       <div class="rs-carrito-row"><span class="rs-c-label">Sesión 1</span><span class="rs-c-val" id="r-s1"></span></div>
       <div class="rs-carrito-row"><span class="rs-c-label">Sesión 2</span><span class="rs-c-val" id="r-s2"></span></div>
@@ -248,79 +249,84 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 
 <script>
 const BACKEND = 'https://disc-backend-production-0e6b.up.railway.app';
+const MESES   = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS    = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+
 let E = { nombre:'', email:'', s1:null, s2:null, s3:null };
-let allSlots = [];
 
-async function cargarSlots() {
-  try {
-    const r = await fetch(`${BACKEND}/reset/slots`);
-    const d = await r.json();
-    allSlots = d.slots || [];
-  } catch(e) {
-    allSlots = [];
-  }
+function fmt(iso) {
+  const dt = new Date(iso);
+  return `${DIAS[dt.getDay()===0?6:dt.getDay()-1]} ${dt.getDate()} de ${MESES[dt.getMonth()]} · ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')} hs`;
 }
 
-function slotsDesde(isoDate) {
-  if (!isoDate) return allSlots;
-  const minDate = new Date(isoDate);
-  minDate.setDate(minDate.getDate() + 7);
-  return allSlots.filter(s => new Date(s.start) >= minDate);
-}
-
-function renderSlots(containerId, slots, sesion) {
-  const el = document.getElementById(containerId);
-  if (!slots.length) {
-    el.innerHTML = '<p class="rs-no-slots">No hay horarios disponibles en este período. Por favor contáctame directamente.</p>';
-    return;
-  }
-  el.innerHTML = `<div class="rs-slots-grid">${slots.map(s =>
-    `<button class="rs-slot-btn${E['s'+sesion]===s.start?' sel':''}"
-      onclick="selSlot(${sesion},'${s.start}','${s.label}')">${s.label}</button>`
-  ).join('')}</div>`;
-}
-
-function selSlot(sesion, start, label) {
-  E['s'+sesion] = start;
-  E['l'+sesion] = label;
-  document.getElementById('btn'+sesion).disabled = false;
-  // Re-render para marcar seleccionado
-  const slots = sesion === 1 ? allSlots : slotsDesde(E['s'+(sesion-1)]);
-  renderSlots('slots'+sesion+'-container', slots, sesion);
-}
-
-async function irPaso(n) {
+function irPaso(n) {
   if (n === 1) {
     const nom = document.getElementById('inp-nombre').value.trim();
     const em  = document.getElementById('inp-email').value.trim();
     if (!nom || !em || !em.includes('@')) { alert('Por favor completa tu nombre y email.'); return; }
     E.nombre = nom; E.email = em;
-    if (!allSlots.length) await cargarSlots();
-    renderSlots('slots1-container', allSlots, 1);
-  }
-  if (n === 2) {
-    const slots2 = slotsDesde(E.s1);
-    renderSlots('slots2-container', slots2, 2);
-  }
-  if (n === 3) {
-    const slots3 = slotsDesde(E.s2);
-    renderSlots('slots3-container', slots3, 3);
   }
   document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step'+n).classList.add('active');
-  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.toggle('done', i <= n);
-  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
+  document.getElementById('step' + n).classList.add('active');
+  for (let i = 0; i <= 4; i++) document.getElementById('dot' + i).classList.toggle('done', i <= n);
+  document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
+  if (n === 1) cargarSlots(1, '');
+  if (n === 2 && E.s1) cargarSlots(2, E.s1);
+  if (n === 3 && E.s2) cargarSlots(3, E.s2);
+}
+
+async function cargarSlots(sesion, previa) {
+  const container = document.getElementById('slots' + sesion + '-container');
+  container.innerHTML = '<div class="rs-slots-loading">Cargando horarios disponibles...</div>';
+  document.getElementById('btn' + sesion).disabled = true;
+
+  try {
+    const params = new URLSearchParams({ sesion, previa: previa || '' });
+    const r      = await fetch(`${BACKEND}/reset/slots?${params}`);
+    const data   = await r.json();
+    const slots  = data.slots || [];
+
+    if (slots.length === 0) {
+      container.innerHTML = '<div class="rs-no-slots">No hay horarios disponibles en las próximas semanas. Contáctame directamente.</div>';
+      return;
+    }
+
+    let html = '<div class="rs-slots-grid">';
+    slots.forEach(s => {
+      const sel = E['s' + sesion] === s.start ? ' sel' : '';
+      const dt  = new Date(s.start);
+      const dia = DIAS[dt.getDay()===0?6:dt.getDay()-1];
+      const mes = MESES[dt.getMonth()];
+      const hr  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+      html += `<button class="rs-slot-btn${sel}" onclick="selSlot(${sesion},'${s.start}',this)">
+        <strong style="display:block;font-size:11px">${dia}</strong>
+        <span style="font-size:13px">${dt.getDate()} ${mes}</span>
+        <span style="display:block;font-size:14px;margin-top:2px">${hr}</span>
+      </button>`;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  } catch(e) {
+    container.innerHTML = '<div class="rs-no-slots">Error cargando horarios. Intenta de nuevo.</div>';
+  }
+}
+
+function selSlot(sesion, start, btn) {
+  E['s' + sesion] = start;
+  document.querySelectorAll('#slots' + sesion + '-container .rs-slot-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('btn' + sesion).disabled = false;
 }
 
 function irCarrito() {
   document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step4').classList.add('active');
-  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.add('done');
+  for (let i = 0; i <= 4; i++) document.getElementById('dot' + i).classList.add('done');
   document.getElementById('r-nombre').textContent = E.nombre;
-  document.getElementById('r-s1').textContent = E.l1;
-  document.getElementById('r-s2').textContent = E.l2;
-  document.getElementById('r-s3').textContent = E.l3;
-  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
+  document.getElementById('r-s1').textContent = fmt(E.s1);
+  document.getElementById('r-s2').textContent = fmt(E.s2);
+  document.getElementById('r-s3').textContent = fmt(E.s3);
+  document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
 }
 
 async function irAPagar() {
@@ -328,18 +334,16 @@ async function irAPagar() {
   btn.textContent = 'Procesando...'; btn.disabled = true;
   const payload = {
     nombre: E.nombre, email: E.email,
-    sesion1_start: E.s1,
-    sesion2_start: E.s2,
-    sesion3_start: E.s3,
+    sesion1_start: E.s1, sesion2_start: E.s2, sesion3_start: E.s3
   };
   try {
     const r1 = await fetch(`${BACKEND}/reset/carrito`, {
-      method: 'POST', headers: {'Content-Type':'application/json'},
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
     const d1 = await r1.json();
     if (!d1.carrito_id) throw new Error();
-    const r2 = await fetch(`${BACKEND}/reset/pago/iniciar/${d1.carrito_id}`, {method:'POST'});
+    const r2 = await fetch(`${BACKEND}/reset/pago/iniciar/${d1.carrito_id}`, { method: 'POST' });
     const d2 = await r2.json();
     if (d2.url_pago) window.location.href = d2.url_pago;
     else throw new Error();
