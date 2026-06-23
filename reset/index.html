@@ -11,6 +11,7 @@
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
 
+/* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .video-bg{position:absolute;inset:0;z-index:0}
 .video-bg video{width:100%;height:100%;object-fit:cover;opacity:0.4}
@@ -26,6 +27,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 .scroll-line{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:48px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.3));animation:fadeUp 2s ease-in-out infinite}
 @keyframes fadeUp{0%,100%{opacity:0}50%{opacity:1}}
 
+/* SECTIONS */
 .section{padding:5rem 2rem;max-width:660px;margin:0 auto}
 .section-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);display:block;margin-bottom:2.5rem}
 .statement{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,44px);font-weight:300;line-height:1.25;color:rgba(255,255,255,0.9);margin-bottom:3rem}
@@ -46,7 +48,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 .cred strong{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:2px}
 .cred span{font-size:11px;color:rgba(255,255,255,0.32)}
 
-/* ── SELECTOR ── */
+/* SELECTOR */
 .selector-section{background:#0d0d0d;padding:5rem 2rem;scroll-margin-top:2rem}
 .selector-inner{max-width:660px;margin:0 auto}
 .sel-titulo{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,38px);font-weight:300;color:#fff;margin-bottom:0.75rem}
@@ -65,28 +67,35 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 .rs-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(29,158,117,0.12);border:0.5px solid rgba(29,158,117,0.3);border-radius:100px;padding:5px 12px;font-size:11px;color:#1D9E75;margin-bottom:1.25rem}
 .rs-badge .dot{width:5px;height:5px;border-radius:50%;background:#1D9E75}
 
-/* Slots grid */
-.rs-slots-loading{font-size:13px;color:rgba(255,255,255,0.4);padding:2rem 0;text-align:center}
-.rs-slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
-.rs-mes-grupo{margin-bottom:1.5rem}
-.rs-mes-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:0.5px solid rgba(255,255,255,0.08)}
-.rs-slot-btn{padding:12px 8px;text-align:center;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.7);transition:all 0.15s;line-height:1.4}
-.rs-slot-btn:hover{border-color:#1D9E75;color:#1D9E75}
-.rs-slot-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff}
-.rs-no-slots{font-size:13px;color:rgba(255,255,255,0.4);padding:1.5rem;border:0.5px solid rgba(255,255,255,0.1);border-radius:4px;text-align:center;margin-bottom:1.5rem}
+/* SLOTS */
+.rs-slots-wrap{margin-bottom:1.5rem;max-height:360px;overflow-y:auto;padding-right:4px}
+.rs-mes-grupo{margin-bottom:1.75rem}
+.rs-mes-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.rs-dia-grupo{display:flex;align-items:center;gap:1rem;padding:0.6rem 0;border-bottom:0.5px solid rgba(255,255,255,0.05)}
+.rs-dia-label{font-size:12px;color:rgba(255,255,255,0.5);min-width:110px;flex-shrink:0}
+.rs-horas-row{display:flex;gap:6px;flex-wrap:wrap}
+.rs-hora-btn{padding:6px 12px;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.65);transition:all 0.15s;font-family:'Inter',sans-serif}
+.rs-hora-btn:hover{border-color:#1D9E75;color:#1D9E75}
+.rs-hora-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff;font-weight:500}
+.rs-loading{font-size:13px;color:rgba(255,255,255,0.35);padding:1rem 0;font-style:italic}
+.rs-no-slots{font-size:13px;color:rgba(255,255,255,0.35);padding:1rem;border:0.5px solid rgba(255,255,255,0.08);border-radius:4px;text-align:center}
 
-.rs-btn{width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem}
+/* BOTONES */
+.rs-btn{width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;font-family:'Inter',sans-serif}
 .rs-btn:hover{opacity:0.85}
 .rs-btn:disabled{opacity:0.25;cursor:default}
-.rs-btn-sec{width:100%;padding:12px;background:none;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.12);border-radius:4px;font-size:12px;cursor:pointer;margin-top:8px;transition:border-color 0.15s}
+.rs-btn-sec{width:100%;padding:12px;background:none;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.12);border-radius:4px;font-size:12px;cursor:pointer;margin-top:8px;font-family:'Inter',sans-serif}
 .rs-btn-sec:hover{border-color:rgba(255,255,255,0.3)}
-.rs-carrito-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.08)}
-.rs-c-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28)}
-.rs-c-val{font-size:13px;color:#fff}
+
+/* CARRITO */
+.rs-carrito-row{display:flex;justify-content:space-between;align-items:flex-start;padding:1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.08);gap:1rem}
+.rs-c-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);flex-shrink:0;padding-top:2px}
+.rs-c-val{font-size:13px;color:#fff;text-align:right}
 .rs-total{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
 .rs-precio{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#fff}
 .rs-alert{background:rgba(29,158,117,0.08);border-left:2px solid #1D9E75;border-radius:0 4px 4px 0;padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;line-height:1.7}
 
+/* CLOSING */
 .closing{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .closing-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;font-style:italic;color:#fff;margin-bottom:1rem}
 .closing-price{font-size:12px;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-bottom:2rem;text-transform:uppercase}
@@ -94,8 +103,9 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 
 @media(max-width:600px){
   .about-grid,.rs-form-row,.format-grid{grid-template-columns:1fr}
-  .rs-slots-grid{grid-template-columns:repeat(2,1fr)}
   .result-list li{grid-template-columns:1fr}
+  .rs-dia-grupo{flex-direction:column;align-items:flex-start;gap:0.5rem}
+  .rs-dia-label{min-width:auto}
 }
 </style>
 </head>
@@ -160,11 +170,10 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 </div>
 </div>
 
-<!-- SELECTOR -->
 <div class="selector-section" id="reservar">
   <div class="selector-inner">
     <h2 class="sel-titulo">Elige tus fechas.</h2>
-    <p class="sel-sub">Solo horarios disponibles en mi agenda. Bloqueas las 3 fechas y luego pagas.</p>
+    <p class="sel-sub">Selecciona los horarios para tus 3 sesiones. Luego pagas.</p>
     <div class="rs-progress">
       <div class="rs-dot done" id="dot0"></div>
       <div class="rs-dot" id="dot1"></div>
@@ -173,7 +182,6 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <div class="rs-dot" id="dot4"></div>
     </div>
 
-    <!-- Paso 0: Datos -->
     <div class="rs-step active" id="step0">
       <p class="rs-eyebrow">Paso 1 de 4</p>
       <p class="rs-step-title">¿Con quién estamos hablando?</p>
@@ -185,44 +193,40 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <button class="rs-btn" onclick="irPaso(1)">Continuar</button>
     </div>
 
-    <!-- Paso 1: Sesión 1 -->
     <div class="rs-step" id="step1">
       <p class="rs-eyebrow">Paso 2 de 4</p>
       <div class="rs-badge"><span class="dot"></span>Sesión 1</div>
       <p class="rs-step-title">Elige la fecha de tu primera sesión</p>
-      <p class="rs-step-sub">Horarios disponibles en mi agenda.</p>
-      <div id="slots1-container"><div class="rs-slots-loading">Cargando horarios disponibles...</div></div>
+      <p class="rs-step-sub">Horarios disponibles — lunes a jueves.</p>
+      <div id="slots1-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
       <button class="rs-btn" onclick="irPaso(2)" id="btn1" disabled>Continuar</button>
       <button class="rs-btn-sec" onclick="irPaso(0)">← Volver</button>
     </div>
 
-    <!-- Paso 2: Sesión 2 -->
     <div class="rs-step" id="step2">
       <p class="rs-eyebrow">Paso 3 de 4</p>
       <div class="rs-badge"><span class="dot"></span>Sesión 2</div>
       <p class="rs-step-title">Elige la fecha de tu segunda sesión</p>
       <p class="rs-step-sub">Mínimo 7 días después de la primera.</p>
-      <div id="slots2-container"><div class="rs-slots-loading">Cargando horarios disponibles...</div></div>
+      <div id="slots2-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
       <button class="rs-btn" onclick="irPaso(3)" id="btn2" disabled>Continuar</button>
       <button class="rs-btn-sec" onclick="irPaso(1)">← Volver</button>
     </div>
 
-    <!-- Paso 3: Sesión 3 -->
     <div class="rs-step" id="step3">
       <p class="rs-eyebrow">Paso 4 de 4</p>
       <div class="rs-badge"><span class="dot"></span>Sesión 3</div>
       <p class="rs-step-title">Elige la fecha de tu tercera sesión</p>
       <p class="rs-step-sub">Mínimo 7 días después de la segunda.</p>
-      <div id="slots3-container"><div class="rs-slots-loading">Cargando horarios disponibles...</div></div>
+      <div id="slots3-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
       <button class="rs-btn" onclick="irCarrito()" id="btn3" disabled>Ver mi carrito →</button>
       <button class="rs-btn-sec" onclick="irPaso(2)">← Volver</button>
     </div>
 
-    <!-- Paso 4: Carrito -->
     <div class="rs-step" id="step4">
       <p class="rs-eyebrow">Tu carrito</p>
       <p class="rs-step-title">Resumen de tu reserva</p>
-      <div class="rs-alert">Tienes 30 minutos para completar el pago. Luego los horarios se liberan.</div>
+      <div class="rs-alert">Tus horarios quedan reservados mientras completas el pago.</div>
       <div class="rs-carrito-row"><span class="rs-c-label">Para</span><span class="rs-c-val" id="r-nombre"></span></div>
       <div class="rs-carrito-row"><span class="rs-c-label">Sesión 1</span><span class="rs-c-val" id="r-s1"></span></div>
       <div class="rs-carrito-row"><span class="rs-c-label">Sesión 2</span><span class="rs-c-val" id="r-s2"></span></div>
@@ -251,116 +255,126 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 
 <script>
 const BACKEND = 'https://disc-backend-production-0e6b.up.railway.app';
-const MESES   = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const DIAS    = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS  = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 
-let E = { nombre:'', email:'', s1:null, s2:null, s3:null };
+let E = { nombre:'', email:'', s1:null, s2:null, s3:null, l1:'', l2:'', l3:'' };
+let allSlots = [];
 
-function fmt(iso) {
+function fmtLabel(iso) {
   const dt = new Date(iso);
-  return `${DIAS[dt.getDay()===0?6:dt.getDay()-1]} ${dt.getDate()} de ${MESES[dt.getMonth()]} · ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')} hs`;
+  const d  = DIAS[dt.getDay()===0?6:dt.getDay()-1];
+  const m  = MESES[dt.getMonth()];
+  const h  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+  return d + ' ' + dt.getDate() + ' de ' + m + ' · ' + h + ' hs';
 }
 
-function irPaso(n) {
+function slotsDesde(isoBase) {
+  if (!isoBase) return allSlots;
+  const min = new Date(isoBase);
+  min.setDate(min.getDate() + 7);
+  return allSlots.filter(s => new Date(s.start) >= min);
+}
+
+function renderSlots(containerId, slots, sesion) {
+  const el = document.getElementById(containerId);
+  if (!slots.length) {
+    el.innerHTML = '<p class="rs-no-slots">No hay horarios disponibles. Contáctame directamente.</p>';
+    return;
+  }
+  const porMes = {};
+  slots.forEach(s => {
+    const dt  = new Date(s.start);
+    const mes = MESES[dt.getMonth()] + ' ' + dt.getFullYear();
+    const dia = DIAS[dt.getDay()===0?6:dt.getDay()-1] + ' ' + dt.getDate();
+    if (!porMes[mes]) porMes[mes] = {};
+    if (!porMes[mes][dia]) porMes[mes][dia] = [];
+    porMes[mes][dia].push(s);
+  });
+  let html = '<div class="rs-slots-wrap">';
+  Object.entries(porMes).forEach(([mes, dias]) => {
+    html += '<div class="rs-mes-grupo"><p class="rs-mes-label">' + mes + '</p>';
+    Object.entries(dias).forEach(([dia, horas]) => {
+      html += '<div class="rs-dia-grupo"><span class="rs-dia-label">' + dia + '</span><div class="rs-horas-row">';
+      horas.forEach(s => {
+        const sel = E['s'+sesion] === s.start ? ' sel' : '';
+        const dt  = new Date(s.start);
+        const hr  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+        html += '<button class="rs-hora-btn' + sel + '" onclick="selSlot(' + sesion + ',\'' + s.start + '\',this)">' + hr + '</button>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function selSlot(sesion, start, btn) {
+  E['s'+sesion] = start;
+  E['l'+sesion] = fmtLabel(start);
+  document.querySelectorAll('#slots'+sesion+'-container .rs-hora-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('btn'+sesion).disabled = false;
+}
+
+async function irPaso(n) {
   if (n === 1) {
     const nom = document.getElementById('inp-nombre').value.trim();
     const em  = document.getElementById('inp-email').value.trim();
     if (!nom || !em || !em.includes('@')) { alert('Por favor completa tu nombre y email.'); return; }
     E.nombre = nom; E.email = em;
-  }
-  document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step' + n).classList.add('active');
-  for (let i = 0; i <= 4; i++) document.getElementById('dot' + i).classList.toggle('done', i <= n);
-  document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
-  if (n === 1) cargarSlots(1, '');
-  if (n === 2 && E.s1) cargarSlots(2, E.s1);
-  if (n === 3 && E.s2) cargarSlots(3, E.s2);
-}
-
-async function cargarSlots(sesion, previa) {
-  const container = document.getElementById('slots' + sesion + '-container');
-  container.innerHTML = '<div class="rs-slots-loading">Cargando horarios disponibles...</div>';
-  document.getElementById('btn' + sesion).disabled = true;
-
-  try {
-    const params = new URLSearchParams({ sesion, previa: previa || '' });
-    const r      = await fetch(`${BACKEND}/reset/slots?${params}`);
-    const data   = await r.json();
-    const slots  = data.slots || [];
-
-    if (slots.length === 0) {
-      container.innerHTML = '<div class="rs-no-slots">No hay horarios disponibles en las próximas semanas. Contáctame directamente.</div>';
-      return;
+    if (!allSlots.length) {
+      document.getElementById('slots1-container').innerHTML = '<p class="rs-loading">Cargando horarios...</p>';
+      try {
+        const r = await fetch(BACKEND + '/reset/slots');
+        const d = await r.json();
+        allSlots = d.slots || [];
+      } catch(e) { allSlots = []; }
     }
-
-    // Agrupar por mes
-    const grupos = {};
-    slots.forEach(s => {
-      const dt  = new Date(s.start);
-      const key = `${MESES[dt.getMonth()]} ${dt.getFullYear()}`;
-      if (!grupos[key]) grupos[key] = [];
-      grupos[key].push(s);
-    });
-
-    let html = '';
-    Object.entries(grupos).forEach(([mes, items]) => {
-      html += `<div class="rs-mes-grupo"><p class="rs-mes-label">${mes}</p><div class="rs-slots-grid">`;
-      items.forEach(s => {
-        const sel = E['s' + sesion] === s.start ? ' sel' : '';
-        const dt  = new Date(s.start);
-        const dia = DIAS[dt.getDay()===0?6:dt.getDay()-1];
-        const hr  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
-        html += `<button class="rs-slot-btn${sel}" onclick="selSlot(${sesion},'${s.start}',this)">
-          <strong style="display:block;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.6">${dia}</strong>
-          <span style="font-size:14px;font-weight:500">${dt.getDate()}</span>
-          <span style="display:block;font-size:13px;margin-top:2px">${hr} hs</span>
-        </button>`;
-      });
-      html += '</div></div>';
-    });
-    container.innerHTML = html;
-  } catch(e) {
-    container.innerHTML = '<div class="rs-no-slots">Error cargando horarios. Intenta de nuevo.</div>';
+    renderSlots('slots1-container', allSlots, 1);
   }
-}
-
-function selSlot(sesion, start, btn) {
-  E['s' + sesion] = start;
-  document.querySelectorAll('#slots' + sesion + '-container .rs-slot-btn').forEach(b => b.classList.remove('sel'));
-  btn.classList.add('sel');
-  document.getElementById('btn' + sesion).disabled = false;
+  if (n === 2) renderSlots('slots2-container', slotsDesde(E.s1), 2);
+  if (n === 3) renderSlots('slots3-container', slotsDesde(E.s2), 3);
+  document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.toggle('done', i <= n);
+  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
 }
 
 function irCarrito() {
   document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step4').classList.add('active');
-  for (let i = 0; i <= 4; i++) document.getElementById('dot' + i).classList.add('done');
+  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.add('done');
   document.getElementById('r-nombre').textContent = E.nombre;
-  document.getElementById('r-s1').textContent = fmt(E.s1);
-  document.getElementById('r-s2').textContent = fmt(E.s2);
-  document.getElementById('r-s3').textContent = fmt(E.s3);
-  document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('r-s1').textContent = E.l1;
+  document.getElementById('r-s2').textContent = E.l2;
+  document.getElementById('r-s3').textContent = E.l3;
+  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
 }
 
 async function irAPagar() {
   const btn = document.getElementById('btn-pagar');
   btn.textContent = 'Procesando...'; btn.disabled = true;
-  const payload = {
-    nombre: E.nombre, email: E.email,
-    sesion1_start: E.s1, sesion2_start: E.s2, sesion3_start: E.s3
-  };
   try {
-    const r1 = await fetch(`${BACKEND}/reset/carrito`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+    const r1 = await fetch(BACKEND + '/reset/carrito', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        nombre: E.nombre, email: E.email,
+        sesion1_start: E.s1,
+        sesion2_start: E.s2,
+        sesion3_start: E.s3
+      })
     });
     const d1 = await r1.json();
-    if (!d1.carrito_id) throw new Error();
-    const r2 = await fetch(`${BACKEND}/reset/pago/iniciar/${d1.carrito_id}`, { method: 'POST' });
+    if (!d1.carrito_id) throw new Error('Sin carrito_id: ' + JSON.stringify(d1));
+    const r2 = await fetch(BACKEND + '/reset/pago/iniciar/' + d1.carrito_id, {method:'POST'});
     const d2 = await r2.json();
     if (d2.url_pago) window.location.href = d2.url_pago;
-    else throw new Error();
-  } catch {
+    else throw new Error('Sin url_pago');
+  } catch(e) {
+    console.error(e);
     btn.textContent = 'Error. Intenta de nuevo.'; btn.disabled = false;
   }
 }
