@@ -67,7 +67,15 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 
 /* Slots grid */
 .rs-slots-loading{font-size:13px;color:rgba(255,255,255,0.4);padding:2rem 0;text-align:center}
-.rs-slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.5rem}
+.rs-slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+.rs-mes-grupo{margin-bottom:2rem}
+.rs-mes-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.rs-dia-grupo{margin-bottom:1rem}
+.rs-dia-label{font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);margin-bottom:0.5rem}
+.rs-horas-row{display:flex;gap:8px;flex-wrap:wrap}
+.rs-hora-btn{padding:8px 14px;font-size:13px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.7);transition:all 0.15s}
+.rs-hora-btn:hover{border-color:#1D9E75;color:#1D9E75}
+.rs-hora-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff;font-weight:500}
 .rs-slot-btn{padding:12px 8px;text-align:center;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.7);transition:all 0.15s;line-height:1.4}
 .rs-slot-btn:hover{border-color:#1D9E75;color:#1D9E75}
 .rs-slot-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff}
@@ -291,20 +299,33 @@ async function cargarSlots(sesion, previa) {
       return;
     }
 
-    let html = '<div class="rs-slots-grid">';
+    // Agrupar por mes y día
+    const porMes = {};
     slots.forEach(s => {
-      const sel = E['s' + sesion] === s.start ? ' sel' : '';
-      const dt  = new Date(s.start);
-      const dia = DIAS[dt.getDay()===0?6:dt.getDay()-1];
-      const mes = MESES[dt.getMonth()];
-      const hr  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
-      html += `<button class="rs-slot-btn${sel}" onclick="selSlot(${sesion},'${s.start}',this)">
-        <strong style="display:block;font-size:11px">${dia}</strong>
-        <span style="font-size:13px">${dt.getDate()} ${mes}</span>
-        <span style="display:block;font-size:14px;margin-top:2px">${hr}</span>
-      </button>`;
+      const dt   = new Date(s.start);
+      const mes  = MESES[dt.getMonth()] + ' ' + dt.getFullYear();
+      const dia  = DIAS[dt.getDay()===0?6:dt.getDay()-1];
+      const dKey = dia + ' ' + dt.getDate();
+      if (!porMes[mes]) porMes[mes] = {};
+      if (!porMes[mes][dKey]) porMes[mes][dKey] = [];
+      porMes[mes][dKey].push(s);
     });
-    html += '</div>';
+
+    let html = '';
+    Object.entries(porMes).forEach(([mes, dias]) => {
+      html += '<div class="rs-mes-grupo"><p class="rs-mes-label">' + mes + '</p>';
+      Object.entries(dias).forEach(([dKey, horas]) => {
+        html += '<div class="rs-dia-grupo"><p class="rs-dia-label">' + dKey + '</p><div class="rs-horas-row">';
+        horas.forEach(s => {
+          const sel = E['s' + sesion] === s.start ? ' sel' : '';
+          const dt  = new Date(s.start);
+          const hr  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+          html += '<button class="rs-hora-btn' + sel + '" onclick="selSlot(' + sesion + ',\'' + s.start + '\',this)">' + hr + '</button>';
+        });
+        html += '</div></div>';
+      });
+      html += '</div>';
+    });
     container.innerHTML = html;
   } catch(e) {
     container.innerHTML = '<div class="rs-no-slots">Error cargando horarios. Intenta de nuevo.</div>';
