@@ -189,16 +189,12 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <button class="rs-btn" onclick="irPaso(1)">Continuar</button>
     </div>
 
-    <div class="rs-step" id="step1">
+   <div class="rs-step" id="step1">
       <p class="rs-eyebrow">Paso 2 de 4</p>
       <div class="rs-badge"><span class="dot"></span>Sesión 1</div>
       <p class="rs-step-title">Elige la fecha de tu primera sesión</p>
-      <p class="rs-step-sub">Cualquier día disponible que te acomode.</p>
-      <div class="rs-cal" id="cal1"></div>
-      <div id="horarios1" style="display:none">
-        <p style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:10px">Elige el horario</p>
-        <div class="rs-horarios" id="grid1"></div>
-      </div>
+      <p class="rs-step-sub">Horarios disponibles — lunes a jueves.</p>
+      <div id="slots1-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
       <button class="rs-btn" onclick="irPaso(2)" id="btn1" disabled>Continuar</button>
       <button class="rs-btn-sec" onclick="irPaso(0)">← Volver</button>
     </div>
@@ -208,13 +204,19 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
       <div class="rs-badge"><span class="dot"></span>Sesión 2</div>
       <p class="rs-step-title">Elige la fecha de tu segunda sesión</p>
       <p class="rs-step-sub">Mínimo 7 días después de la primera.</p>
-      <div class="rs-cal" id="cal2"></div>
-      <div id="horarios2" style="display:none">
-        <p style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:10px">Elige el horario</p>
-        <div class="rs-horarios" id="grid2"></div>
-      </div>
+      <div id="slots2-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
       <button class="rs-btn" onclick="irPaso(3)" id="btn2" disabled>Continuar</button>
       <button class="rs-btn-sec" onclick="irPaso(1)">← Volver</button>
+    </div>
+
+    <div class="rs-step" id="step3">
+      <p class="rs-eyebrow">Paso 4 de 4</p>
+      <div class="rs-badge"><span class="dot"></span>Sesión 3</div>
+      <p class="rs-step-title">Elige la fecha de tu tercera sesión</p>
+      <p class="rs-step-sub">Mínimo 7 días después de la segunda.</p>
+      <div id="slots3-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
+      <button class="rs-btn" onclick="irCarrito()" id="btn3" disabled>Ver mi carrito →</button>
+      <button class="rs-btn-sec" onclick="irPaso(2)">← Volver</button>
     </div>
 
     <div class="rs-step" id="step3">
@@ -262,109 +264,96 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
 </section>
 
 <script>
-const BACKEND='https://disc-backend-production-0e6b.up.railway.app';
-const HORARIOS=['08:00','09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
-const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const DIAS_L=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-const DIAS_C=['Do','Lu','Ma','Mi','Ju','Vi','Sa'];
-let E={nombre:'',email:'',s1:null,s2:null,s3:null,h1:null,h2:null,h3:null,
-  cal:[{m:new Date().getMonth(),a:new Date().getFullYear()},{m:new Date().getMonth(),a:new Date().getFullYear()},{m:new Date().getMonth(),a:new Date().getFullYear()}]};
+const BACKEND = 'https://disc-backend-production-0e6b.up.railway.app';
+let E = { nombre:'', email:'', s1:null, s2:null, s3:null };
+let allSlots = [];
 
-function irPaso(n){
-  if(n===1){
-    const nom=document.getElementById('inp-nombre').value.trim();
-    const em=document.getElementById('inp-email').value.trim();
-    if(!nom||!em||!em.includes('@')){alert('Por favor completa tu nombre y email.');return;}
-    E.nombre=nom;E.email=em;
+async function cargarSlots() {
+  try {
+    const r = await fetch(`${BACKEND}/reset/slots`);
+    const d = await r.json();
+    allSlots = d.slots || [];
+  } catch(e) {
+    allSlots = [];
   }
-  document.querySelectorAll('.rs-step').forEach(s=>s.classList.remove('active'));
+}
+
+function slotsDesde(isoDate) {
+  if (!isoDate) return allSlots;
+  const minDate = new Date(isoDate);
+  minDate.setDate(minDate.getDate() + 7);
+  return allSlots.filter(s => new Date(s.start) >= minDate);
+}
+
+function renderSlots(containerId, slots, sesion) {
+  const el = document.getElementById(containerId);
+  if (!slots.length) {
+    el.innerHTML = '<p class="rs-no-slots">No hay horarios disponibles. Contáctame directamente.</p>';
+    return;
+  }
+  el.innerHTML = `<div class="rs-slots-grid">${slots.map(s =>
+    `<button class="rs-slot-btn${E['s'+sesion]===s.start?' sel':''}"
+      onclick="selSlot(${sesion},'${s.start}','${s.label}')">${s.label}</button>`
+  ).join('')}</div>`;
+}
+
+function selSlot(sesion, start, label) {
+  E['s'+sesion] = start;
+  E['l'+sesion] = label;
+  document.getElementById('btn'+sesion).disabled = false;
+  const slots = sesion === 1 ? allSlots : slotsDesde(E['s'+(sesion-1)]);
+  renderSlots('slots'+sesion+'-container', slots, sesion);
+}
+
+async function irPaso(n) {
+  if (n === 1) {
+    const nom = document.getElementById('inp-nombre').value.trim();
+    const em  = document.getElementById('inp-email').value.trim();
+    if (!nom || !em || !em.includes('@')) { alert('Por favor completa tu nombre y email.'); return; }
+    E.nombre = nom; E.email = em;
+    if (!allSlots.length) await cargarSlots();
+    renderSlots('slots1-container', allSlots, 1);
+  }
+  if (n === 2) renderSlots('slots2-container', slotsDesde(E.s1), 2);
+  if (n === 3) renderSlots('slots3-container', slotsDesde(E.s2), 3);
+  document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step'+n).classList.add('active');
-  for(let i=0;i<=4;i++) document.getElementById('dot'+i).classList.toggle('done',i<=n);
-  if(n>=1&&n<=3) renderCal(n);
+  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.toggle('done', i <= n);
   document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
 }
 
-function renderCal(ses){
-  const idx=ses-1;const{m,a}=E.cal[idx];
-  const hoy=new Date();hoy.setHours(0,0,0,0);
-  let minF=new Date(hoy);
-  if(ses===2&&E.s1){minF=new Date(E.s1);minF.setDate(minF.getDate()+7);}
-  if(ses===3&&E.s2){minF=new Date(E.s2);minF.setDate(minF.getDate()+7);}
-  const primer=new Date(a,m,1).getDay();
-  const dias=new Date(a,m+1,0).getDate();
-  let h=`<div class="rs-cal-header"><button class="rs-cal-nav" onclick="navM(${ses},-1)">‹</button><span class="rs-cal-mes">${MESES[m]} ${a}</span><button class="rs-cal-nav" onclick="navM(${ses},1)">›</button></div><div class="rs-cal-grid">`;
-  DIAS_C.forEach(d=>{h+=`<div class="rs-cal-dname">${d}</div>`;});
-  for(let i=0;i<primer;i++) h+='<div></div>';
-  for(let d=1;d<=dias;d++){
-    const f=new Date(a,m,d);
-    const dom=f.getDay()===0;const pas=f<minF;
-    const sel=E['s'+ses]&&f.toDateString()===E['s'+ses].toDateString();
-    let cls='rs-dia';
-    if(dom||pas) cls+=' dis';else if(sel) cls+=' sel';
-    h+=`<div class="${cls}" onclick="selD(${ses},${d},${m},${a})">${d}</div>`;
-  }
-  h+='</div>';
-  document.getElementById('cal'+ses).innerHTML=h;
-}
-
-function navM(ses,dir){
-  const idx=ses-1;let{m,a}=E.cal[idx];
-  m+=dir;if(m<0){m=11;a--;}if(m>11){m=0;a++;}
-  E.cal[idx]={m,a};renderCal(ses);
-}
-
-function selD(ses,d,m,a){
-  E['s'+ses]=new Date(a,m,d);E['h'+ses]=null;
-  renderCal(ses);
-  document.getElementById('horarios'+ses).style.display='block';
-  renderH(ses);document.getElementById('btn'+ses).disabled=true;
-}
-
-function renderH(ses){
-  document.getElementById('grid'+ses).innerHTML=HORARIOS.map(h=>
-    `<button class="rs-h-btn${E['h'+ses]===h?' sel':''}" onclick="selH(${ses},'${h}')">${h}</button>`
-  ).join('');
-}
-
-function selH(ses,h){E['h'+ses]=h;renderH(ses);document.getElementById('btn'+ses).disabled=false;}
-
-function fmt(f,h){
-  if(!f)return'';
-  return`${DIAS_L[f.getDay()]} ${f.getDate()} de ${MESES[f.getMonth()]} · ${h} hs`;
-}
-
-function irCarrito(){
-  document.querySelectorAll('.rs-step').forEach(s=>s.classList.remove('active'));
+function irCarrito() {
+  document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step4').classList.add('active');
-  for(let i=0;i<=4;i++) document.getElementById('dot'+i).classList.add('done');
-  document.getElementById('r-nombre').textContent=E.nombre;
-  document.getElementById('r-s1').textContent=fmt(E.s1,E.h1);
-  document.getElementById('r-s2').textContent=fmt(E.s2,E.h2);
-  document.getElementById('r-s3').textContent=fmt(E.s3,E.h3);
+  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.add('done');
+  document.getElementById('r-nombre').textContent = E.nombre;
+  document.getElementById('r-s1').textContent = E.l1;
+  document.getElementById('r-s2').textContent = E.l2;
+  document.getElementById('r-s3').textContent = E.l3;
   document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
 }
 
-function toISO(f,h){
-  if(!f||!h)return'';
-  const[hh,mm]=h.split(':');const d=new Date(f);
-  d.setHours(parseInt(hh),parseInt(mm),0,0);return d.toISOString();
+async function irAPagar() {
+  const btn = document.getElementById('btn-pagar');
+  btn.textContent = 'Procesando...'; btn.disabled = true;
+  try {
+    const r1 = await fetch(`${BACKEND}/reset/carrito`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        nombre: E.nombre, email: E.email,
+        sesion1_start: E.s1, sesion2_start: E.s2, sesion3_start: E.s3
+      })
+    });
+    const d1 = await r1.json();
+    if (!d1.carrito_id) throw new Error();
+    const r2 = await fetch(`${BACKEND}/reset/pago/iniciar/${d1.carrito_id}`, {method:'POST'});
+    const d2 = await r2.json();
+    if (d2.url_pago) window.location.href = d2.url_pago;
+    else throw new Error();
+  } catch {
+    btn.textContent = 'Error. Intenta de nuevo.'; btn.disabled = false;
+  }
 }
-
-async function irAPagar(){
-  const btn=document.getElementById('btn-pagar');
-  btn.textContent='Procesando...';btn.disabled=true;
-  const payload={nombre:E.nombre,email:E.email,
-    sesion1_start:toISO(E.s1,E.h1),sesion2_start:toISO(E.s2,E.h2),sesion3_start:toISO(E.s3,E.h3)};
-  try{
-    const r1=await fetch(`${BACKEND}/reset/carrito`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    const d1=await r1.json();if(!d1.carrito_id) throw new Error();
-    const r2=await fetch(`${BACKEND}/reset/pago/iniciar/${d1.carrito_id}`,{method:'POST'});
-    const d2=await r2.json();
-    if(d2.url_pago) window.location.href=d2.url_pago;else throw new Error();
-  }catch{btn.textContent='Error. Intenta de nuevo.';btn.disabled=false;}
-}
-
-renderCal(1);
 </script>
 </body>
 </html>
