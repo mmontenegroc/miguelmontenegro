@@ -270,10 +270,14 @@ function fmtLabel(iso) {
 }
 
 function slotsDesde(isoBase) {
-  if (!isoBase) return allSlots;
   const min = new Date(isoBase);
   min.setDate(min.getDate() + 7);
-  return allSlots.filter(s => new Date(s.start) >= min);
+  const max = new Date(isoBase);
+  max.setDate(max.getDate() + 15);
+  return allSlots.filter(s => {
+    const d = new Date(s.start);
+    return d >= min && d <= max;
+  });
 }
 
 function renderSlots(containerId, slots, sesion) {
