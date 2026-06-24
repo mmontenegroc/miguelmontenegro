@@ -128,11 +128,12 @@ def sanitizar_texto(texto: str) -> str:
             raise ValueError("Contenido inválido")
     return texto.strip()
 
-@router.post("/aplicacion", response_class=HTMLResponse)
+@router.post("/aplicacion")
 async def crear_postulacion(data: PostulacionCharla, db: Session = Depends(get_db)):
     """
     POST /api/charlas/aplicacion
-    Guardar postulación + enviar email + devolver página de confirmación
+    Guardar postulación + enviar email
+    Devuelve JSON para que el frontend muestre modal
     """
     
     try:
@@ -173,39 +174,14 @@ async def crear_postulacion(data: PostulacionCharla, db: Session = Depends(get_d
         # Enviar email de confirmación (background)
         await enviar_email_resend(nombre_limpio, data.email, data.empresa)
         
-        # Devolver página de confirmación HTML
-        html_confirmacion = f"""<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-*{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:Georgia,serif;background:#f0faf4;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}}
-.modal{{background:#fff;border-radius:20px;padding:48px 40px;max-width:520px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.12)}}
-.icon{{font-size:64px;margin-bottom:20px}}
-h1{{color:#2D6A4F;font-size:28px;margin-bottom:12px}}
-.subtitle{{color:#666;font-size:16px;margin-bottom:28px;line-height:1.6}}
-.email-info{{background:#f8faf9;border-left:4px solid #2D6A4F;padding:16px;border-radius:8px;margin:24px 0;text-align:left;color:#555;font-size:14px}}
-.email-info strong{{color:#2D6A4F;font-weight:700}}
-.footer{{color:#999;font-size:13px;margin-top:32px;border-top:1px solid #eee;padding-top:20px}}
-</style></head>
-<body><div class="modal">
-<div class="icon">✅</div>
-<h1>¡Postulación recibida!</h1>
-<p class="subtitle">Hola <strong>{nombre_limpio}</strong>,<br>gracias por tu interés en las charlas "Confía en Ti".</p>
-<div class="email-info">
-Hemos enviado un email de confirmación a:<br>
-<strong>{data.email}</strong><br><br>
-Nos pondremos en contacto en <strong>48-72 horas</strong> para coordinar los detalles.
-</div>
-<p style="color:#666;font-size:14px;line-height:1.6;">
-Si no recibes el email en los próximos minutos, revisa tu carpeta de spam.<br>
-¿Preguntas? Puedes responder directamente al email de confirmación.
-</p>
-<div class="footer">
-© 2024 Miguel Montenegro · Charlas "Confía en Ti"
-</div>
-</div></body></html>"""
-        
-        return html_confirmacion
+        # Devolver JSON
+        return {
+            "ok": True,
+            "message": "Postulación guardada exitosamente",
+            "nombre": nombre_limpio,
+            "email": data.email,
+            "id": postulacion.id
+        }
     
     except HTTPException:
         raise
