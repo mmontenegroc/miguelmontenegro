@@ -719,6 +719,8 @@ const response = await fetch(webAppUrl, {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar postulación';
       }
+    console.log('Error:', err);
+console.log('Response:', resultado);
     } catch (err) {
       alert('Error al enviar. Escribe directamente a contacto@miguelmontenegro.com');
       submitBtn.disabled = false;
