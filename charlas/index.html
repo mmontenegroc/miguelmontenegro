@@ -701,17 +701,32 @@ console.log('Form encontrado:', form);
     submitBtn.textContent = 'Enviando...';
 
     try {
-      const formData = new FormData(form);
-      const clientIp = await getClientIp();
-      formData.append('clientIp', clientIp);
-
-const webAppUrl = 'https://disc-backend-production-0e6b.up.railway.app/api/charlas/aplicacion';
-      const response = await fetch(webAppUrl, {
-  method: 'POST',
-  body: formData
-});
-
-      const resultado = await response.json();
+  const formData = new FormData(form);
+  const clientIp = await getClientIp();
+  
+  const payload = {
+    nombre: formData.get('nombre'),
+    email: formData.get('email'),
+    telefono: formData.get('telefono'),
+    cargo: formData.get('cargo'),
+    empresa: formData.get('empresa'),
+    rubro: formData.get('rubro'),
+    tamano_equipo: formData.get('tamano_equipo'),
+    ciudad: formData.get('ciudad'),
+    modalidad: formData.get('modalidad'),
+    situacion: formData.get('situacion'),
+    expectativa: formData.get('expectativa'),
+    fuente: formData.get('fuente'),
+    clientIp: clientIp
+  };
+  
+  const webAppUrl = 'https://disc-backend-production-0e6b.up.railway.app/api/charlas/aplicacion';
+  const response = await fetch(webAppUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  const resultado = await response.json();
 
       if (resultado.ok) {
         form.style.display = 'none';
