@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from sqlalchemy import Column, String, Integer, DateTime, Text, create_engine
@@ -7,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import os
 import re
+import httpx
 
 # ── DATABASE SETUP ──
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -43,6 +45,58 @@ def get_db():
     finally:
         db.close()
 
+async def enviar_email_resend(nombre: str, email: str, empresa: str):
+    """Enviar email de confirmación via Resend"""
+    resend_key = os.environ.get("RESEND_API_KEY", "re_c1tpEyD8_NKFusih9vKVQknRAQfmFcWCv")
+    from_email = "contacto@miguelmontenegro.com"
+    
+    html_content = f"""<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>body{{font-family:sans-serif;background:#f0faf4;margin:0;padding:20px}}.card{{max-width:600px;margin:0 auto;background:#fff;border-radius:16px;padding:40px;box-shadow:0 2px 8px rgba(0,0,0,.08)}}.header{{color:#2D6A4F;font-size:24px;font-weight:700;margin-bottom:20px}}p{{color:#555;line-height:1.6;margin:12px 0}}.footer{{border-top:1px solid #eee;margin-top:30px;padding-top:20px;font-size:12px;color:#999}}</style></head>
+<body><div class="card">
+<div class="header">¡Gracias por tu interés! ✅</div>
+<p>Hola <strong>{nombre}</strong>,</p>
+<p>Hemos recibido tu postulación para las charlas "Confía en Ti" desde <strong>{empresa}</strong>.</p>
+<p>Nos pondremos en contacto contigo dentro de <strong>48-72 horas</strong> para confirmar la fecha, hora y modalidad de la sesión.</p>
+<p style="margin:24px 0;padding:16px;background:#f8faf9;border-left:4px solid #2D6A4F;color:#2D6A4F;">
+<strong>Lo que sigue:</strong><br>
+• Validaremos disponibilidad<br>
+• Te enviaremos propuesta con detalles<br>
+• Coordinaremos sesión pre-charla (si aplica)<br>
+• ¡A disfrutar de la charla!
+</p>
+<p>Si tienes dudas antes, puedes responder a este email.</p>
+<p>Un abrazo,<br><strong>Miguel Montenegro</strong><br>Coach IAC · Psicólogo</p>
+<div class="footer">
+© 2024 Miguel Montenegro · Sistema de Charlas "Confía en Ti"<br>
+Este email fue enviado porque completaste un formulario de postulación.
+</div>
+</div></body></html>"""
+    
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                "https://api.resend.com/emails",
+                headers={
+                    "Authorization": f"Bearer {resend_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "from": from_email,
+                    "to": email,
+                    "subject": f"Confirmación de postulación — Charlas Confía en Ti",
+                    "html": html_content
+                }
+            )
+        if response.status_code == 200:
+            print(f"✓ Email confirmación enviado a {email}")
+            return True
+        else:
+            print(f"✗ Error Resend ({response.status_code}): {response.text}")
+            return False
+    except Exception as e:
+        print(f"✗ Error enviando email: {e}")
+        return False
+
 # ── ROUTER ──
 router = APIRouter(prefix="/api/charlas", tags=["charlas"])
 
@@ -74,11 +128,11 @@ def sanitizar_texto(texto: str) -> str:
             raise ValueError("Contenido inválido")
     return texto.strip()
 
-@router.post("/aplicacion")
+@router.post("/aplicacion", response_class=HTMLResponse)
 async def crear_postulacion(data: PostulacionCharla, db: Session = Depends(get_db)):
     """
     POST /api/charlas/aplicacion
-    Guardar postulación en tabla confia_postulaciones
+    Guardar postulación + enviar email + devolver página de confirmación
     """
     
     try:
@@ -94,7 +148,7 @@ async def crear_postulacion(data: PostulacionCharla, db: Session = Depends(get_d
         except ValueError as e:
             raise HTTPException(status_code=400, detail=str(e))
         
-        # Crear registro
+        # Crear registro en BD
         postulacion = ConfiaPostulaciones(
             nombre=nombre_limpio,
             email=data.email.lower().strip(),
@@ -116,12 +170,42 @@ async def crear_postulacion(data: PostulacionCharla, db: Session = Depends(get_d
         db.commit()
         db.refresh(postulacion)
         
-        return {
-            "ok": True,
-            "message": "Postulación guardada exitosamente",
-            "id": postulacion.id,
-            "email": data.email
-        }
+        # Enviar email de confirmación (background)
+        await enviar_email_resend(nombre_limpio, data.email, data.empresa)
+        
+        # Devolver página de confirmación HTML
+        html_confirmacion = f"""<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+body{{font-family:Georgia,serif;background:#f0faf4;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}}
+.modal{{background:#fff;border-radius:20px;padding:48px 40px;max-width:520px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.12)}}
+.icon{{font-size:64px;margin-bottom:20px}}
+h1{{color:#2D6A4F;font-size:28px;margin-bottom:12px}}
+.subtitle{{color:#666;font-size:16px;margin-bottom:28px;line-height:1.6}}
+.email-info{{background:#f8faf9;border-left:4px solid #2D6A4F;padding:16px;border-radius:8px;margin:24px 0;text-align:left;color:#555;font-size:14px}}
+.email-info strong{{color:#2D6A4F;font-weight:700}}
+.footer{{color:#999;font-size:13px;margin-top:32px;border-top:1px solid #eee;padding-top:20px}}
+</style></head>
+<body><div class="modal">
+<div class="icon">✅</div>
+<h1>¡Postulación recibida!</h1>
+<p class="subtitle">Hola <strong>{nombre_limpio}</strong>,<br>gracias por tu interés en las charlas "Confía en Ti".</p>
+<div class="email-info">
+Hemos enviado un email de confirmación a:<br>
+<strong>{data.email}</strong><br><br>
+Nos pondremos en contacto en <strong>48-72 horas</strong> para coordinar los detalles.
+</div>
+<p style="color:#666;font-size:14px;line-height:1.6;">
+Si no recibes el email en los próximos minutos, revisa tu carpeta de spam.<br>
+¿Preguntas? Puedes responder directamente al email de confirmación.
+</p>
+<div class="footer">
+© 2024 Miguel Montenegro · Charlas "Confía en Ti"
+</div>
+</div></body></html>"""
+        
+        return html_confirmacion
     
     except HTTPException:
         raise
