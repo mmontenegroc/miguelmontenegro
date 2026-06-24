@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postula a las 10 Charlas — Miguel Ángel Montenegro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF7F0;
+      --bg-deep: #F2EDDF;
+      --text: #1A1814;
+      --text-2: #2D2A24;
+      --muted: #8A857C;
+      --line: #D8D2C4;
+      --accent: #C44E1F;
+      --accent-deep: #A03E15;
+      --error: #D32F2F;
+      --success: #2E7D32;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .form-wrapper {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 40px;
+      border-radius: 2px;
+    }
+
+    .form-h1 {
+      font-family: "Fraunces", serif;
+      font-weight: 600;
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .form-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: var(--text-2);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      background: white;
+      color: var(--text);
+      transition: border 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(196, 78, 31, 0.1);
+    }
+
+    input:invalid:not(:placeholder-shown) {
+      border-color: var(--error);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      font-family: "Inter", sans-serif;
+    }
+
+    .error-msg {
+      color: var(--error);
+      font-size: 12px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    input:invalid:not(:placeholder-shown) ~ .error-msg {
+      display: block;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox-label input {
+      width: auto;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .form-submit:hover {
+      background: var(--accent-deep);
+    }
+
+    .form-submit:disabled {
+      background: var(--muted);
+      cursor: not-allowed;
+    }
+
+    .success-box {
+      background: #E8F5E9;
+      border: 1px solid #4CAF50;
+      padding: 24px;
+      border-radius: 2px;
+      display: none;
+      margin-top: 32px;
+    }
+
+    .success-box.show {
+      display: block;
+    }
+
+    .success-box h3 {
+      color: var(--success);
+      font-family: "Fraunces", serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .success-box p {
+      color: var(--text-2);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .loading.show {
+      display: block;
+    }
+
+    /* Honeypot (invisible) */
+    #honeypot-container {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+    }
+
+    .section-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="form-wrapper">
+    <h1 class="form-h1">Postúlate a las charlas</h1>
+    <p class="form-desc">Llena este formulario y te contactamos dentro de 72 horas.</p>
+
+    <form id="chartasForm">
+      <!-- DATOS PERSONALES -->
+      <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
+        <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">TUS DATOS</legend>
+
+        <div class="form-group">
+          <label for="nombre">Nombre completo *</label>
+          <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="120" placeholder="Tu nombre">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email corporativo *</label>
+          <input type="email" id="email" name="email" required maxlength="200" placeholder="tu@empresa.com">
+          <div class="error-msg">Email corporativo requerido (no gmail, hotmail, etc)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono (Chile) *</label>
+          <input type="tel" id="telefono" name="telefono" required placeholder="+56 9 1234 5678">
+          <div class="error-msg">Teléfono chileno válido (ej: +56 9 1234 5678)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="cargo">Tu cargo *</label>
+          <input type="text" id="cargo" name="cargo" required maxlength="80" placeholder="Gerente comercial">
+        </div>
+      </fieldset>
+
+      <!-- DATOS EMPRESA -->
+      <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
+        <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">DATOS DE LA EMPRESA</legend>
+
+        <div class="form-group">
+          <label for="empresa">Nombre de la empresa *</label>
+          <input type="text" id="empresa" name="empresa" required maxlength="200" placeholder="Mi empresa S.A.">
+        </div>
+
+        <div class="form-group">
+          <label for="rubro">Rubro/Industria *</label>
+          <input type="text" id="rubro" name="rubro" required maxlength="100" placeholder="Ej: Construcción, Retail, Servicios">
+        </div>
+
+        <div class="form-group">
+          <label for="tamano_equipo">¿Cuántas personas hay en tu equipo comercial? *</label>
+          <select id="tamano_equipo" name="tamano_equipo" required>
+            <option value="">Selecciona...</option>
+            <option value="8-12">8 a 12 personas</option>
+            <option value="13-18">13 a 18 personas</option>
+            <option value="19-25">19 a 25 personas</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ciudad">Ciudad *</label>
+          <input type="text" id="ciudad" name="ciudad" required maxlength="80" placeholder="Santiago, Valparaíso, etc">
+        </div>
+      </fieldset>
+
+      <!-- MODALIDAD Y SITUACIÓN -->
+      <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
+        <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">TU SITUACIÓN</legend>
+
+        <div class="form-group">
+          <label>¿Cuál es tu modalidad de trabajo? *</label>
+          <select id="modalidad" name="modalidad" required>
+            <option value="">Selecciona...</option>
+            <option value="presencial">Presencial (Santiago)</option>
+            <option value="hibrida">Híbrida</option>
+            <option value="remota">100% remota</option>
+            <option value="otra">Otra</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="situacion">Cuéntame en pocas líneas: ¿Cuál es el principal desafío que enfrenta tu equipo comercial ahora? *</label>
+          <textarea id="situacion" name="situacion" required maxlength="500" placeholder="Describe el dolor o desafío principal..."></textarea>
+          <div class="section-note">Máx. 500 caracteres</div>
+        </div>
+
+        <div class="form-group">
+          <label for="expectativa">¿Qué esperas que pase después de escuchar la charla? *</label>
+          <textarea id="expectativa" name="expectativa" required maxlength="500" placeholder="Describe qué resultado te gustaría lograr..."></textarea>
+          <div class="section-note">Máx. 500 caracteres</div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Cómo nos encontraste? *</label>
+          <select id="fuente" name="fuente" required>
+            <option value="">Selecciona...</option>
+            <option value="referencia">Referencia de alguien</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="web">Web / Buscador</option>
+            <option value="email">Email directo</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Honeypot (invisible) -->
+      <div id="honeypot-container">
+        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- Campo oculto para calificación -->
+      <input type="hidden" name="calificacion" id="calificacion" value="no_evaluado">
+
+      <!-- Botón -->
+      <button type="submit" class="form-submit" id="submitBtn">Enviar postulación</button>
+      <div class="loading" id="loading">Enviando...</div>
+
+      <!-- Éxito -->
+      <div class="success-box" id="successBox">
+        <h3 id="successTitle">Postulación recibida</h3>
+        <p id="successMsg">Te respondo dentro de 72 horas.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function() {
+  const form = document.getElementById('chartasForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const loading = document.getElementById('loading');
+  const successBox = document.getElementById('successBox');
+  const calificacionField = document.getElementById('calificacion');
+
+  // Capturar IP del cliente
+  async function getClientIp() {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data.ip;
+    } catch (e) {
+      return 'unknown';
+    }
+  }
+
+  // Validar email corporativo
+  const emailBloqueados = [
+    'gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com',
+    'icloud.com', 'me.com', 'protonmail.com', 'aol.com', 'mail.com',
+    'gmx.com', 'zoho.com', 'yandex.com', 'mailinator.com', 'tempmail.com',
+    '10minutemail.com', 'guerrillamail.com', 'throwawaymail.com', 'temp-mail.org',
+    'fakeinbox.com', 'trashmail.com', 'maildrop.cc', 'getairmail.com'
+  ];
+
+  document.getElementById('email').addEventListener('input', (e) => {
+    const dominio = e.target.value.split('@')[1];
+    if (dominio && emailBloqueados.includes(dominio.toLowerCase())) {
+      e.target.setCustomValidity('Debes usar un correo corporativo.');
+    } else {
+      e.target.setCustomValidity('');
+    }
+  });
+
+  // Validar teléfono chileno
+  document.getElementById('telefono').addEventListener('input', (e) => {
+    const tel = e.target.value.replace(/\s/g, '');
+    const valido = /^(\+?56)?[2-9]\d{7,8}$/.test(tel);
+    if (tel.length > 5 && !valido) {
+      e.target.setCustomValidity('Teléfono chileno válido (ej: +56 9 1234 5678)');
+    } else {
+      e.target.setCustomValidity('');
+    }
+  });
+
+  // Detectar spam en campos abiertos
+  function detectarSpam(texto) {
+    if (!texto || texto.length < 5) return null;
+    
+    const sinEspacios = texto.replace(/\s/g, '');
+    if (sinEspacios.length > 30) {
+      const mayus = (sinEspacios.match(/[A-ZÑÁÉÍÓÚ]/g) || []).length;
+      if (mayus / sinEspacios.length > 0.6) return 'Demasiadas mayúsculas';
+    }
+
+    if (/(.)\1{8,}/.test(texto)) return 'Caracteres repetidos sospechosos';
+    if (/https?:\/\/|www\./i.test(texto)) return 'No incluyas URLs';
+    if (/\S{50,}/.test(texto)) return 'Texto sin espacios detectado';
+
+    return null;
+  }
+
+  ['situacion', 'expectativa'].forEach(id => {
+    document.getElementById(id).addEventListener('input', (e) => {
+      const problema = detectarSpam(e.target.value);
+      if (problema) {
+        e.target.setCustomValidity(problema);
+      } else {
+        e.target.setCustomValidity('');
+      }
+    });
+  });
+
+  // Submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Honeypot check
+    const honeypot = document.querySelector('input[name="website_url"]').value;
+    if (honeypot && honeypot.length > 0) {
+      // Es un bot — éxito falso
+      form.style.display = 'none';
+      successBox.classList.add('show');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    loading.classList.add('show');
+
+    try {
+      const clientIp = await getClientIp();
+      
+      const formData = new FormData(form);
+      formData.append('clientIp', clientIp);
+
+      // Apps Script URL (cambiar cuando despliegues)
+      const webAppUrl = 'https://script.google.com/macros/s/AKfycby5-UhBuhPQ2R7nJ5LtJAuxMtULzRk6-PO_ZNKi43CiuXgqwiAxXW1JtyztPSauHtzBmQ/userweb'; // REEMPLAZAR
+      
+      const response = await fetch(webAppUrl, {
+        method: 'POST',
+        body: formData
+      });
+
+      const resultado = await response.json();
+
+      if (resultado.ok) {
+        form.style.display = 'none';
+        document.getElementById('successTitle').textContent = resultado.titulo;
+        document.getElementById('successMsg').textContent = resultado.mensaje;
+        successBox.classList.add('show');
+      } else {
+        let mensajeError = 'Hubo un problema. Intenta de nuevo.';
+        if (resultado.error === 'rate_limit') {
+          mensajeError = 'Demasiados intentos. Intenta más tarde.';
+        }
+        alert(mensajeError);
+        submitBtn.disabled = false;
+        loading.classList.remove('show');
+      }
+    } catch (err) {
+      alert('Error al enviar. Intenta de nuevo o escribe a contacto@miguelmontenegro.com');
+      submitBtn.disabled = false;
+      loading.classList.remove('show');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
