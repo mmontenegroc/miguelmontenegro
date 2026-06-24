@@ -694,10 +694,19 @@ footer {
 
      const webAppUrl = 'https://script.google.com/macros/s/AKfycbyV5yaZXDcPkQVsgtf-gwO0n7hrZl4RS7_KVqf6T6CMluEm5mHSuBkvo6r8mbm87yhzqA/exec';
       
-      const response = await fetch(webAppUrl, {
-        method: 'POST',
-        body: formData
-      });
+      // Convertir FormData a objeto
+const datos = {};
+for (let [key, value] of formData.entries()) {
+  datos[key] = value;
+}
+
+const response = await fetch(webAppUrl, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(datos)
+});
 
       const resultado = await response.json();
 
