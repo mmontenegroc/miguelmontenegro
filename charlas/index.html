@@ -663,6 +663,9 @@ footer {
     return null;
   }
 
+  console.log('Script cargado');
+console.log('Form encontrado:', form);
+  
   ['situacion', 'expectativa'].forEach(id => {
     document.getElementById(id).addEventListener('input', (e) => {
       const problema = detectarSpam(e.target.value);
