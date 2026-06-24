@@ -674,6 +674,16 @@ footer {
     });
   });
 
+  async function getClientIp() {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data.ip;
+    } catch (err) {
+      return 'unknown';
+    }
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -692,21 +702,20 @@ footer {
       const clientIp = await getClientIp();
       formData.append('clientIp', clientIp);
 
-     const webAppUrl = 'https://script.google.com/macros/s/AKfycbyV5yaZXDcPkQVsgtf-gwO0n7hrZl4RS7_KVqf6T6CMluEm5mHSuBkvo6r8mbm87yhzqA/exec';
-      
-      // Convertir FormData a objeto
-const datos = {};
-for (let [key, value] of formData.entries()) {
-  datos[key] = value;
-}
+      const webAppUrl = 'https://script.google.com/macros/s/AKfycbyV5yaZXDcPkQVsgtf-gwO0n7hrZl4RS7_KVqf6T6CMluEm5mHSuBkvo6r8mbm87yhzqA/exec';
 
-const response = await fetch(webAppUrl, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(datos)
-});
+      const datos = {};
+      for (let [key, value] of formData.entries()) {
+        datos[key] = value;
+      }
+
+      const response = await fetch(webAppUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+      });
 
       const resultado = await response.json();
 
@@ -719,9 +728,8 @@ const response = await fetch(webAppUrl, {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar postulación';
       }
-    console.log('Error:', err);
-console.log('Response:', resultado);
     } catch (err) {
+      console.error('Error:', err);
       alert('Error al enviar. Escribe directamente a contacto@miguelmontenegro.com');
       submitBtn.disabled = false;
       submitBtn.textContent = 'Enviar postulación';
