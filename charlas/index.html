@@ -689,7 +689,10 @@ footer {
 
     try {
       const formData = new FormData(form);
-      const webAppUrl = 'https://script.google.com/macros/s/AKfycbyV5yaZXDcPkQVsgtf-gwO0n7hrZl4RS7_KVqf6T6CMluEm5mHSuBkvo6r8mbm87yhzqA/exec
+      const clientIp = await getClientIp();
+      formData.append('clientIp', clientIp);
+
+      const webAppUrl = 'https://script.google.com/macros/s/AKfycbyV5yaZXDcPkQVsgtf-gwO0n7hrZl4RS7_KVqf6T6CMluEm5mHSuBkvo6r8mbm87yhzqA/exec';
       
       const response = await fetch(webAppUrl, {
         method: 'POST',
