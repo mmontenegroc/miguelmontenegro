@@ -260,65 +260,86 @@ section {
 }
 
 .form-desc {
-  color: var(--muted);
-  font-size: 14px;
+  font-family: "Fraunces", serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-2);
   margin-bottom: 32px;
 }
 
 .form-group {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
-label {
+.form-group label {
   display: block;
-  font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--text-2);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-input, select, textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid var(--line);
+  padding: 14px 16px;
   font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
+  border: 1px solid var(--line);
   background: white;
   color: var(--text);
+  border-radius: 0;
+  transition: border-color 0.2s;
 }
 
-input:focus, select:focus, textarea:focus {
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(196, 78, 31, 0.1);
 }
 
-textarea {
+.form-group textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
+  font-family: "Fraunces", serif;
+  font-size: 15px;
+}
+
+#honeypot-container {
+  display: none;
 }
 
 .form-submit {
-  width: 100%;
-  padding: 14px;
   background: var(--accent);
   color: white;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 0;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 14px;
-  border: none;
+  letter-spacing: 0.04em;
   cursor: pointer;
   transition: background 0.2s;
+  width: 100%;
 }
 
 .form-submit:hover { background: var(--accent-deep); }
-.form-submit:disabled { background: var(--muted); cursor: not-allowed; }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .success-msg {
-  background: #E8F5E9;
-  border: 1px solid #4CAF50;
-  padding: 24px;
-  margin-top: 32px;
   display: none;
+  background: #F0FAF4;
+  border-left: 4px solid #2D6A4F;
+  padding: 32px;
+  border-radius: 8px;
+  margin-top: 32px;
 }
 
 .success-msg.show {
@@ -326,149 +347,250 @@ textarea {
 }
 
 .success-msg h3 {
-  color: #2E7D32;
   font-family: "Fraunces", serif;
-  font-size: 20px;
+  font-size: 22px;
+  color: #2D6A4F;
   margin-bottom: 12px;
+}
+
+.success-msg p {
+  font-family: "Fraunces", serif;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
 }
 
 /* ====== FOOTER ====== */
 
 footer {
-  padding: 60px 0;
+  padding: 48px 0;
   border-top: 1px solid var(--line);
-  background: var(--bg-deep);
-  margin-top: 80px;
+  text-align: center;
 }
 
 .footer-name {
   font-family: "Fraunces", serif;
   font-weight: 600;
   font-size: 18px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .footer-rol {
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 16px;
 }
 
 .footer-link {
+  font-family: "Inter", sans-serif;
   font-size: 12px;
-  color: var(--accent);
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
-/* Honeypot */
-#honeypot-container {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-  opacity: 0;
+.footer-link:hover { color: var(--accent-deep); }
+
+/* ====== MODAL POPUP ====== */
+
+.confirmation-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
 }
+
+.confirmation-modal.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.4s ease-out;
+}
+
+.modal-icon {
+  font-size: 72px;
+  margin-bottom: 24px;
+  animation: bounce 0.6s ease-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.modal-title {
+  font-family: "Fraunces", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2D6A4F;
+  margin-bottom: 16px;
+}
+
+.modal-subtitle {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.modal-highlight {
+  background: #F0FAF4;
+  border-left: 4px solid #2D6A4F;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.modal-highlight strong {
+  color: #2D6A4F;
+  font-weight: 700;
+}
+
+.modal-email {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2D6A4F;
+  word-break: break-all;
+}
+
+.modal-footer {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.modal-close-hint {
+  color: #999;
+  font-size: 12px;
+  margin-top: 24px;
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+}
+
+/* ====== RESPONSIVE ====== */
 
 @media (max-width: 768px) {
-  .hero h1 { font-size: 48px; }
+  .hero h1 { font-size: 42px; }
+  .hero-sub { font-size: 18px; }
+  .section-h { font-size: 28px; }
   .form-section { padding: 32px 24px; }
-  section { padding: 48px 0; }
+  .modal-content { padding: 36px 24px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="nav">
+<!-- NAV -->
+<div class="nav">
   <div class="container">
     <div class="nav-inner">
-      <span>Confía en Ti</span>
-      <span class="right">10 Charlas · 2026</span>
+      <div>CHARLAS CONFÍA EN TI</div>
+      <div class="right">JULIO-AGOSTO 2026</div>
     </div>
   </div>
-</nav>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <span class="label">Programa de charlas</span>
-    <h1><span class="acc">Confía en Ti</span></h1>
-    <p class="hero-sub">10 charlas gratuitas diseñadas para equipos comerciales que quieren movilizar algo.</p>
+    <span class="label">10 Charlas Gratuitas</span>
+    <h1>
+      Confía en Ti
+      <br><span class="acc">para equipos comerciales.</span>
+    </h1>
     
-    <div class="cupos-badge">SOLO 10 CUPOS · Julio-Agosto 2026</div>
+    <p class="hero-sub">
+      Una charla transformacional para tu equipo. Medición PRE/POST con datos científicos. Solo <strong>10 cupos</strong> disponibles. Postula ahora.
+    </p>
+
+    <span class="cupos-badge">Solo 10 cupos disponibles</span>
 
     <div class="cta-row">
       <a href="#aplicar" class="btn">Postula a tu equipo</a>
-      <span class="btn-text">Proceso selectivo acotado</span>
+      <span class="btn-text">Sin costo. Sin compromisos. Sin spoilers.</span>
     </div>
   </div>
 </section>
 
-<!-- QUIÉN SOY -->
+<!-- QUÉ PASA -->
 <section>
   <div class="container">
-    <div class="section-label">El facilitador</div>
-    <h2 class="section-h">Quién trae estas charlas.</h2>
+    <div class="section-label">Cómo funciona</div>
+    <h2 class="section-h">En 90 minutos transformamos la confianza de tu equipo.</h2>
     
     <div class="prose">
-      <p>Soy <strong>Miguel Ángel Montenegro</strong>. Licenciado en Psicología, Coach IAC, hipnoterapeuta clínico, autor de libros sobre confianza y decisión. He trabajado 32 años en empresas grandes — banking, tecnología, construcción — eso me enseñó cómo piensan y sienten los equipos comerciales desde adentro.</p>
+      <p>No es un "taller de soft skills". Es una charla que apunta directamente al corazón de la confianza en uno mismo: aquello que los mantiene bloqueados, qué los desbloquea, y por qué los resultados no llegan si falta ese ingrediente.</p>
       
-      <p>Las charlas que traigo no son conferencias motivacionales. Son experiencias donde algo se mueve en el cuerpo, en la mente y en la forma de estar juntos como equipo.</p>
+      <p><strong>Estructura:</strong> Apertura emocional → 4 secretos → Ejercicios de integración → Cierre con propósito.</p>
+      
+      <p><strong>Antes de la charla</strong>, tu equipo responde una encuesta anónima (5 min). <strong>Después de la charla</strong>, responden la misma encuesta. Así capturamos el cambio real en confianza, seguridad y energía.</p>
+    </div>
+
+    <div style="margin-top: 48px; padding: 32px; background: #F2EDDF; border-left: 4px solid var(--accent);">
+      <p style="font-family: 'Fraunces', serif; font-size: 16px; color: var(--text-2); line-height: 1.6; margin: 0;">
+        <strong>Los datos después importan.</strong> Con una base científica, tu equipo ve que algo se movió. Eso les da evidencia de su propio poder. Y después, si quieren profundizar, podemos hablar de coaching ejecutivo personalizado.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉN -->
+<section>
+  <div class="container">
+    <div class="section-label">Quién facilita</div>
+    <h2 class="section-h">Miguel Ángel Montenegro.</h2>
+    
+    <div class="prose">
+      <p>Coach certificado IAC (International Association of Coaching). Licenciado en Psicología. Hipnoterapeuta clínico. 10 libros publicados, incluyendo "Confía en Ti". 32 años en corporativo (banca, tech, construcción, F&B). Ha formado a más de 200 coaches en América Latina.</p>
+      
+      <p>Trabaja la confianza desde tres ángulos: el psicológico (por qué nos bloqueamos), el neurocientífico (cómo el cerebro reconoce el poder) y el práctico (qué hacemos hoy diferente).</p>
     </div>
 
     <div class="bio-card">
       <div class="bio-name">Miguel Ángel Montenegro</div>
-      <div class="bio-rol">Licenciado en Psicología · Coach IAC · Hipnoterapeuta clínico · Autor de "Confía en Ti"</div>
-    </div>
-
-    <div style="margin: 48px 0;">
-      <img src="charla-presentacion.jpg" alt="Miguel presentando la charla Confía en Ti" style="width: 100%; height: auto; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      <div class="bio-rol">Coach IAC · Psicólogo · Hipnoterapeuta · Autor</div>
     </div>
   </div>
 </section>
 
-<!-- QUÉ PASA EN LA CHARLA -->
-<section>
-  <div class="container">
-    <div class="section-label">Formato</div>
-    <h2 class="section-h">¿Cómo funciona?</h2>
-    
-    <div class="prose">
-      <p><strong>Una hora con tu equipo.</strong> Sin diapositivas aburridas — charlas directas, donde algo genuino sucede.</p>
-      
-      <p>Lo que vengo a contarle a tu equipo no se puede resumir acá. Lo que sí te cuento es que después de la charla, tu equipo se va con una convicción diferente — y la data nos lo confirma.</p>
-    </div>
-
-    <div style="margin: 48px 0; text-align: center;">
-      <img src="charla.jpg" alt="Miguel dando una charla a su equipo" style="max-width: 100%; height: auto; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    </div>
-
-    <div style="margin: 48px 0; text-align: center;">
-      <img src="charla-interaccion.jpg" alt="Miguel en interacción directa con el equipo comercial" style="max-width: 100%; height: auto; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    </div>
-
-    <ul class="lista">
-      <li><strong>PRE-charla:</strong> Tu equipo completo responde una breve encuesta (medición inicial)</li>
-      <li><strong>La charla:</strong> 60 minutos con tu equipo comercial (presencial en tu ciudad o remota)</li>
-      <li><strong>POST-charla:</strong> A las 2-3 semanas, misma encuesta para medir qué se movió</li>
-      <li><strong>Datos concretos:</strong> Tú ves en números cómo cambiaron indicadores de confianza, energía y claridad del equipo</li>
-    </ul>
-  </div>
-</section>
-
-<!-- SI ES FUERA DE SANTIAGO -->
-<section>
-  <div class="container">
-    <div class="section-label">Si no estás en Santiago</div>
-    <h2 class="section-h">Voy. Con condiciones claras.</h2>
-    
-    <div class="prose">
-      <p>Si tu equipo está fuera de la Región Metropolitana, voy sin problema. Pero tu empresa cubre gastos de traslado, alojamiento y comidas. Lo ponemos así porque es justo y transparente. Me escribes, coordinamos.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DESPUÉS: COACHING EJECUTIVO -->
+<!-- DESPUÉS -->
 <section>
   <div class="container">
     <div class="section-label">Qué viene después</div>
@@ -491,7 +613,7 @@ footer {
       <h2 class="form-h2">Postula a tu equipo</h2>
       <p class="form-desc">Cuéntanos sobre tu equipo comercial. Si calza con el programa, te contactamos dentro de 72 horas.</p>
 
-      <form id="chartasForm" method="POST">
+      <form id="chartasForm">
         <!-- DATOS PERSONALES -->
         <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
           <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">TUS DATOS</legend>
@@ -621,11 +743,41 @@ footer {
   </div>
 </footer>
 
+<!-- Modal de confirmación -->
+<div id="confirmationModal" class="confirmation-modal">
+  <div class="modal-content">
+    <div class="modal-icon">✅</div>
+    <div class="modal-title">¡Postulación recibida!</div>
+    <p class="modal-subtitle">
+      Hola <span id="modalNombre">estimado/a</span>,<br>
+      gracias por tu interés en las charlas <strong>"Confía en Ti"</strong>
+    </p>
+    
+    <div class="modal-highlight">
+      <p style="margin: 0 0 12px 0; font-size: 14px; color: #666;">
+        Hemos enviado un email de confirmación a:
+      </p>
+      <p class="modal-email" id="modalEmail"></p>
+      <p style="margin: 12px 0 0 0; font-size: 13px; color: #888;">
+        Nos pondremos en contacto en <strong>48-72 horas</strong> para coordinar los detalles.
+      </p>
+    </div>
+    
+    <p class="modal-footer">
+      Si no recibes el email en los próximos minutos, revisa tu carpeta de <strong>spam</strong>.<br>
+      ¿Preguntas? Puedes responder directamente al email de confirmación.
+    </p>
+    
+    <p class="modal-close-hint">
+      (Esta ventana se cerrará automáticamente en <span id="countdownTimer">5</span> segundos)
+    </p>
+  </div>
+</div>
+
 <script>
 (function() {
   const form = document.getElementById('chartasForm');
   const submitBtn = document.getElementById('submitBtn');
-  const successMsg = document.getElementById('successMsg');
 
   const emailBloqueados = [
     'gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com',
@@ -663,9 +815,6 @@ footer {
     return null;
   }
 
-  console.log('Script cargado');
-console.log('Form encontrado:', form);
-  
   ['situacion', 'expectativa'].forEach(id => {
     document.getElementById(id).addEventListener('input', (e) => {
       const problema = detectarSpam(e.target.value);
@@ -677,13 +826,47 @@ console.log('Form encontrado:', form);
     });
   });
 
+  function mostrarModalConfirmacion(nombre, email) {
+    document.getElementById('modalNombre').textContent = nombre.split(' ')[0];
+    document.getElementById('modalEmail').textContent = email;
+    
+    const modal = document.getElementById('confirmationModal');
+    modal.classList.add('active');
+    
+    let segundos = 5;
+    const timer = document.getElementById('countdownTimer');
+    
+    const interval = setInterval(() => {
+      segundos--;
+      timer.textContent = segundos;
+      
+      if (segundos <= 0) {
+        clearInterval(interval);
+        cerrarModalConfirmacion();
+      }
+    }, 1000);
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        clearInterval(interval);
+        cerrarModalConfirmacion();
+      }
+    });
+  }
+
+  function cerrarModalConfirmacion() {
+    const modal = document.getElementById('confirmationModal');
+    modal.classList.remove('active');
+    form.reset();
+  }
+
   async function getClientIp() {
     try {
       const response = await fetch('https://api.ipify.org?format=json');
       const data = await response.json();
       return data.ip;
-    } catch (err) {
-      return 'unknown';
+    } catch {
+      return 'desconocida';
     }
   }
 
@@ -692,8 +875,7 @@ console.log('Form encontrado:', form);
 
     const honeypot = document.querySelector('input[name="website_url"]').value;
     if (honeypot && honeypot.length > 0) {
-      form.style.display = 'none';
-      successMsg.classList.add('show');
+      mostrarModalConfirmacion('Visitante', 'spam@detectado.com');
       return;
     }
 
@@ -701,44 +883,47 @@ console.log('Form encontrado:', form);
     submitBtn.textContent = 'Enviando...';
 
     try {
-  const formData = new FormData(form);
-  const clientIp = await getClientIp();
-  
-  const payload = {
-    nombre: formData.get('nombre'),
-    email: formData.get('email'),
-    telefono: formData.get('telefono'),
-    cargo: formData.get('cargo'),
-    empresa: formData.get('empresa'),
-    rubro: formData.get('rubro'),
-    tamano_equipo: formData.get('tamano_equipo'),
-    ciudad: formData.get('ciudad'),
-    modalidad: formData.get('modalidad'),
-    situacion: formData.get('situacion'),
-    expectativa: formData.get('expectativa'),
-    fuente: formData.get('fuente'),
-    clientIp: clientIp
-  };
-  
-  const webAppUrl = 'https://disc-backend-production-0e6b.up.railway.app/api/charlas/aplicacion';
-  const response = await fetch(webAppUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  const resultado = await response.json();
+      const clientIp = await getClientIp();
+      
+      const payload = {
+        nombre: document.getElementById('nombre').value,
+        email: document.getElementById('email').value,
+        telefono: document.getElementById('telefono').value,
+        cargo: document.getElementById('cargo').value,
+        empresa: document.getElementById('empresa').value,
+        rubro: document.getElementById('rubro').value,
+        tamano_equipo: document.getElementById('tamano_equipo').value,
+        ciudad: document.getElementById('ciudad').value,
+        modalidad: document.getElementById('modalidad').value,
+        situacion: document.getElementById('situacion').value,
+        expectativa: document.getElementById('expectativa').value,
+        fuente: document.getElementById('fuente').value,
+        clientIp: clientIp
+      };
+
+      const webAppUrl = 'https://disc-backend-production-0e6b.up.railway.app/api/charlas/aplicacion';
+      
+      const response = await fetch(webAppUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const resultado = await response.json();
 
       if (resultado.ok) {
-        form.style.display = 'none';
-        successMsg.classList.add('show');
-        window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
+        mostrarModalConfirmacion(resultado.nombre, resultado.email);
       } else {
-        alert('Hubo un problema. Intenta de nuevo.');
+        alert('Hubo un problema: ' + (resultado.detail || 'intenta de nuevo'));
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar postulación';
       }
     } catch (err) {
-      console.error('Error:', err);
+      console.error(err);
       alert('Error al enviar. Escribe directamente a contacto@miguelmontenegro.com');
       submitBtn.disabled = false;
       submitBtn.textContent = 'Enviar postulación';
