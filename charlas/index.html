@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>10 Charlas Confía en Ti — Miguel Ángel Montenegro</title>
-<meta name="description" content="Diez charlas gratuitas para equipos comerciales desafiados. Julio y agosto 2026. Cupos limitados, selección acotada.">
+<title>Confía en Ti — 10 Charlas para Equipos Comerciales</title>
+<meta name="description" content="10 charlas gratuitas para equipos comerciales. Medición PRE/POST con encuestas. Julio-agosto 2026. Solo 10 cupos. Postula a tu equipo.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,6 +108,18 @@ body {
   margin-bottom: 40px;
 }
 
+.cupos-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 12px 20px;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 32px;
+  border-radius: 0;
+}
+
 .cta-row {
   display: flex;
   gap: 16px;
@@ -200,6 +212,7 @@ section {
   font-family: "Inter", sans-serif;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.6;
 }
 
 /* ====== LISTA ====== */
@@ -230,285 +243,102 @@ section {
   top: 14px;
 }
 
-.lista.cruz li::before {
-  content: "×";
-  color: var(--muted);
-  font-size: 18px;
-  top: 12px;
-}
-
-/* ====== DOS COLUMNAS (para "es / no es") ====== */
-
-.cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin-top: 32px;
-}
-
-.col h3 {
-  font-family: "Fraunces", serif;
-  font-weight: 600;
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-
-.col h3 .acc { color: var(--accent); }
-.col h3 .mut { color: var(--muted); }
-
-.col-intro {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-
-@media (max-width: 640px) {
-  .cols { grid-template-columns: 1fr; gap: 40px; }
-}
-
-/* ====== PROCESO ====== */
-
-.pasos {
-  margin-top: 32px;
-}
-
-.paso {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 24px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.paso:last-child { border-bottom: none; }
-
-.paso-num {
-  font-family: "Fraunces", serif;
-  font-weight: 600;
-  font-size: 28px;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.paso-titulo {
-  font-family: "Fraunces", serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.25;
-  margin-bottom: 8px;
-}
-
-.paso-desc {
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--text-2);
-}
-
-/* ====== FRASE DESTACADA ====== */
-
-.pull {
-  font-family: "Fraunces", serif;
-  font-style: italic;
-  font-size: 30px;
-  line-height: 1.3;
-  letter-spacing: -0.5px;
-  color: var(--text);
-  margin: 40px 0;
-  padding-left: 24px;
-  border-left: 3px solid var(--accent);
-}
-
-.pull .acc { color: var(--accent); font-style: normal; font-weight: 600; }
-
 /* ====== FORMULARIO ====== */
 
-#aplicar {
-  background: var(--bg-deep);
-  padding: 96px 0;
-}
-
-#aplicar .section-h { margin-bottom: 16px; }
-
-.form-intro {
-  font-family: "Fraunces", serif;
-  font-size: 18px;
-  color: var(--text-2);
-  max-width: 600px;
-  margin-bottom: 40px;
-  font-style: italic;
-}
-
-.form {
-  background: var(--bg);
-  padding: 48px;
+.form-section {
+  background: white;
   border: 1px solid var(--line);
+  padding: 48px;
+  margin-top: 48px;
+}
+
+.form-h2 {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.form-desc {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 32px;
 }
 
 .form-group {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
-.form-group:last-of-type { margin-bottom: 0; }
-
-.form-label {
+label {
   display: block;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--text);
+  font-weight: 500;
+  font-size: 14px;
   margin-bottom: 8px;
-  letter-spacing: 0.02em;
-}
-
-.form-help {
-  font-family: "Inter", sans-serif;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 4px;
-  font-style: italic;
-}
-
-.form-input,
-.form-select,
-.form-textarea {
-  width: 100%;
-  padding: 12px 14px;
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  color: var(--text);
-  border-radius: 0;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.form-textarea {
-  min-height: 120px;
-  resize: vertical;
-  font-family: "Inter", sans-serif;
-  line-height: 1.5;
-}
-
-.form-select {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%238A857C' d='M6 8L0 0h12z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-}
-
-.form-checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.form-checkbox {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px 14px;
-  border: 1px solid var(--line);
-  cursor: pointer;
-  transition: border-color 0.15s;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.form-checkbox:hover { border-color: var(--muted); }
-
-.form-checkbox input {
-  margin-top: 3px;
-  cursor: pointer;
-  accent-color: var(--accent);
-}
-
-.form-checkbox.checked { border-color: var(--accent); background: rgba(196, 78, 31, 0.05); }
-
-.descalifica {
-  display: none;
-  background: #FFF4ED;
-  border: 1px solid #F5C39C;
-  padding: 24px;
-  margin-top: 24px;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  line-height: 1.55;
   color: var(--text-2);
 }
 
-.descalifica.show { display: block; }
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  background: white;
+  color: var(--text);
+}
 
-.descalifica strong { color: var(--accent-deep); }
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 78, 31, 0.1);
+}
 
-.descalifica a {
-  color: var(--accent);
-  font-weight: 600;
-  text-decoration: none;
+textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 .form-submit {
-  margin-top: 32px;
-  padding: 18px 36px;
+  width: 100%;
+  padding: 14px;
   background: var(--accent);
   color: white;
-  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 14px;
-  letter-spacing: 0.04em;
   border: none;
   cursor: pointer;
-  width: 100%;
   transition: background 0.2s;
 }
 
 .form-submit:hover { background: var(--accent-deep); }
-
-.form-submit:disabled {
-  background: var(--line);
-  color: var(--muted);
-  cursor: not-allowed;
-}
+.form-submit:disabled { background: var(--muted); cursor: not-allowed; }
 
 .success-msg {
+  background: #E8F5E9;
+  border: 1px solid #4CAF50;
+  padding: 24px;
+  margin-top: 32px;
   display: none;
-  text-align: center;
-  padding: 48px 24px;
 }
 
-.success-msg.show { display: block; }
+.success-msg.show {
+  display: block;
+}
 
 .success-msg h3 {
+  color: #2E7D32;
   font-family: "Fraunces", serif;
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.success-msg p {
-  font-family: "Fraunces", serif;
-  font-size: 17px;
-  color: var(--text-2);
-  max-width: 500px;
-  margin: 0 auto;
+  font-size: 20px;
+  margin-bottom: 12px;
 }
 
 /* ====== FOOTER ====== */
 
 footer {
-  padding: 64px 0;
+  padding: 60px 0;
   border-top: 1px solid var(--line);
-  text-align: center;
+  background: var(--bg-deep);
+  margin-top: 80px;
 }
 
 .footer-name {
@@ -519,593 +349,368 @@ footer {
 }
 
 .footer-rol {
-  font-family: "Inter", sans-serif;
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 16px;
 }
 
 .footer-link {
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--accent);
-  text-decoration: none;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  text-decoration: none;
 }
 
-/* ====== MOBILE ====== */
-
-@media (max-width: 640px) {
-  .hero { padding: 64px 0 56px 0; }
-  .hero h1 { font-size: 42px; letter-spacing: -1px; }
-  .hero-sub { font-size: 18px; }
-  section { padding: 64px 0; }
-  .section-h { font-size: 30px; }
-  .pull { font-size: 22px; padding-left: 18px; }
-  #aplicar { padding: 64px 0; }
-  .form { padding: 28px 20px; }
-  .container { padding: 0 20px; }
+/* Honeypot */
+#honeypot-container {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
 }
 
+@media (max-width: 768px) {
+  .hero h1 { font-size: 48px; }
+  .form-section { padding: 32px 24px; }
+  section { padding: 48px 0; }
+}
 </style>
 </head>
 <body>
 
-<!-- ====== NAVBAR ====== -->
-<div class="nav">
+<!-- NAVBAR -->
+<nav class="nav">
   <div class="container">
     <div class="nav-inner">
-      <span>Miguel Ángel Montenegro</span>
-      <span class="right">10 charlas · julio-agosto 2026</span>
+      <span>Confía en Ti</span>
+      <span class="right">10 Charlas · 2026</span>
     </div>
   </div>
-</div>
+</nav>
 
-<!-- ====== HERO ====== -->
-<section class="hero" style="border-top: none;">
+<!-- HERO -->
+<section class="hero">
   <div class="container">
-    <span class="label">Convocatoria abierta · 10 cupos</span>
-    <h1>
-      Diez charlas. <span class="ital">Equipos comerciales</span><br>
-      que necesitan <span class="acc">despertar.</span>
-    </h1>
-    <p class="hero-sub">
-      Estoy seleccionando diez empresas chilenas para entregar gratuitamente la charla
-      <em>Confía en Ti</em> a sus equipos comerciales durante julio y agosto.
-      Es una intervención acotada, no un evento abierto. Si tu equipo está desafiado, esto puede ser para ustedes.
-    </p>
+    <span class="label">Programa de charlas</span>
+    <h1><span class="acc">Confía en Ti</span></h1>
+    <p class="hero-sub">10 charlas gratuitas diseñadas para equipos comerciales que quieren movilizar algo.</p>
+    
+    <div class="cupos-badge">SOLO 10 CUPOS · Julio-Agosto 2026</div>
+
     <div class="cta-row">
-      <a href="#aplicar" class="btn">Aplicar a las charlas</a>
-      <span class="btn-text">Toma 4 minutos · respondemos en 72 horas</span>
+      <a href="#aplicar" class="btn">Postula a tu equipo</a>
+      <span class="btn-text">Proceso selectivo acotado</span>
     </div>
   </div>
 </section>
 
-<!-- ====== QUIÉN SOY ====== -->
+<!-- QUIÉN SOY -->
 <section>
   <div class="container">
-    <div class="section-label">Quién está detrás</div>
-    <h2 class="section-h">No vengo de la nube. <span class="ital">Vengo de la cancha.</span></h2>
+    <div class="section-label">El facilitador</div>
+    <h2 class="section-h">Quién trae estas charlas.</h2>
+    
     <div class="prose">
-      <p>Soy coach certificado por la <strong>International Association of Coaching</strong> en el nivel Maestrías, hipnoterapeuta clínico y autor de diez libros, incluido <em>Confía en Ti</em>, que es la base de esta charla. Pero antes que todo eso, pasé treinta y dos años en empresas reales: banca, tecnología, materiales de construcción, alimentación. Llegué a cargos directivos y también caí. Conozco lo que se siente cerrar un mes lejos de la meta. Conozco lo que se siente ser el único optimista de la sala.</p>
-      <p>Esta charla no es teoría motivacional ni recetas de autoayuda. Es trabajo concreto sobre lo que se mueve por dentro de las personas que venden. Lo que vengo a contarle a tu equipo no se puede resumir en este sitio web. Lo que sí puedo decirte es que vale la pena que estén ahí cuando lo cuente.</p>
+      <p>Soy <strong>Miguel Ángel Montenegro</strong>. Licenciado en Psicología, Coach IAC, hipnoterapeuta clínico, autor de libros sobre confianza y decisión. He trabajado 32 años en empresas grandes — banking, tecnología, construcción — eso me enseñó cómo piensan y sienten los equipos comerciales desde adentro.</p>
+      
+      <p>Las charlas que traigo no son conferencias motivacionales. Son experiencias donde algo se mueve en el cuerpo, en la mente y en la forma de estar juntos como equipo.</p>
     </div>
+
     <div class="bio-card">
       <div class="bio-name">Miguel Ángel Montenegro</div>
-      <div class="bio-rol">Coach IAC Maestrías · Hipnoterapeuta clínico · Autor de 10 libros</div>
+      <div class="bio-rol">Licenciado en Psicología · Coach IAC · Hipnoterapeuta clínico · Autor de "Confía en Ti"</div>
+    </div>
+
+    <div style="margin: 48px 0;">
+      <img src="charla-presentacion.jpg" alt="Miguel presentando la charla Confía en Ti" style="width: 100%; height: auto; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     </div>
   </div>
 </section>
 
-<!-- ====== EL PROBLEMA ====== -->
+<!-- QUÉ PASA EN LA CHARLA -->
 <section>
   <div class="container">
-    <div class="section-label">Por qué esto, ahora</div>
-    <h2 class="section-h">A los equipos comerciales <span class="ital">les está pasando algo</span> que la técnica no resuelve.</h2>
+    <div class="section-label">Formato</div>
+    <h2 class="section-h">¿Cómo funciona?</h2>
+    
     <div class="prose">
-      <p>Cuando un equipo comercial empieza a cerrar por debajo de lo que puede, lo primero que se revisa es la técnica. Más capacitación de producto. Más herramientas. Más métricas. Más reuniones de pipeline. A veces sirve. Otras veces, no mueve la aguja.</p>
-      <p>Lo que rara vez se revisa es lo que pasa <em>dentro</em> de cada vendedor cuando se sienta frente al cliente. La energía con que llega al lunes. La historia que carga cuando cierra mal un viernes. La conversación que tiene consigo mismo entre llamada y llamada.</p>
-      <p>Esa capa interior es la que se trabaja en esta charla. No con teoría motivacional ni con frases inspiradoras. Con conversación honesta, ejercicios personales que cada uno hace en silencio, y una propuesta concreta para el lunes siguiente.</p>
+      <p><strong>Una hora con tu equipo.</strong> Sin diapositivas aburridas — charlas directas, donde algo genuino sucede.</p>
+      
+      <p>Lo que vengo a contarle a tu equipo no se puede resumir acá. Lo que sí te cuento es que después de la charla, tu equipo se va con una convicción diferente — y la data nos lo confirma.</p>
     </div>
-    <div class="pull">
-      Salen con la convicción de querer <span class="acc">comerse el mundo.</span> Pero el cómo eso pasa, pasa adentro de la sala.
+
+    <div style="margin: 48px 0; text-align: center;">
+      <img src="charla.jpg" alt="Miguel dando una charla a su equipo" style="max-width: 100%; height: auto; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     </div>
+
+    <div style="margin: 48px 0; text-align: center;">
+      <img src="charla-interaccion.jpg" alt="Miguel en interacción directa con el equipo comercial" style="max-width: 100%; height: auto; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    </div>
+
+    <ul class="lista">
+      <li><strong>PRE-charla:</strong> Tu equipo completo responde una breve encuesta (medición inicial)</li>
+      <li><strong>La charla:</strong> 60 minutos con tu equipo comercial (presencial en tu ciudad o remota)</li>
+      <li><strong>POST-charla:</strong> A las 2-3 semanas, misma encuesta para medir qué se movió</li>
+      <li><strong>Datos concretos:</strong> Tú ves en números cómo cambiaron indicadores de confianza, energía y claridad del equipo</li>
+    </ul>
   </div>
 </section>
 
-<!-- ====== EL FORMATO ====== -->
+<!-- SI ES FUERA DE SANTIAGO -->
 <section>
   <div class="container">
-    <div class="section-label">El formato</div>
-    <h2 class="section-h">Una hora con tu equipo. <span class="ital">Y una decisión concreta para el lunes.</span></h2>
+    <div class="section-label">Si no estás en Santiago</div>
+    <h2 class="section-h">Voy. Con condiciones claras.</h2>
+    
     <div class="prose">
-      <p>La charla dura aproximadamente sesenta minutos. Se hace presencial, en la sala de tu empresa, con tu equipo comercial completo. No es una conferencia magistral: hay momentos de reflexión, ejercicios escritos personales, y una conversación final que vincula lo trabajado con la realidad concreta del equipo.</p>
-      <p>Al cierre dejamos una sola práctica accionable para el lunes siguiente. Y veinte minutos antes de retirarme, hago un debrief privado con la gerencia para conversar lo observado y proponer pasos posteriores si tiene sentido para ustedes.</p>
+      <p>Si tu equipo está fuera de la Región Metropolitana, voy sin problema. Pero tu empresa cubre gastos de traslado, alojamiento y comidas. Lo ponemos así porque es justo y transparente. Me escribes, coordinamos.</p>
     </div>
   </div>
 </section>
 
-<!-- ====== ES / NO ES PARA ====== -->
+<!-- DESPUÉS: COACHING EJECUTIVO -->
 <section>
   <div class="container">
-    <div class="section-label">Antes de aplicar</div>
-    <h2 class="section-h">Quién califica <span class="ital">y quién no.</span></h2>
-    <div class="cols">
-      <div class="col">
-        <h3>Esto <span class="acc">es para</span> ti si</h3>
-        <p class="col-intro">Reconoces a tu empresa en al menos cuatro de estos puntos.</p>
-        <ul class="lista">
-          <li>Tienes un equipo comercial entre 8 y 25 personas.</li>
-          <li>Tu empresa lleva al menos tres años en operación.</li>
-          <li>Eres gerente general, comercial, de RRHH, dueño o socio.</li>
-          <li>El equipo está atravesando un momento desafiante (metas en caída, rotación, cambio de modelo, equipo nuevo).</li>
-          <li>Tienes presupuesto anual de capacitación o desarrollo de personas.</li>
-          <li>Estarías dispuesto a invertir en coaching individual para algunas personas si la charla los mueve.</li>
-        </ul>
-      </div>
-      <div class="col">
-        <h3>Esto <span class="mut">no es</span> para ti si</h3>
-        <p class="col-intro">Es mejor que ahorres tu tiempo y el mío.</p>
-        <ul class="lista cruz">
-          <li>Buscas un evento motivacional puntual sin continuidad.</li>
-          <li>Tu equipo comercial es de menos de 8 personas o más de 30.</li>
-          <li>No tienes capacidad de decisión presupuestaria.</li>
-          <li>Tu empresa no tiene presupuesto formal de capacitación.</li>
-          <li>Solo quieres asistir a una conferencia como espectador.</li>
-          <li>Eres coach, consultor o freelancer buscando aprender el método.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== EL DESPUÉS ====== -->
-<section>
-  <div class="container">
-    <div class="section-label">El día después</div>
-    <h2 class="section-h">La charla siembra. <span class="ital">El cambio se sostiene uno a uno.</span></h2>
+    <div class="section-label">Qué viene después</div>
+    <h2 class="section-h">Si quieres profundizar.</h2>
+    
     <div class="prose">
-      <p>La charla mueve al equipo. Pero el trabajo real, el que cambia cómo una persona se para frente al cliente, se hace individualmente. Por eso, cuando una empresa decide continuar conmigo después de la charla, lo que ofrezco no es otra charla. Es un proceso de coaching individual.</p>
+      <p>La charla es gratis y genera datos. Si después de eso tu equipo quiere seguir, existe <strong>coaching ejecutivo en profundidad</strong> — yo lo facilito o alguien de mi equipo de coaches certificados.</p>
+      
+      <p>Antes de cualquier conversación de coaching, hacemos un <strong>DISC</strong> (evaluación de perfiles) para entender las dinámicas únicas de tu equipo. Así el trabajo es personalizado, no genérico.</p>
+      
+      <p>Pero eso viene después. Primero, la charla. Primero, los datos. Primero, veremos si hay algo que movilizar juntos.</p>
     </div>
-
-    <div class="pasos">
-      <div class="paso">
-        <div class="paso-num">01</div>
-        <div>
-          <div class="paso-titulo">Assessment DISC personal</div>
-          <div class="paso-desc">Empiezo con un diagnóstico del perfil DISC de cada coachee, con interpretación escrita personalizada. La base para el trabajo que viene.</div>
-        </div>
-      </div>
-      <div class="paso">
-        <div class="paso-num">02</div>
-        <div>
-          <div class="paso-titulo">Sesión de alineación inicial</div>
-          <div class="paso-desc">Cuarenta y cinco minutos para definir el foco específico del proceso. Entrego un plan personal escrito al cierre.</div>
-        </div>
-      </div>
-      <div class="paso">
-        <div class="paso-num">03</div>
-        <div>
-          <div class="paso-titulo">Cuatro sesiones de coaching</div>
-          <div class="paso-desc">Cuatro sesiones de 45 minutos según el estándar IAC, una por semana, durante un mes intensivo.</div>
-        </div>
-      </div>
-      <div class="paso">
-        <div class="paso-num">04</div>
-        <div>
-          <div class="paso-titulo">Cierre y seguimiento trimestral</div>
-          <div class="paso-desc">Informe escrito de cierre, más dos mini-sesiones de seguimiento de 15 minutos a los 30 y 60 días, para sostener lo trabajado.</div>
-        </div>
-      </div>
-    </div>
-
-    <p class="prose" style="margin-top: 40px;">
-      Inversión: <strong>UF 45 por persona</strong>. Cupos limitados a quince coachees simultáneos para el segundo semestre 2026.
-      Esto se conversa al cierre de la charla, en privado con la gerencia, sin ninguna obligación.
-    </p>
   </div>
 </section>
 
-<!-- ====== FORMULARIO ====== -->
+<!-- POSTULACIÓN -->
 <section id="aplicar">
   <div class="container">
-    <div class="section-label">Aplicación</div>
-    <h2 class="section-h">Postúlate a las charlas.</h2>
-    <p class="form-intro">
-      Toma cuatro minutos. Solo califican empresas que cumplen los criterios objetivos. Respondemos a todas las aplicaciones en un plazo máximo de 72 horas.
-    </p>
+    <div class="form-section">
+      <h2 class="form-h2">Postula a tu equipo</h2>
+      <p class="form-desc">Cuéntanos sobre tu equipo comercial. Si calza con el programa, te contactamos dentro de 72 horas.</p>
 
-    <form class="form" id="aplicacionForm" action="https://formspree.io/f/REEMPLAZAR_CON_ID" method="POST">
+      <form id="chartasForm">
+        <!-- DATOS PERSONALES -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
+          <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">TUS DATOS</legend>
 
-      <div class="form-group">
-        <label class="form-label" for="empresa">Nombre legal de la empresa</label>
-        <input class="form-input" type="text" id="empresa" name="empresa" required>
-      </div>
+          <div class="form-group">
+            <label for="nombre">Tu nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="120" placeholder="Nombre completo">
+          </div>
 
-      <div class="form-group">
-        <label class="form-label" for="anos">Años de operación de la empresa</label>
-        <select class="form-select" id="anos" name="anos" required>
-          <option value="">Selecciona una opción</option>
-          <option value="menos3">Menos de 3 años</option>
-          <option value="3-7">Entre 3 y 7 años</option>
-          <option value="8-15">Entre 8 y 15 años</option>
-          <option value="masde15">Más de 15 años</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="email">Email corporativo *</label>
+            <input type="email" id="email" name="email" required maxlength="200" placeholder="tu@empresa.com">
+          </div>
 
-      <div class="form-group">
-        <label class="form-label" for="facturacion">Rango de facturación anual</label>
-        <select class="form-select" id="facturacion" name="facturacion" required>
-          <option value="">Selecciona una opción</option>
-          <option value="menos30k">Menos de UF 30.000</option>
-          <option value="30-100">Entre UF 30.000 y 100.000</option>
-          <option value="100-500">Entre UF 100.000 y 500.000</option>
-          <option value="masde500">Más de UF 500.000</option>
-          <option value="prefiero-no">Prefiero no responder</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono (Chile) *</label>
+            <input type="tel" id="telefono" name="telefono" required placeholder="+56 9 1234 5678">
+          </div>
 
-      <div class="form-group">
-        <label class="form-label" for="equipo">Tamaño del equipo comercial</label>
-        <select class="form-select" id="equipo" name="equipo" required>
-          <option value="">Selecciona una opción</option>
-          <option value="menos8">Menos de 8 personas</option>
-          <option value="8-15">Entre 8 y 15 personas</option>
-          <option value="16-25">Entre 16 y 25 personas</option>
-          <option value="masde25">Más de 25 personas</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="cargo">Tu cargo en la organización *</label>
+            <input type="text" id="cargo" name="cargo" required maxlength="80" placeholder="Gerente Comercial, Jefe de Ventas, etc">
+          </div>
+        </fieldset>
 
-      <div class="form-group">
-        <label class="form-label" for="cargo">Tu cargo en la empresa</label>
-        <select class="form-select" id="cargo" name="cargo" required>
-          <option value="">Selecciona una opción</option>
-          <option value="ceo">Gerente general / CEO / Director ejecutivo</option>
-          <option value="comercial">Gerente comercial / Director comercial</option>
-          <option value="rrhh">Gerente de RRHH / Personas</option>
-          <option value="dueno">Dueño / Socio</option>
-          <option value="otro">Otro cargo</option>
-        </select>
-      </div>
+        <!-- DATOS EQUIPO -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
+          <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">TU EQUIPO COMERCIAL</legend>
 
-      <div class="form-group">
-        <label class="form-label">Situación actual del equipo (marca todas las que apliquen)</label>
-        <div class="form-checkbox-group">
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="metas"> Cumplimiento de metas en caída sostenida los últimos 6 meses</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="rotacion"> Rotación de personas más alta de lo habitual</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="desmotivado"> Equipo experimentado pero desconectado o desmotivado</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="junior"> Equipo nuevo o muy junior que necesita madurez</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="reestructuracion"> Reestructuración reciente (cambio de gerencia, fusión, despidos)</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="producto"> Cambio de producto o propuesta de valor que cuesta aterrizar</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="competencia"> Entrada de competencia agresiva en el mercado</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="lideres"> Líderes intermedios que no logran sostener al equipo</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="conviccion"> Equipo que cierra técnicamente pero le falta convicción en el discurso</label>
-          <label class="form-checkbox"><input type="checkbox" name="situacion[]" value="ninguna"> Ninguna de las anteriores</label>
+          <div class="form-group">
+            <label for="empresa">Nombre de la empresa *</label>
+            <input type="text" id="empresa" name="empresa" required maxlength="200" placeholder="Mi Empresa S.A.">
+          </div>
+
+          <div class="form-group">
+            <label for="rubro">Rubro / Industria *</label>
+            <input type="text" id="rubro" name="rubro" required maxlength="100" placeholder="Ej: Construcción, Retail, Servicios">
+          </div>
+
+          <div class="form-group">
+            <label for="tamano_equipo">¿Cuántas personas hay en tu equipo comercial? *</label>
+            <select id="tamano_equipo" name="tamano_equipo" required>
+              <option value="">Selecciona...</option>
+              <option value="8-12">8 a 12 personas</option>
+              <option value="13-18">13 a 18 personas</option>
+              <option value="19-25">19 a 25 personas</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ciudad">¿En qué ciudad está tu equipo? *</label>
+            <input type="text" id="ciudad" name="ciudad" required maxlength="80" placeholder="Santiago, Valparaíso, etc">
+          </div>
+
+          <div class="form-group">
+            <label for="modalidad">¿Cómo trabajan? *</label>
+            <select id="modalidad" name="modalidad" required>
+              <option value="">Selecciona...</option>
+              <option value="presencial">Presencial (Santiago)</option>
+              <option value="hibrida">Híbrida</option>
+              <option value="remota">100% remota</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- SITUACIÓN DEL EQUIPO -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
+          <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">LA SITUACIÓN ACTUAL</legend>
+
+          <div class="form-group">
+            <label for="situacion">¿Cuál es el principal desafío que enfrenta tu equipo ahora? (Puede ser emocional, relacional, de resultados, de confianza) *</label>
+            <textarea id="situacion" name="situacion" required maxlength="500" placeholder="Describe el desafío, el dolor, lo que ves que no está fluyendo..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="expectativa">¿Cuál sería el resultado deseado para tu equipo si algo se mobilizara? *</label>
+            <textarea id="expectativa" name="expectativa" required maxlength="500" placeholder="¿Cómo quieres que sea tu equipo después? ¿Qué debería cambiar?"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="fuente">¿Cómo nos encontraste? *</label>
+            <select id="fuente" name="fuente" required>
+              <option value="">Selecciona...</option>
+              <option value="referencia">Referencia de alguien</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="web">Web / Buscador</option>
+              <option value="email">Email directo</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- Honeypot -->
+        <div id="honeypot-container">
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="form-label" for="dolor">Describe el problema concreto que está viviendo tu equipo hoy</label>
-        <textarea class="form-textarea" id="dolor" name="dolor" required minlength="100"
-          placeholder="¿Qué pasa cuando cierran menos? ¿Qué historias te llegan de sus conversaciones con clientes? Mínimo 100 caracteres."></textarea>
-        <div class="form-help">Mínimo 100 caracteres. Responde con detalle real, no con frases tipo manual.</div>
-      </div>
+        <input type="hidden" name="calificacion" id="calificacion" value="postulacion">
 
-      <div class="form-group">
-        <label class="form-label" for="coaching">Si después de la charla decides que el equipo necesita coaching individual para algunas personas clave, ¿cuántas considerarías comenzar?</label>
-        <select class="form-select" id="coaching" name="coaching" required>
-          <option value="">Selecciona una opción</option>
-          <option value="ninguna">Ninguna, esto sería solo la charla</option>
-          <option value="1-2">1 a 2 personas (un líder o caso específico)</option>
-          <option value="3-5">3 a 5 personas (núcleo del equipo)</option>
-          <option value="masde6">6 o más personas (intervención amplia)</option>
-        </select>
-      </div>
+        <!-- CONSENTIMIENTO -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 24px 0;">
+          <div class="form-group" style="border: 1px solid var(--line); padding: 16px; background: var(--bg-deep);">
+            <label style="font-weight: 400; font-size: 13px; margin: 0; cursor: pointer;">
+              <input type="checkbox" id="consentimiento" name="consentimiento" required style="width: auto; margin-right: 8px;">
+              <span>Autorizo a Miguel Ángel Montenegro a guardar mis datos (nombre, email, teléfono, empresa, equipo) para contactarme sobre esta charla, seguimientos, encuestas PRE/POST, y futuras propuestas de coaching o programas que se ajusten a mi perfil. Puedo retirar este consentimiento escribiendo a <strong>contacto@miguelmontenegro.com</strong> en cualquier momento.</span>
+            </label>
+          </div>
+        </fieldset>
 
-      <div class="form-group">
-        <label class="form-label" for="ciudad">Ciudad donde se haría la charla</label>
-        <input class="form-input" type="text" id="ciudad" name="ciudad" required placeholder="Santiago, Concepción, Antofagasta, etc.">
-        <div class="form-help">Charlas en Santiago son completamente gratuitas. En regiones, la empresa cubre traslado y alojamiento.</div>
-      </div>
+        <button type="submit" class="form-submit" id="submitBtn">Enviar postulación</button>
 
-      <div class="form-group">
-        <label class="form-label" for="nombre">Tu nombre completo</label>
-        <input class="form-input" type="text" id="nombre" name="nombre" required>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="email">Correo corporativo</label>
-        <input class="form-input" type="email" id="email" name="email" required>
-        <div class="form-help">No aceptamos correos personales (gmail, hotmail, outlook personal).</div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="telefono">Teléfono de contacto directo</label>
-        <input class="form-input" type="tel" id="telefono" name="telefono" required placeholder="+56 9 XXXX XXXX">
-      </div>
-
-      <div class="descalifica" id="descalificaBox">
-        <strong>Tu equipo no califica esta vez.</strong><br><br>
-        Por las características que me comentas, estas diez charlas están pensadas para perfiles algo distintos al tuyo. Pero tu solicitud me importa de todas formas.<br><br>
-        Si me dejas tus datos a continuación, quedas en mi registro y te voy a contactar directamente cuando tenga una propuesta que sí calce con el momento o las características de tu equipo. Coaching individual, conferencias en otros formatos, programas de menor o mayor escala. Hay caminos.<br><br>
-        Mientras tanto, te dejo el manifiesto que escribí basado en estas charlas. Lo puedes compartir con tu equipo: <a href="#" id="linkManifiesto">descarga aquí el Manifiesto de la Grandeza</a>.
-      </div>
-
-      <div class="form-group" style="margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line);">
-        <label class="form-label">Para terminar — dos preguntas breves sobre cómo llegaste hasta acá</label>
-        <div class="form-help" style="margin-bottom: 16px;">Me ayuda a entender qué resuena de mi trabajo en quienes se acercan.</div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="canal">¿Cómo conociste mi trabajo o esta convocatoria?</label>
-        <select class="form-select" id="canal" name="canal" required>
-          <option value="">Selecciona una opción</option>
-          <option value="linkedin">A través de LinkedIn</option>
-          <option value="recomendacion">Me lo recomendó alguien que conoces</option>
-          <option value="instagram-tiktok">En Instagram o TikTok</option>
-          <option value="libro">A través de uno de mis libros</option>
-          <option value="web">Buscando en internet</option>
-          <option value="evento">En una conferencia, evento o programa que dicté</option>
-          <option value="otro">Otro camino</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="conocimiento">¿Habías escuchado de mí antes de esta convocatoria?</label>
-        <select class="form-select" id="conocimiento" name="conocimiento" required>
-          <option value="">Selecciona una opción</option>
-          <option value="seguidor">Sí, sigo tu trabajo hace tiempo</option>
-          <option value="nombre">Sí, conozco tu nombre pero no en profundidad</option>
-          <option value="primera">No, esta es la primera vez que escucho de ti</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="resonancia">¿Qué te llamó la atención de esta convocatoria? <span style="color: var(--muted); font-weight: 400;">(opcional)</span></label>
-        <textarea class="form-textarea" id="resonancia" name="resonancia" style="min-height: 80px;"
-          placeholder="Lo que te haya hecho aplicar — una frase, una idea, una percepción. Tu respuesta me ayuda a entender qué se conecta con quien me lee."></textarea>
-      </div>
-
-      <div class="form-group" style="padding: 16px; background: var(--bg); border: 1px solid var(--line);">
-        <label class="form-checkbox" style="border: none; padding: 0;">
-          <input type="checkbox" id="consentimiento" name="consentimiento" required>
-          <span>Autorizo a Miguel Ángel Montenegro a guardar mis datos para contactarme con propuestas futuras de coaching, charlas, programas o materiales que se ajusten al perfil de mi empresa o al mío. Puedo retirar este consentimiento escribiendo a contacto@miguelmontenegro.com en cualquier momento.</span>
-        </label>
-      </div>
-
-      <input type="hidden" name="calificacion" id="calificacionField" value="no_evaluado">
-
-      <!-- Honeypot invisible (humanos no lo ven, bots lo llenan) -->
-      <div style="position: absolute; left: -9999px; top: -9999px;" aria-hidden="true">
-        <label for="website_url">Website (no completar)</label>
-        <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
-      </div>
-
-      <!-- Espacio reservado para Cloudflare Turnstile (configurar después según README) -->
-      <div class="form-group" id="turnstile-container" style="display: none;">
-        <!-- Cuando configures Cloudflare Turnstile, descomenta:
-        <div class="cf-turnstile" data-sitekey="TU_SITEKEY_AQUI"></div>
-        -->
-      </div>
-
-      <button type="submit" class="form-submit" id="submitBtn">Enviar aplicación</button>
-    </form>
-
-    <div class="success-msg" id="successMsg">
-      <h3 id="successTitle">Aplicación recibida.</h3>
-      <p id="successText">Te respondo personalmente dentro de las próximas 72 horas.</p>
+        <div class="success-msg" id="successMsg">
+          <h3 id="successTitle">Postulación recibida.</h3>
+          <p id="successText">Te respondo personalmente dentro de las próximas 72 horas. Tu equipo nos importa y vamos a ver juntos si calzamos.</p>
+        </div>
+      </form>
     </div>
   </div>
 </section>
 
-<!-- ====== FOOTER ====== -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-name">Miguel Ángel Montenegro</div>
-    <div class="footer-rol">Coach IAC · Hipnoterapeuta clínico · Autor de Confía en Ti</div>
+    <div class="footer-rol">Licenciado en Psicología · Coach IAC · Hipnoterapeuta clínico · Autor de Confía en Ti</div>
     <a href="https://miguelmontenegro.com" class="footer-link">MIGUELMONTENEGRO.COM</a>
   </div>
 </footer>
 
 <script>
 (function() {
-  const form = document.getElementById('aplicacionForm');
+  const form = document.getElementById('chartasForm');
   const submitBtn = document.getElementById('submitBtn');
-  const descalificaBox = document.getElementById('descalificaBox');
   const successMsg = document.getElementById('successMsg');
-  const calificacionField = document.getElementById('calificacionField');
 
-  let calificaActualmente = null; // null = aún no evaluado, true = califica, false = no califica
-
-  // Marcar visualmente los checkbox seleccionados
-  document.querySelectorAll('.form-checkbox input').forEach(cb => {
-    cb.addEventListener('change', () => {
-      cb.closest('.form-checkbox').classList.toggle('checked', cb.checked);
-    });
-  });
-
-  // Validar correo corporativo (no gmail/hotmail/etc + bloquea dominios temporales conocidos)
   const emailBloqueados = [
-    // Genéricos
     'gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com',
-    'icloud.com', 'me.com', 'protonmail.com', 'aol.com', 'mail.com',
-    'gmx.com', 'zoho.com', 'yandex.com',
-    // Temporales (10minutemail, etc)
-    'mailinator.com', 'tempmail.com', '10minutemail.com', 'guerrillamail.com',
-    'throwawaymail.com', 'temp-mail.org', 'fakeinbox.com', 'trashmail.com',
-    'maildrop.cc', 'getairmail.com', 'sharklasers.com', 'yopmail.com',
-    'dispostable.com', 'mintemail.com', 'tempinbox.com', 'mohmal.com',
-    'tempr.email', 'spambox.us', 'tempemail.net'
+    'icloud.com', 'me.com', 'protonmail.com', 'aol.com', 'mail.com'
   ];
 
   document.getElementById('email').addEventListener('input', (e) => {
     const dominio = e.target.value.split('@')[1];
     if (dominio && emailBloqueados.includes(dominio.toLowerCase())) {
-      e.target.setCustomValidity('Debes usar un correo corporativo, no uno personal ni temporal.');
+      e.target.setCustomValidity('Usa un email corporativo, no personal.');
     } else {
       e.target.setCustomValidity('');
     }
   });
 
-  // Validar teléfono chileno (formato +56 9 XXXX XXXX o variantes)
   document.getElementById('telefono').addEventListener('input', (e) => {
     const tel = e.target.value.replace(/\s/g, '');
-    // Acepta: +56XXXXXXXXX, 56XXXXXXXXX, 9XXXXXXXX, o solo 8-9 dígitos chilenos
     const valido = /^(\+?56)?[2-9]\d{7,8}$/.test(tel);
     if (tel.length > 5 && !valido) {
-      e.target.setCustomValidity('Ingresa un teléfono chileno válido (ej: +56 9 1234 5678).');
+      e.target.setCustomValidity('Teléfono chileno válido (ej: +56 9 1234 5678)');
     } else {
       e.target.setCustomValidity('');
     }
   });
 
-  // Detectar patrones de spam o agresión en campos abiertos
   function detectarSpam(texto) {
-    if (!texto || texto.length < 10) return false;
-
-    // ALL CAPS prolongado (más del 60% mayúsculas en texto largo)
+    if (!texto || texto.length < 5) return null;
     const sinEspacios = texto.replace(/\s/g, '');
     if (sinEspacios.length > 30) {
       const mayus = (sinEspacios.match(/[A-ZÑÁÉÍÓÚ]/g) || []).length;
-      if (mayus / sinEspacios.length > 0.6) return 'mayusculas';
+      if (mayus / sinEspacios.length > 0.6) return 'Demasiadas mayúsculas';
     }
-
-    // Caracteres repetidos excesivamente (aaaaaa, !!!!!!!, etc)
-    if (/(.)\1{8,}/.test(texto)) return 'repeticion';
-
-    // URLs en campos donde no corresponden
-    if (/https?:\/\/|www\./i.test(texto)) return 'url';
-
-    // Texto sin espacios largo (signo de bot o pegado)
-    if (/\S{40,}/.test(texto)) return 'sin_espacios';
-
-    return false;
+    if (/(.)\1{8,}/.test(texto)) return 'Caracteres repetidos sospechosos';
+    if (/https?:\/\/|www\./i.test(texto)) return 'No incluyas URLs';
+    return null;
   }
 
-  // Aplicar detección al campo de "dolor descrito" y al de "resonancia"
-  ['dolor', 'resonancia'].forEach(id => {
-    const campo = document.getElementById(id);
-    if (campo) {
-      campo.addEventListener('input', (e) => {
-        const problema = detectarSpam(e.target.value);
-        if (problema === 'mayusculas') {
-          e.target.setCustomValidity('Por favor, no escribas todo en mayúsculas.');
-        } else if (problema === 'repeticion') {
-          e.target.setCustomValidity('Tu respuesta contiene caracteres repetidos. Reescríbela con tus palabras.');
-        } else if (problema === 'url') {
-          e.target.setCustomValidity('No incluyas links en este campo.');
-        } else if (problema === 'sin_espacios') {
-          e.target.setCustomValidity('Tu respuesta tiene texto sin espacios. Revísala.');
-        } else {
-          e.target.setCustomValidity('');
-        }
-      });
-    }
+  ['situacion', 'expectativa'].forEach(id => {
+    document.getElementById(id).addEventListener('input', (e) => {
+      const problema = detectarSpam(e.target.value);
+      if (problema) {
+        e.target.setCustomValidity(problema);
+      } else {
+        e.target.setCustomValidity('');
+      }
+    });
   });
 
-  // Lógica de evaluación en tiempo real (no bloquea, solo informa y registra)
-  function evaluar() {
-    const anos = document.getElementById('anos').value;
-    const facturacion = document.getElementById('facturacion').value;
-    const equipo = document.getElementById('equipo').value;
-    const cargo = document.getElementById('cargo').value;
-    const coaching = document.getElementById('coaching').value;
-    const situaciones = Array.from(document.querySelectorAll('input[name="situacion[]"]:checked')).map(c => c.value);
-
-    // Si aún no respondió los filtros clave, no evaluamos todavía
-    const camposListos = anos && facturacion && equipo && cargo && coaching;
-    if (!camposListos) {
-      descalificaBox.classList.remove('show');
-      submitBtn.textContent = 'Enviar aplicación';
-      calificacionField.value = 'no_evaluado';
-      calificaActualmente = null;
-      return;
-    }
-
-    // Reglas de descalificación para el PILOTO específico
-    const noCalificaPiloto =
-      anos === 'menos3' ||
-      facturacion === 'menos30k' ||
-      equipo === 'menos8' || equipo === 'masde25' ||
-      cargo === 'otro' ||
-      coaching === 'ninguna' ||
-      (situaciones.length > 0 && situaciones.length === 1 && situaciones[0] === 'ninguna');
-
-    if (noCalificaPiloto) {
-      descalificaBox.classList.add('show');
-      submitBtn.textContent = 'Registrar mi interés';
-      calificacionField.value = 'no_califica';
-      calificaActualmente = false;
-    } else {
-      descalificaBox.classList.remove('show');
-      submitBtn.textContent = 'Enviar aplicación';
-      calificacionField.value = 'califica';
-      calificaActualmente = true;
-    }
-  }
-
-  ['anos', 'facturacion', 'equipo', 'cargo', 'coaching'].forEach(id => {
-    document.getElementById(id).addEventListener('change', evaluar);
-  });
-  document.querySelectorAll('input[name="situacion[]"]').forEach(cb => {
-    cb.addEventListener('change', evaluar);
-  });
-
-  // Manejo del submit — siempre acepta, solo diferencia el mensaje de éxito
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Honeypot: si el campo invisible está lleno, es un bot. Falso éxito (silencio).
-    const honeypot = document.getElementById('website_url').value;
+    const honeypot = document.querySelector('input[name="website_url"]').value;
     if (honeypot && honeypot.length > 0) {
-      // Mostrar éxito falso al bot para que no reintente
       form.style.display = 'none';
-      document.getElementById('successTitle').textContent = 'Aplicación recibida.';
-      document.getElementById('successText').textContent = 'Te respondo dentro de las próximas 72 horas.';
       successMsg.classList.add('show');
-      // Importante: NO enviar a Formspree
       return;
     }
 
     submitBtn.disabled = true;
-    const textoOriginal = submitBtn.textContent;
     submitBtn.textContent = 'Enviando...';
 
     try {
       const formData = new FormData(form);
-      const response = await fetch(form.action, {
+      const webAppUrl = 'https://script.google.com/macros/s/AKfycby5-UhBuhPQ2R7nJ5LtJAuxMtULzRk6-PO_ZNKi43CiuXgqwiAxXW1JtyztPSauHtzBmQ/userweb';
+      
+      const response = await fetch(webAppUrl, {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        body: formData
       });
 
-      if (response.ok) {
-        // Diferenciar el mensaje de éxito según calificación
-        const successTitle = document.getElementById('successTitle');
-        const successText = document.getElementById('successText');
+      const resultado = await response.json();
 
-        if (calificaActualmente === true) {
-          successTitle.textContent = 'Aplicación recibida.';
-          successText.innerHTML = 'Te respondo personalmente dentro de las próximas 72 horas. Si todo cuadra, agendaremos una breve llamada para coordinar la charla con tu equipo.';
-        } else if (calificaActualmente === false) {
-          successTitle.textContent = 'Gracias por tu interés.';
-          successText.innerHTML = 'Tu perfil no califica para estas charlas específicas, pero tus datos quedan en mi base. Te contactaré directamente cuando tenga una propuesta que sí se ajuste al momento o las características de tu equipo. Mientras tanto, te dejo el <a href="#" style="color: var(--accent); font-weight: 600;">Manifiesto de la Grandeza</a> para que lo compartas con quien sientas.';
-        } else {
-          successTitle.textContent = 'Aplicación recibida.';
-          successText.innerHTML = 'Te respondo personalmente dentro de las próximas 72 horas.';
-        }
-
+      if (resultado.ok) {
         form.style.display = 'none';
         successMsg.classList.add('show');
         window.scrollTo({ top: successMsg.offsetTop - 100, behavior: 'smooth' });
       } else {
-        throw new Error('Error en el envío');
+        alert('Hubo un problema. Intenta de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar postulación';
       }
     } catch (err) {
-      alert('Hubo un problema al enviar. Por favor intenta de nuevo o escríbeme directamente a contacto@miguelmontenegro.com');
+      alert('Error al enviar. Escribe directamente a contacto@miguelmontenegro.com');
       submitBtn.disabled = false;
-      submitBtn.textContent = textoOriginal;
+      submitBtn.textContent = 'Enviar postulación';
     }
   });
 })();
