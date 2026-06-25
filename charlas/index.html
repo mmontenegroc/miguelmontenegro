@@ -776,79 +776,91 @@ footer {
             </p>
 
             <label style="display: block; font-weight: 600; margin-bottom: 16px;">¿Cuál es el estado actual? Marca todas las que apliquen *</label>
-            <div class="form-checkbox-group" style="gap: 14px;">
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="desmotivado">
-                <div>
-                  <strong>Desmotivado</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Energía cayó por agotamiento interno</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="presionado">
-                <div>
-                  <strong>Presionado</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Metas altas, plazos cortos, falta permanente</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="fragmentado">
-                <div>
-                  <strong>Fragmentado</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Subgrupos, desacuerdos velados, sin unidad</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="estancado">
-                <div>
-                  <strong>Estancado</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Repetitivo, predecible, sin desafíos reales</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="en_crisis">
-                <div>
-                  <strong>En crisis</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Algo se rompió: rotación, cambio liderazgo, fracaso</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="desconfianza">
-                <div>
-                  <strong>Desconfianza</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">No creen en el mensaje, producto o dirección</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="solos">
-                <div>
-                  <strong>Solos</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Sin respaldo, gestión no los entiende</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="complaciente">
-                <div>
-                  <strong>Complaciente</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Falta hambre, ambición, propósito claro</span>
-                </div>
-              </label>
-
-              <label class="form-checkbox" style="padding: 14px 16px;">
-                <input type="checkbox" name="situacion[]" value="ninguno">
-                <div>
-                  <strong>Ninguno de los anteriores</strong><br>
-                  <span style="font-size: 13px; color: var(--muted);">Mi equipo está bien posicionado</span>
-                </div>
-              </label>
-            </div>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="desmotivado" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Desmotivado</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Energía cayó por agotamiento interno</div>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="presionado" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Presionado</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Metas altas, plazos cortos, falta permanente</div>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="fragmentado" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Fragmentado</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Subgrupos, desacuerdos velados, sin unidad</div>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="estancado" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Estancado</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Repetitivo, predecible, sin desafíos reales</div>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="en_crisis" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">En crisis</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Algo se rompió: rotación, cambio liderazgo, fracaso</div>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="desconfianza" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Desconfianza</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">No creen en el mensaje, producto o dirección</div>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="solos" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Solos</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Sin respaldo, gestión no los entiende</div>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--line);">
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="complaciente" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Complaciente</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Falta hambre, ambición, propósito claro</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 14px 12px 14px 0; width: 24px; text-align: center;">
+                    <input type="checkbox" name="situacion[]" value="ninguno" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent);">
+                  </td>
+                  <td style="padding: 14px 16px;">
+                    <div style="font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 4px;">Ninguno de los anteriores</div>
+                    <div style="font-size: 14px; color: var(--muted); line-height: 1.4;">Mi equipo está bien posicionado</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </fieldset>
 
