@@ -713,7 +713,46 @@ footer {
           </div>
 
           <div class="form-group">
-            <label for="facturacion">Ventas anuales aproximadas (UF) *</label>
+            <label for="situacion" style="font-weight: 600; margin-bottom: 12px; display: block;">¿Cuál es el ESTADO ACTUAL de tu equipo? Marca todas las que apliquen *</label>
+            <div class="form-checkbox-group">
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="desmotivado">
+                <span>Desmotivado. La energía cayó pero no por crisis externa, sino por agotamiento interno.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="presionado">
+                <span>Presionado. Metas altas, plazos cortos, sensación constante de que "falta" algo.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="fragmentado">
+                <span>Fragmentado. Hay subgrupos, desacuerdos velados, falta de unidad en visión.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="estancado">
+                <span>Estancado. No crece, no decae. Es repetitivo, predecible, sin desafíos reales.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="en_crisis">
+                <span>En crisis. Algo acaba de romperse: rotación masiva, cambio de liderazgo, fracaso de campaña.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="desconfianza">
+                <span>Desconfianza. No creen en el mensaje, el producto, la dirección o en ustedes mismos.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="solos">
+                <span>Solos. Sienten que no tienen respaldo, que la gestión no los entiende o no invierte en ellos.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="complaciente">
+                <span>Complaciente. Todo está "bien", pero falta hambre, ambición, propósito claro.</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="situacion[]" value="ninguno">
+                <span>Ninguno de los anteriores. Mi equipo está bien posicionado.</span>
+              </label>
+            </div>
+          </div>
             <select id="facturacion" name="facturacion" required>
               <option value="">Selecciona...</option>
               <option value="0-2400">De 0,01 a 2.400 UF</option>
