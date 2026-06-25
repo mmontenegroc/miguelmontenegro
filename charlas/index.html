@@ -713,6 +713,18 @@ footer {
           </div>
 
           <div class="form-group">
+            <label for="facturacion">Ventas anuales aproximadas (UF) *</label>
+            <select id="facturacion" name="facturacion" required>
+              <option value="">Selecciona...</option>
+              <option value="0-2400">De 0,01 a 2.400 UF</option>
+              <option value="2400-25000">De 2.400,01 a 25.000 UF</option>
+              <option value="25000-100000">De 25.000,01 a 100.000 UF</option>
+              <option value="100000-600000">De 100.000,01 a 600.000 UF</option>
+              <option value="600000-mas">De 600.000,01 UF en adelante</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="tamano_equipo">¿Cuántas personas hay en tu equipo comercial? *</label>
             <select id="tamano_equipo" name="tamano_equipo" required>
               <option value="">Selecciona...</option>
@@ -951,6 +963,7 @@ footer {
         cargo: document.getElementById('cargo').value,
         empresa: document.getElementById('empresa').value,
         rubro: document.getElementById('rubro').value,
+        facturacion: document.getElementById('facturacion').value,
         tamano_equipo: document.getElementById('tamano_equipo').value,
         ciudad: document.getElementById('ciudad').value,
         modalidad: document.getElementById('modalidad').value,
