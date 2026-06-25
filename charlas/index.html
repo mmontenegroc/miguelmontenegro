@@ -651,15 +651,9 @@ footer {
       </div>
     </div>
 
-    <div style="margin-top: 48px; padding: 32px; background: #F2EDDF; border-left: 4px solid var(--accent);">
-      <p style="font-family: 'Fraunces', serif; font-size: 16px; color: var(--text-2); line-height: 1.6; margin: 0;">
-        <strong>Nota importante:</strong> Si tu empresa no calza exactamente con estos criterios hoy, postula igual. Tus datos quedan en nuestra base y te contactaremos cuando tengamos una propuesta que sí se ajuste (charlas pagadas, talleres, coaching grupal, etc.).
-      </p>
-    </div>
-
     <div style="margin-top: 24px; padding: 32px; background: #F0FAF4; border-left: 4px solid #2D6A4F;">
       <p style="font-family: 'Fraunces', serif; font-size: 16px; color: #2D6A4F; line-height: 1.6; margin: 0;">
-        <strong>¿Eres de regiones?</strong> Si tu equipo está fuera de Santiago, tu empresa corre con <strong>alojamiento y traslados</strong>. La charla es gratuita. Nosotros aporta mos el contenido y la facilit ación.
+        Si tu equipo es seleccionado ustedes corren con el espacio físico y requerimientos técnicos, traslados, alojamientos y alimentación según sea el caso. La charla es gratuita. Nosotros aportamos el contenido y la facilitación.
       </p>
     </div>
   </div>
@@ -698,70 +692,39 @@ footer {
           </div>
         </fieldset>
 
-        <!-- DATOS EQUIPO -->
-        <fieldset style="border: none; padding: 0; margin: 0 0 32px 0;">
-          <legend style="font-weight: 600; font-size: 14px; margin-bottom: 16px; color: var(--accent);">TU EQUIPO COMERCIAL</legend>
+        <!-- SECCIÓN 1: DATOS DE LA EMPRESA -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 40px 0;">
+          <legend style="font-weight: 600; font-size: 14px; margin-bottom: 20px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;">La Empresa</legend>
 
           <div class="form-group">
-            <label for="empresa">Nombre de la empresa *</label>
+            <label for="empresa">Nombre legal *</label>
             <input type="text" id="empresa" name="empresa" required maxlength="200" placeholder="Mi Empresa S.A.">
           </div>
 
           <div class="form-group">
             <label for="rut">RUT de la empresa *</label>
-            <input type="text" id="rut" name="rut" required maxlength="12" placeholder="12.345.678-K o 12345678-K">
-            <div class="form-help">Formato: XX.XXX.XXX-K o solo números y guión</div>
+            <input type="text" id="rut" name="rut" required maxlength="12" placeholder="12.345.678-K">
+            <div class="form-help">Formato: 12.345.678-K o 12345678-K</div>
           </div>
 
           <div class="form-group">
             <label for="rubro">Rubro / Industria *</label>
-            <input type="text" id="rubro" name="rubro" required maxlength="100" placeholder="Ej: Construcción, Retail, Servicios">
+            <input type="text" id="rubro" name="rubro" required maxlength="100" placeholder="Construcción, Retail, Servicios, etc">
           </div>
 
           <div class="form-group">
-            <label style="font-weight: 600; margin-bottom: 12px; display: block;">¿Cuál es el ESTADO ACTUAL de tu equipo? Marca todas las que apliquen *</label>
-            <div class="form-checkbox-group">
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="desmotivado">
-                <span>Desmotivado. La energía cayó pero no por crisis externa, sino por agotamiento interno.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="presionado">
-                <span>Presionado. Metas altas, plazos cortos, sensación constante de que "falta" algo.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="fragmentado">
-                <span>Fragmentado. Hay subgrupos, desacuerdos velados, falta de unidad en visión.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="estancado">
-                <span>Estancado. No crece, no decae. Es repetitivo, predecible, sin desafíos reales.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="en_crisis">
-                <span>En crisis. Algo acaba de romperse: rotación masiva, cambio de liderazgo, fracaso de campaña.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="desconfianza">
-                <span>Desconfianza. No creen en el mensaje, el producto, la dirección o en ustedes mismos.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="solos">
-                <span>Solos. Sienten que no tienen respaldo, que la gestión no los entiende o no invierte en ellos.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="complaciente">
-                <span>Complaciente. Todo está "bien", pero falta hambre, ambición, propósito claro.</span>
-              </label>
-              <label class="form-checkbox">
-                <input type="checkbox" name="situacion[]" value="ninguno">
-                <span>Ninguno de los anteriores. Mi equipo está bien posicionado.</span>
-              </label>
-            </div>
+            <label for="anos">¿Cuántos años lleva operando? *</label>
+            <select id="anos" name="anos" required>
+              <option value="">Selecciona...</option>
+              <option value="menos3">Menos de 3 años</option>
+              <option value="3-7">Entre 3 y 7 años</option>
+              <option value="8-15">Entre 8 y 15 años</option>
+              <option value="masde15">Más de 15 años</option>
+            </select>
           </div>
 
           <div class="form-group">
-            <label for="facturacion">Rango de facturación anual (UF) *</label>
+            <label for="facturacion">Facturación anual aproximada (UF) *</label>
             <select id="facturacion" name="facturacion" required>
               <option value="">Selecciona...</option>
               <option value="0-2400">De 0,01 a 2.400 UF</option>
@@ -771,9 +734,14 @@ footer {
               <option value="600000-mas">De 600.000,01 UF en adelante</option>
             </select>
           </div>
+        </fieldset>
+
+        <!-- SECCIÓN 2: DATOS DEL EQUIPO -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 40px 0;">
+          <legend style="font-weight: 600; font-size: 14px; margin-bottom: 20px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;">Tu Equipo</legend>
 
           <div class="form-group">
-            <label for="tamano_equipo">¿Cuántas personas hay en tu equipo comercial? *</label>
+            <label for="tamano_equipo">¿Cuántas personas en tu equipo comercial? *</label>
             <select id="tamano_equipo" name="tamano_equipo" required>
               <option value="">Selecciona...</option>
               <option value="8-12">8 a 12 personas</option>
@@ -791,10 +759,96 @@ footer {
             <label for="modalidad">¿Cómo trabajan? *</label>
             <select id="modalidad" name="modalidad" required>
               <option value="">Selecciona...</option>
-              <option value="presencial">Presencial (Santiago)</option>
+              <option value="presencial">Presencial</option>
               <option value="hibrida">Híbrida</option>
               <option value="remota">100% remota</option>
             </select>
+          </div>
+        </fieldset>
+
+        <!-- SECCIÓN 3: ESTADO ACTUAL DEL EQUIPO -->
+        <fieldset style="border: none; padding: 0; margin: 0 0 40px 0;">
+          <legend style="font-weight: 600; font-size: 14px; margin-bottom: 20px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;">El Estado del Equipo</legend>
+
+          <div class="form-group">
+            <p style="font-family: 'Fraunces', serif; font-size: 15px; color: var(--text-2); line-height: 1.6; margin-bottom: 20px; padding: 16px; background: rgba(196, 78, 31, 0.04); border-left: 3px solid var(--accent);">
+              <strong>Responde sin diplomacia.</strong> Tu honestidad aquí es lo que nos permite entender realmente en qué punto está tu equipo. No buscamos respuestas que suenen bien en papel. Buscamos lo real.
+            </p>
+
+            <label style="display: block; font-weight: 600; margin-bottom: 16px;">¿Cuál es el estado actual? Marca todas las que apliquen *</label>
+            <div class="form-checkbox-group" style="gap: 14px;">
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="desmotivado">
+                <div>
+                  <strong>Desmotivado</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Energía cayó por agotamiento interno</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="presionado">
+                <div>
+                  <strong>Presionado</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Metas altas, plazos cortos, falta permanente</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="fragmentado">
+                <div>
+                  <strong>Fragmentado</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Subgrupos, desacuerdos velados, sin unidad</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="estancado">
+                <div>
+                  <strong>Estancado</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Repetitivo, predecible, sin desafíos reales</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="en_crisis">
+                <div>
+                  <strong>En crisis</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Algo se rompió: rotación, cambio liderazgo, fracaso</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="desconfianza">
+                <div>
+                  <strong>Desconfianza</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">No creen en el mensaje, producto o dirección</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="solos">
+                <div>
+                  <strong>Solos</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Sin respaldo, gestión no los entiende</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="complaciente">
+                <div>
+                  <strong>Complaciente</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Falta hambre, ambición, propósito claro</span>
+                </div>
+              </label>
+
+              <label class="form-checkbox" style="padding: 14px 16px;">
+                <input type="checkbox" name="situacion[]" value="ninguno">
+                <div>
+                  <strong>Ninguno de los anteriores</strong><br>
+                  <span style="font-size: 13px; color: var(--muted);">Mi equipo está bien posicionado</span>
+                </div>
+              </label>
+            </div>
           </div>
         </fieldset>
 
