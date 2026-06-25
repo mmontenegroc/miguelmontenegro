@@ -708,12 +708,18 @@ footer {
           </div>
 
           <div class="form-group">
+            <label for="rut">RUT de la empresa *</label>
+            <input type="text" id="rut" name="rut" required maxlength="12" placeholder="12.345.678-K o 12345678-K">
+            <div class="form-help">Formato: XX.XXX.XXX-K o solo números y guión</div>
+          </div>
+
+          <div class="form-group">
             <label for="rubro">Rubro / Industria *</label>
             <input type="text" id="rubro" name="rubro" required maxlength="100" placeholder="Ej: Construcción, Retail, Servicios">
           </div>
 
           <div class="form-group">
-            <label for="situacion" style="font-weight: 600; margin-bottom: 12px; display: block;">¿Cuál es el ESTADO ACTUAL de tu equipo? Marca todas las que apliquen *</label>
+            <label style="font-weight: 600; margin-bottom: 12px; display: block;">¿Cuál es el ESTADO ACTUAL de tu equipo? Marca todas las que apliquen *</label>
             <div class="form-checkbox-group">
               <label class="form-checkbox">
                 <input type="checkbox" name="situacion[]" value="desmotivado">
@@ -753,6 +759,9 @@ footer {
               </label>
             </div>
           </div>
+
+          <div class="form-group">
+            <label for="facturacion">Rango de facturación anual (UF) *</label>
             <select id="facturacion" name="facturacion" required>
               <option value="">Selecciona...</option>
               <option value="0-2400">De 0,01 a 2.400 UF</option>
@@ -908,6 +917,36 @@ footer {
     const valido = /^(\+?56)?[2-9]\d{7,8}$/.test(tel);
     if (tel.length > 5 && !valido) {
       e.target.setCustomValidity('Teléfono chileno válido (ej: +56 9 1234 5678)');
+    } else {
+      e.target.setCustomValidity('');
+    }
+  });
+
+  // Validador RUT chileno
+  function validarRUT(rut) {
+    rut = rut.toUpperCase().replace(/\./g, '').replace(/\s/g, '');
+    if (!/^(\d{7,8})-[\dK]$/.test(rut)) return false;
+    
+    const [numeros, dv] = rut.split('-');
+    const num = parseInt(numeros);
+    let suma = 0;
+    let multiplicador = 2;
+    
+    for (let i = numeros.length - 1; i >= 0; i--) {
+      suma += parseInt(numeros[i]) * multiplicador;
+      multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
+    }
+    
+    const dvEsperado = 11 - (suma % 11);
+    const dvCalculado = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
+    
+    return dv === dvCalculado;
+  }
+
+  document.getElementById('rut').addEventListener('input', (e) => {
+    const rut = e.target.value.trim();
+    if (rut.length > 0 && !validarRUT(rut)) {
+      e.target.setCustomValidity('RUT inválido. Ejemplo: 12.345.678-9');
     } else {
       e.target.setCustomValidity('');
     }
