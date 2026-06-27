@@ -239,6 +239,46 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hid
   </div>
 </div>
 
+<!-- SESIÓN PUNTUAL -->
+<div style="background:#111;padding:5rem 2rem" id="sesion-puntual">
+  <div style="max-width:660px;margin:0 auto">
+    <span class="section-tag">¿No estás seguro de las 3 sesiones?</span>
+    <p class="statement">Empieza con una.<br><em>Sin compromiso.</em></p>
+    <p class="body-text">¿El programa completo se siente lejos de tu presupuesto? ¿Necesitas resolver algo puntual antes de decidir? Puedes tomar una sola sesión. Si después quieres continuar, lo que pagaste se descuenta del programa.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,0.06);margin:2rem 0">
+      <div style="background:#1a1a1a;padding:1.75rem">
+        <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.6rem">Duración</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff">1 hora · Zoom</span>
+      </div>
+      <div style="background:#1a1a1a;padding:1.75rem">
+        <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.6rem">Inversión</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff">$80.000 CLP</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:2rem;line-height:1.7">Si luego decides continuar con las Sesiones Reset, los $80.000 se descuentan del precio total.</p>
+
+    <!-- Selector sesión puntual -->
+    <div id="sp-selector">
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:1.5rem">Elige tu horario:</p>
+      <div id="sp-slots-container"><p style="font-size:13px;color:rgba(255,255,255,0.35);font-style:italic">Cargando horarios disponibles...</p></div>
+      <div id="sp-datos" style="display:none;margin-top:1.5rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div><label style="display:block;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px">Nombre</label>
+          <input type="text" id="sp-nombre" placeholder="Tu nombre" style="width:100%;padding:12px 14px;font-size:14px;font-family:Inter,sans-serif;background:#1a1a1a;border:0.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:4px;outline:none"></div>
+          <div><label style="display:block;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px">Email</label>
+          <input type="email" id="sp-email" placeholder="tu@email.com" style="width:100%;padding:12px 14px;font-size:14px;font-family:Inter,sans-serif;background:#1a1a1a;border:0.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:4px;outline:none"></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-left:2px solid rgba(255,255,255,0.15);padding:12px 16px;margin-bottom:1.5rem;font-size:12px;color:rgba(255,255,255,0.4)">
+          Sesión elegida: <strong id="sp-label-elegido" style="color:#fff"></strong>
+        </div>
+        <button onclick="irAPagarPuntual()" id="sp-btn-pagar" style="width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:Inter,sans-serif">Ir a pagar · $80.000 CLP</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="closing">
   <div class="video-bg">
     <video autoplay muted loop playsinline>
@@ -270,14 +310,10 @@ function fmtLabel(iso) {
 }
 
 function slotsDesde(isoBase) {
+  if (!isoBase) return allSlots;
   const min = new Date(isoBase);
   min.setDate(min.getDate() + 7);
-  const max = new Date(isoBase);
-  max.setDate(max.getDate() + 15);
-  return allSlots.filter(s => {
-    const d = new Date(s.start);
-    return d >= min && d <= max;
-  });
+  return allSlots.filter(s => new Date(s.start) >= min);
 }
 
 function renderSlots(containerId, slots, sesion) {
@@ -382,6 +418,83 @@ async function irAPagar() {
     btn.textContent = 'Error. Intenta de nuevo.'; btn.disabled = false;
   }
 }
+
+// ── SESIÓN PUNTUAL ───────────────────────────────────────────────────────────
+let spSlotElegido = null;
+
+async function cargarSlotsPuntual() {
+  try {
+    const r = await fetch(BACKEND + '/reset/slots');
+    const d = await r.json();
+    renderSlotsPuntual((d.slots || []).slice(0, 30));
+  } catch(e) {
+    document.getElementById('sp-slots-container').innerHTML = '<p style="font-size:13px;color:rgba(255,255,255,0.35)">Error cargando horarios.</p>';
+  }
+}
+
+function renderSlotsPuntual(slots) {
+  const el = document.getElementById('sp-slots-container');
+  const porMes = {};
+  slots.forEach(s => {
+    const dt = new Date(s.start);
+    const mes = MESES[dt.getMonth()] + ' ' + dt.getFullYear();
+    const dia = DIAS[dt.getDay()===0?6:dt.getDay()-1] + ' ' + dt.getDate();
+    if (!porMes[mes]) porMes[mes] = {};
+    if (!porMes[mes][dia]) porMes[mes][dia] = [];
+    porMes[mes][dia].push(s);
+  });
+  let html = '<div style="max-height:280px;overflow-y:auto;padding-right:4px">';
+  Object.entries(porMes).forEach(([mes, dias]) => {
+    html += '<div style="margin-bottom:1.5rem"><p style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:0.5px solid rgba(255,255,255,0.08)">' + mes + '</p>';
+    Object.entries(dias).forEach(([dia, horas]) => {
+      html += '<div style="display:flex;align-items:center;gap:1rem;padding:0.5rem 0;border-bottom:0.5px solid rgba(255,255,255,0.05)"><span style="font-size:12px;color:rgba(255,255,255,0.5);min-width:110px;flex-shrink:0">' + dia + '</span><div style="display:flex;gap:6px;flex-wrap:wrap">';
+      horas.forEach(s => {
+        const dt = new Date(s.start);
+        const hr = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+        html += '<button onclick="selSlotPuntual(\'' + s.start + '\',\'' + s.label + '\',this)" style="padding:6px 12px;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.65);font-family:Inter,sans-serif">' + hr + '</button>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html + '</div>';
+}
+
+function selSlotPuntual(start, label, btn) {
+  spSlotElegido = start;
+  document.querySelectorAll('#sp-slots-container button').forEach(b => { b.style.background='transparent'; b.style.color='rgba(255,255,255,0.65)'; b.style.borderColor='rgba(255,255,255,0.15)'; });
+  btn.style.background = '#1D9E75'; btn.style.borderColor = '#1D9E75'; btn.style.color = '#fff';
+  document.getElementById('sp-label-elegido').textContent = label;
+  document.getElementById('sp-datos').style.display = 'block';
+}
+
+async function irAPagarPuntual() {
+  const nombre = document.getElementById('sp-nombre').value.trim();
+  const email  = document.getElementById('sp-email').value.trim();
+  if (!nombre || !email || !email.includes('@')) { alert('Completa tu nombre y email.'); return; }
+  if (!spSlotElegido) { alert('Elige un horario primero.'); return; }
+  const btn = document.getElementById('sp-btn-pagar');
+  btn.textContent = 'Procesando...'; btn.disabled = true;
+  try {
+    const r1 = await fetch(BACKEND + '/reset/puntual/carrito', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ nombre, email, sesion_start: spSlotElegido })
+    });
+    const d1 = await r1.json();
+    if (!d1.carrito_id) throw new Error();
+    const r2 = await fetch(BACKEND + '/reset/puntual/pago/iniciar/' + d1.carrito_id, { method: 'POST' });
+    const d2 = await r2.json();
+    if (d2.url_pago) window.location.href = d2.url_pago;
+    else throw new Error();
+  } catch(e) {
+    btn.textContent = 'Error. Intenta de nuevo.'; btn.disabled = false;
+  }
+}
+
+const spObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) { cargarSlotsPuntual(); spObs.disconnect(); }
+}, { threshold: 0.1 });
+spObs.observe(document.getElementById('sesion-puntual'));
 </script>
 </body>
 </html>
