@@ -5,265 +5,73 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel Postulaciones — Confía en Ti</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #0f172a;
-    color: #e2e8f0;
-    min-height: 100vh;
-  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#0f172a; color:#e2e8f0; min-height:100vh; }
 
   /* LOGIN */
-  #login-screen {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-
-  .login-box {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 12px;
-    padding: 48px;
-    width: 360px;
-    text-align: center;
-  }
-
-  .login-box h1 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #f1f5f9;
-  }
-
-  .login-box p {
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 32px;
-  }
-
-  .login-box input {
-    width: 100%;
-    padding: 12px 16px;
-    background: #0f172a;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    color: #f1f5f9;
-    font-size: 15px;
-    margin-bottom: 16px;
-    outline: none;
-  }
-
-  .login-box input:focus {
-    border-color: #C9A96E;
-  }
-
-  .btn-login {
-    width: 100%;
-    padding: 12px;
-    background: #C9A96E;
-    color: #0f172a;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .btn-login:hover { background: #b8935a; }
-
-  .error-msg {
-    color: #f87171;
-    font-size: 13px;
-    margin-top: 12px;
-    display: none;
-  }
+  #login-screen { display:flex; align-items:center; justify-content:center; min-height:100vh; }
+  .login-box { background:#1e293b; border:1px solid #334155; border-radius:12px; padding:48px; width:360px; text-align:center; }
+  .login-box h1 { font-size:22px; font-weight:700; margin-bottom:8px; color:#f1f5f9; }
+  .login-box p { font-size:13px; color:#64748b; margin-bottom:32px; }
+  .login-box input { width:100%; padding:12px 16px; background:#0f172a; border:1px solid #334155; border-radius:8px; color:#f1f5f9; font-size:15px; margin-bottom:16px; outline:none; }
+  .login-box input:focus { border-color:#C9A96E; }
+  .btn-login { width:100%; padding:12px; background:#C9A96E; color:#0f172a; border:none; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer; }
+  .error-msg { color:#f87171; font-size:13px; margin-top:12px; display:none; }
 
   /* PANEL */
-  #panel-screen { display: none; }
+  #panel-screen { display:none; }
+  header { background:#1e293b; border-bottom:1px solid #334155; padding:20px 32px; display:flex; justify-content:space-between; align-items:center; }
+  header h1 { font-size:18px; font-weight:700; color:#C9A96E; }
+  header span { font-size:13px; color:#64748b; }
 
-  header {
-    background: #1e293b;
-    border-bottom: 1px solid #334155;
-    padding: 20px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:24px 32px; }
+  .stat-card { background:#1e293b; border:1px solid #334155; border-radius:10px; padding:20px; text-align:center; }
+  .stat-card .num { font-size:32px; font-weight:800; color:#C9A96E; }
+  .stat-card .label { font-size:12px; color:#64748b; margin-top:4px; text-transform:uppercase; letter-spacing:.05em; }
 
-  header h1 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #C9A96E;
-  }
+  .filtros { padding:0 32px 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .filtros label { font-size:13px; color:#64748b; }
+  .filtros select, .filtros input { padding:8px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; color:#e2e8f0; font-size:13px; outline:none; }
+  .btn-refresh { padding:8px 16px; background:#C9A96E; color:#0f172a; border:none; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; margin-left:auto; }
 
-  header span {
-    font-size: 13px;
-    color: #64748b;
-  }
+  .tabla-wrap { padding:0 32px 32px; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  thead th { background:#1e293b; padding:10px 12px; text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:#64748b; border-bottom:1px solid #334155; white-space:nowrap; }
+  tbody tr { border-bottom:1px solid #1e293b; transition:background .15s; cursor:pointer; }
+  tbody tr:hover { background:#1e293b; }
+  tbody td { padding:12px; vertical-align:top; color:#cbd5e1; }
 
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    padding: 24px 32px;
-  }
+  .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10px; font-weight:600; text-transform:uppercase; }
+  .badge-pendiente  { background:#422006; color:#fb923c; }
+  .badge-aprobada   { background:#14532d; color:#4ade80; }
+  .badge-rechazada  { background:#450a0a; color:#f87171; }
+  .badge-realizada  { background:#1e3a5f; color:#60a5fa; }
+  .badge-contactado { background:#312e81; color:#a5b4fc; }
 
-  .stat-card {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-  }
+  .nombre { font-weight:600; color:#f1f5f9; }
+  .empresa { color:#C9A96E; font-weight:500; }
+  .email-link { color:#60a5fa; text-decoration:none; }
+  .email-link:hover { text-decoration:underline; }
+  .tag { background:#1e293b; border:1px solid #334155; padding:2px 7px; border-radius:4px; font-size:10px; color:#94a3b8; }
 
-  .stat-card .num {
-    font-size: 32px;
-    font-weight: 800;
-    color: #C9A96E;
-  }
+  /* MODAL */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:100; align-items:center; justify-content:center; }
+  .modal-overlay.open { display:flex; }
+  .modal { background:#1e293b; border:1px solid #334155; border-radius:16px; padding:40px; max-width:680px; width:90%; max-height:85vh; overflow-y:auto; }
+  .modal h2 { font-size:18px; font-weight:700; color:#C9A96E; margin-bottom:24px; }
+  .modal-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+  .modal-field label { font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:#64748b; display:block; margin-bottom:4px; }
+  .modal-field p { font-size:14px; color:#e2e8f0; }
+  .modal-full { grid-column:1/-1; }
+  .modal-text { background:#0f172a; border-radius:8px; padding:12px; font-size:13px; color:#cbd5e1; line-height:1.6; }
+  .btn-cerrar { padding:8px 20px; background:#334155; color:#e2e8f0; border:none; border-radius:6px; cursor:pointer; font-size:13px; margin-top:20px; }
 
-  .stat-card .label {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .filtros {
-    padding: 0 32px 16px;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .filtros label {
-    font-size: 13px;
-    color: #64748b;
-  }
-
-  .filtros select, .filtros input {
-    padding: 8px 12px;
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 6px;
-    color: #e2e8f0;
-    font-size: 13px;
-    outline: none;
-  }
-
-  .btn-refresh {
-    padding: 8px 16px;
-    background: #C9A96E;
-    color: #0f172a;
-    border: none;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-left: auto;
-  }
-
-  .tabla-wrap {
-    padding: 0 32px 32px;
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  thead th {
-    background: #1e293b;
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #64748b;
-    border-bottom: 1px solid #334155;
-    white-space: nowrap;
-  }
-
-  tbody tr {
-    border-bottom: 1px solid #1e293b;
-    transition: background 0.15s;
-  }
-
-  tbody tr:hover { background: #1e293b; }
-
-  tbody td {
-    padding: 14px 16px;
-    vertical-align: top;
-    color: #cbd5e1;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .badge-pendiente { background: #422006; color: #fb923c; }
-  .badge-aprobada  { background: #14532d; color: #4ade80; }
-  .badge-rechazada { background: #450a0a; color: #f87171; }
-  .badge-realizada { background: #1e3a5f; color: #60a5fa; }
-
-  .nombre { font-weight: 600; color: #f1f5f9; }
-  .empresa { color: #C9A96E; font-weight: 500; }
-  .email-link { color: #60a5fa; text-decoration: none; }
-  .email-link:hover { text-decoration: underline; }
-
-  .btn-accion {
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    margin-right: 4px;
-  }
-
-  .btn-aprobar { background: #14532d; color: #4ade80; }
-  .btn-rechazar { background: #450a0a; color: #f87171; }
-
-  .empty-state {
-    text-align: center;
-    padding: 80px 32px;
-    color: #475569;
-  }
-
-  .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
-  .empty-state p { font-size: 15px; }
-
-  .loading {
-    text-align: center;
-    padding: 48px;
-    color: #475569;
-  }
-
-  .cargo-tag {
-    background: #1e293b;
-    border: 1px solid #334155;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    color: #94a3b8;
-  }
+  .empty-state { text-align:center; padding:80px; color:#475569; }
+  .empty-state .icon { font-size:48px; margin-bottom:16px; }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <h1>Panel Postulaciones</h1>
@@ -274,7 +82,6 @@
   </div>
 </div>
 
-<!-- PANEL -->
 <div id="panel-screen">
   <header>
     <h1>Postulaciones — Confía en Ti</h1>
@@ -282,22 +89,10 @@
   </header>
 
   <div class="stats">
-    <div class="stat-card">
-      <div class="num" id="stat-total">—</div>
-      <div class="label">Total</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="stat-pendientes">—</div>
-      <div class="label">Pendientes</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="stat-aprobadas">—</div>
-      <div class="label">Aprobadas</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="stat-realizadas">—</div>
-      <div class="label">Realizadas</div>
-    </div>
+    <div class="stat-card"><div class="num" id="stat-total">—</div><div class="label">Total</div></div>
+    <div class="stat-card"><div class="num" id="stat-pendientes">—</div><div class="label">Pendientes</div></div>
+    <div class="stat-card"><div class="num" id="stat-aprobadas">—</div><div class="label">Aprobadas</div></div>
+    <div class="stat-card"><div class="num" id="stat-realizadas">—</div><div class="label">Realizadas</div></div>
   </div>
 
   <div class="filtros">
@@ -306,26 +101,35 @@
       <option value="todas">Todas</option>
       <option value="pendiente">Pendientes</option>
       <option value="aprobada">Aprobadas</option>
+      <option value="contactado">Contactadas</option>
       <option value="rechazada">Rechazadas</option>
       <option value="realizada">Realizadas</option>
     </select>
-    <input type="text" id="filtro-buscar" placeholder="Buscar empresa o nombre..." oninput="filtrarLocal()">
+    <input type="text" id="filtro-buscar" placeholder="Buscar..." oninput="filtrarLocal()">
     <button class="btn-refresh" onclick="cargarPostulaciones()">↻ Actualizar</button>
   </div>
 
   <div class="tabla-wrap">
-    <div id="tabla-contenido" class="loading">Cargando...</div>
+    <div id="tabla-contenido"><div class="empty-state"><div class="icon">⏳</div><p>Cargando...</p></div></div>
+  </div>
+</div>
+
+<!-- MODAL DETALLE -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this) cerrarModal()">
+  <div class="modal">
+    <h2 id="modal-titulo">Detalle Postulación</h2>
+    <div class="modal-grid" id="modal-contenido"></div>
+    <button class="btn-cerrar" onclick="cerrarModal()">Cerrar</button>
   </div>
 </div>
 
 <script>
 const API = 'https://disc-backend-production-0e6b.up.railway.app';
 const PASSWORD = 'confia2026';
-let todasLasPostulaciones = [];
+let todas = [];
 
 function login() {
-  const pass = document.getElementById('password-input').value;
-  if (pass === PASSWORD) {
+  if (document.getElementById('password-input').value === PASSWORD) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('panel-screen').style.display = 'block';
     cargarPostulaciones();
@@ -336,98 +140,94 @@ function login() {
 
 async function cargarPostulaciones() {
   const estado = document.getElementById('filtro-estado').value;
-  document.getElementById('tabla-contenido').innerHTML = '<div class="loading">Cargando...</div>';
-
+  document.getElementById('tabla-contenido').innerHTML = '<div class="empty-state"><div class="icon">⏳</div><p>Cargando...</p></div>';
   try {
-    const res = await fetch(`${API}/api/charlas/postulaciones/${estado}`);
-    const data = await res.json();
-
-    todasLasPostulaciones = data.postulaciones || [];
-
-    // Stats
-    const statsRes = await fetch(`${API}/api/charlas/postulaciones/todas`);
-    const statsData = await statsRes.json();
-    const todas = statsData.postulaciones || [];
-
-    document.getElementById('stat-total').textContent = todas.length;
-    document.getElementById('stat-pendientes').textContent = todas.filter(p => p.estado === 'pendiente').length;
-    document.getElementById('stat-aprobadas').textContent = todas.filter(p => p.estado === 'aprobada').length;
-    document.getElementById('stat-realizadas').textContent = todas.filter(p => p.estado === 'realizada').length;
-
-    document.getElementById('ultima-actualizacion').textContent =
-      'Actualizado: ' + new Date().toLocaleString('es-CL');
-
-    renderTabla(todasLasPostulaciones);
-
-  } catch (e) {
-    document.getElementById('tabla-contenido').innerHTML =
-      '<div class="empty-state"><div class="icon">⚠️</div><p>Error conectando con el servidor</p></div>';
+    const [r1, r2] = await Promise.all([
+      fetch(`${API}/api/charlas/postulaciones/${estado}`).then(r => r.json()),
+      fetch(`${API}/api/charlas/postulaciones/todas`).then(r => r.json())
+    ]);
+    todas = r1.postulaciones || [];
+    const t = r2.postulaciones || [];
+    document.getElementById('stat-total').textContent      = t.length;
+    document.getElementById('stat-pendientes').textContent = t.filter(p => p.estado === 'pendiente').length;
+    document.getElementById('stat-aprobadas').textContent  = t.filter(p => p.estado === 'aprobada').length;
+    document.getElementById('stat-realizadas').textContent = t.filter(p => p.estado === 'realizada').length;
+    document.getElementById('ultima-actualizacion').textContent = 'Actualizado: ' + new Date().toLocaleString('es-CL');
+    renderTabla(todas);
+  } catch(e) {
+    document.getElementById('tabla-contenido').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><p>Error conectando</p></div>';
   }
 }
 
 function filtrarLocal() {
-  const busqueda = document.getElementById('filtro-buscar').value.toLowerCase();
-  const filtradas = todasLasPostulaciones.filter(p =>
-    (p.nombre || '').toLowerCase().includes(busqueda) ||
-    (p.empresa || '').toLowerCase().includes(busqueda) ||
-    (p.email || '').toLowerCase().includes(busqueda) ||
-    (p.ciudad || '').toLowerCase().includes(busqueda)
-  );
-  renderTabla(filtradas);
+  const q = document.getElementById('filtro-buscar').value.toLowerCase();
+  renderTabla(todas.filter(p =>
+    [p.nombre,p.empresa,p.email,p.ciudad,p.rubro,p.cargo].some(v => (v||'').toLowerCase().includes(q))
+  ));
 }
 
-function renderTabla(postulaciones) {
-  if (postulaciones.length === 0) {
-    document.getElementById('tabla-contenido').innerHTML =
-      '<div class="empty-state"><div class="icon">📭</div><p>No hay postulaciones todavía</p></div>';
+function renderTabla(lista) {
+  if (!lista.length) {
+    document.getElementById('tabla-contenido').innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>No hay postulaciones</p></div>';
     return;
   }
-
-  const filas = postulaciones.map(p => {
+  const filas = lista.map(p => {
     const fecha = p.created_at ? new Date(p.created_at).toLocaleDateString('es-CL') : '—';
     const estado = p.estado || 'pendiente';
-
-    return `
-      <tr>
-        <td>${fecha}</td>
-        <td>
-          <div class="nombre">${p.nombre || '—'}</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px">${p.telefono || ''}</div>
-        </td>
-        <td>
-          <div class="empresa">${p.empresa || '—'}</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px">${p.ciudad || ''}</div>
-        </td>
-        <td>
-          <a href="mailto:${p.email}" class="email-link">${p.email || '—'}</a>
-        </td>
-        <td><span class="cargo-tag">${p.cargo || '—'}</span></td>
-        <td>${p.tamano_equipo || p.empleados || '—'}</td>
-        <td>${p.rubro || '—'}</td>
-        <td style="max-width:200px;font-size:12px;color:#94a3b8">${(p.situacion || '—').substring(0, 80)}${(p.situacion || '').length > 80 ? '...' : ''}</td>
-        <td><span class="badge badge-${estado}">${estado}</span></td>
-      </tr>
-    `;
+    return `<tr onclick="verDetalle(${p.id})">
+      <td>${fecha}</td>
+      <td><div class="nombre">${p.nombre||'—'}</div><div style="font-size:11px;color:#64748b">${p.telefono||''}</div></td>
+      <td><div class="empresa">${p.empresa||'—'}</div><div style="font-size:11px;color:#64748b">${p.rut||''}</div></td>
+      <td>${p.ciudad||'—'}</td>
+      <td><a href="mailto:${p.email}" class="email-link" onclick="event.stopPropagation()">${p.email||'—'}</a></td>
+      <td><span class="tag">${p.cargo||'—'}</span></td>
+      <td>${p.tamano_equipo||'—'}</td>
+      <td>${p.rubro||'—'}</td>
+      <td>${p.facturacion||'—'}</td>
+      <td>${p.anos||'—'}</td>
+      <td>${p.modalidad||'—'}</td>
+      <td>${p.fuente||'—'}</td>
+      <td><span class="badge badge-${estado}">${estado}</span></td>
+    </tr>`;
   }).join('');
-
   document.getElementById('tabla-contenido').innerHTML = `
     <table>
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Contacto</th>
-          <th>Empresa</th>
-          <th>Email</th>
-          <th>Cargo</th>
-          <th>Equipo</th>
-          <th>Rubro</th>
-          <th>Situación</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Fecha</th><th>Contacto</th><th>Empresa / RUT</th><th>Ciudad</th>
+        <th>Email</th><th>Cargo</th><th>Equipo</th><th>Rubro</th>
+        <th>Facturación (UF)</th><th>Años op.</th><th>Modalidad</th><th>Fuente</th><th>Estado</th>
+      </tr></thead>
       <tbody>${filas}</tbody>
-    </table>
+    </table>`;
+}
+
+function verDetalle(id) {
+  const p = todas.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('modal-titulo').textContent = p.nombre + ' — ' + p.empresa;
+  document.getElementById('modal-contenido').innerHTML = `
+    <div class="modal-field"><label>Nombre</label><p>${p.nombre||'—'}</p></div>
+    <div class="modal-field"><label>Email</label><p><a href="mailto:${p.email}" class="email-link">${p.email||'—'}</a></p></div>
+    <div class="modal-field"><label>Teléfono</label><p>${p.telefono||'—'}</p></div>
+    <div class="modal-field"><label>Cargo</label><p>${p.cargo||'—'}</p></div>
+    <div class="modal-field"><label>Empresa</label><p>${p.empresa||'—'}</p></div>
+    <div class="modal-field"><label>RUT Empresa</label><p>${p.rut||'—'}</p></div>
+    <div class="modal-field"><label>Rubro</label><p>${p.rubro||'—'}</p></div>
+    <div class="modal-field"><label>Ciudad</label><p>${p.ciudad||'—'}</p></div>
+    <div class="modal-field"><label>Años operando</label><p>${p.anos||'—'}</p></div>
+    <div class="modal-field"><label>Facturación (UF)</label><p>${p.facturacion||'—'}</p></div>
+    <div class="modal-field"><label>Equipo comercial</label><p>${p.tamano_equipo||'—'}</p></div>
+    <div class="modal-field"><label>Modalidad trabajo</label><p>${p.modalidad||'—'}</p></div>
+    <div class="modal-field"><label>Fuente</label><p>${p.fuente||'—'}</p></div>
+    <div class="modal-field"><label>Estado</label><p><span class="badge badge-${p.estado||'pendiente'}">${p.estado||'pendiente'}</span></p></div>
+    <div class="modal-field modal-full"><label>Situación actual del equipo</label><div class="modal-text">${p.situacion||'—'}</div></div>
+    <div class="modal-field modal-full"><label>Resultado esperado</label><div class="modal-text">${p.expectativa||'—'}</div></div>
   `;
+  document.getElementById('modal').classList.add('open');
+}
+
+function cerrarModal() {
+  document.getElementById('modal').classList.remove('open');
 }
 </script>
 </body>
