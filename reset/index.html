@@ -12,13 +12,13 @@
         }
 
         :root {
-            --accent: #000000;
-            --text: #000000;
-            --text-2: #333333;
-            --muted: #666666;
-            --line: #CCCCCC;
-            --bg: #FFFFFF;
-            --bg-deep: #F5F5F5;
+            --accent: #FFFFFF;
+            --text: #FFFFFF;
+            --text-2: #E0E0E0;
+            --muted: #999999;
+            --line: #333333;
+            --bg: #000000;
+            --bg-deep: #1A1A1A;
         }
 
         body {
@@ -29,202 +29,204 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        header {
-            padding: 60px 0 40px;
+        /* HERO */
+        .hero {
+            padding: 80px 0;
             text-align: center;
         }
 
-        h1 {
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            color: var(--muted);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* SECCIÓN VIDEO */
+        .seccion {
+            padding: 60px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .seccion h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .video-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .video-descripcion {
+            text-align: center;
+            color: var(--text-2);
+            font-size: 16px;
+            margin-bottom: 60px;
+        }
+
+        /* CÓMO FUNCIONA */
+        .pasos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .paso {
+            text-align: center;
+        }
+
+        .paso-numero {
             font-family: 'Fraunces', serif;
             font-size: 48px;
-            margin-bottom: 16px;
-            color: var(--text);
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: var(--muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        section {
-            margin-bottom: 80px;
-        }
-
-        section h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 32px;
-            margin-bottom: 32px;
-            color: var(--text);
-        }
-
-        .producto {
-            background: white;
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 32px;
-        }
-
-        .producto h3 {
-            font-size: 24px;
-            margin-bottom: 8px;
-            color: var(--accent);
-        }
-
-        .precio {
-            font-family: 'Fraunces', serif;
-            font-size: 28px;
             font-weight: bold;
-            color: var(--text);
-            margin: 16px 0;
+            color: var(--accent);
+            margin-bottom: 16px;
         }
 
-        .descripcion {
-            color: var(--text-2);
-            margin-bottom: 24px;
-            font-size: 16px;
-        }
-
-        .slot-selector {
-            margin-bottom: 24px;
-        }
-
-        .slot-selector label {
-            display: block;
-            font-weight: 600;
+        .paso h3 {
+            font-size: 20px;
             margin-bottom: 12px;
             color: var(--text);
         }
 
-        .slots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 8px;
-        }
-
-        .slot-btn {
-            padding: 12px;
-            border: 1px solid var(--line);
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
-            color: var(--text);
-        }
-
-        .slot-btn:hover {
-            border-color: var(--accent);
-            background: rgba(196, 78, 31, 0.05);
-        }
-
-        .slot-btn.selected {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(196, 78, 31, 0.1);
-        }
-
-        .resumen {
-            background: var(--bg-deep);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 24px;
-            border-left: 3px solid var(--accent);
-        }
-
-        .resumen p {
-            font-size: 14px;
-            margin-bottom: 8px;
+        .paso p {
             color: var(--text-2);
+            line-height: 1.8;
         }
 
-        .resumen strong {
+        /* BENEFICIOS */
+        .beneficios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .beneficio {
+            padding: 24px;
+            background: #1A1A1A;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .beneficio h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .beneficio p {
+            color: var(--text-2);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* QUIÉN SOY */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-foto {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .about-foto img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-texto h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
             color: var(--text);
         }
 
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 8px;
+        .about-texto p {
+            color: var(--text-2);
+            margin-bottom: 16px;
+            line-height: 1.9;
             font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
         }
 
-        .btn:hover {
-            background: #A63F1A;
+        .about-credenciales {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--line);
         }
 
-        .btn:disabled {
-            background: var(--muted);
-            cursor: not-allowed;
-        }
-
-        .mensaje {
-            padding: 16px;
-            border-radius: 8px;
-            margin-top: 16px;
+        .credencial {
+            color: var(--muted);
             font-size: 14px;
-            display: none;
+            margin-bottom: 8px;
         }
 
-        .mensaje.success {
-            background: #D4EDDA;
-            color: #155724;
-            display: block;
+        @media (max-width: 768px) {
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .seccion h2 {
+                font-size: 28px;
+            }
         }
 
-        .mensaje.error {
-            background: #F8D7DA;
-            color: #721C24;
-            display: block;
-        }
-
+        /* TABS PRODUCTOS */
         .tabs {
             display: flex;
             gap: 12px;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
             border-bottom: 1px solid var(--line);
+            justify-content: center;
         }
 
         .tab-btn {
-            padding: 12px 20px;
+            padding: 12px 24px;
             background: none;
             border: none;
             cursor: pointer;
@@ -247,118 +249,437 @@
         .tab-content.active {
             display: block;
         }
+
+        /* PRODUCTOS */
+        .producto {
+            background: #1A1A1A;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .producto h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .producto-desc {
+            color: var(--text-2);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .precio {
+            font-family: 'Fraunces', serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--text);
+            margin-bottom: 30px;
+        }
+
+        .slot-selector {
+            margin-bottom: 24px;
+        }
+
+        .slot-selector > label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .mes-grupo {
+            margin-bottom: 24px;
+        }
+
+        .mes-titulo {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 6px;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 6px;
+        }
+
+        .slot-btn {
+            padding: 10px;
+            border: 1px solid var(--line);
+            background: #1A1A1A;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+
+        .slot-btn:hover {
+            border-color: var(--accent);
+            background: #333333;
+        }
+
+        .slot-btn.selected {
+            background: var(--accent);
+            color: #000000;
+            border-color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            font-size: 14px;
+            background: #1A1A1A;
+            color: var(--text);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .resumen {
+            background: var(--bg-deep);
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .resumen p {
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: var(--text-2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: #000000;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #E0E0E0;
+        }
+
+        .btn:disabled {
+            background: var(--muted);
+            cursor: not-allowed;
+        }
+
+        .mensaje {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .mensaje.success {
+            background: #1B5E20;
+            color: #81C784;
+            display: block;
+        }
+
+        .mensaje.error {
+            background: #B71C1C;
+            color: #EF9A9A;
+            display: block;
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .cta-final h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .cta-final p {
+            font-size: 18px;
+            color: var(--text-2);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 48px;
+            background: var(--accent);
+            color: #000000;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: #E0E0E0;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Sesiones de Coaching</h1>
-        <p class="subtitle">Sesión Puntual o Programa Reset - Elige tu opción</p>
-    </header>
-
-    <div class="container">
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="puntual">Sesión Puntual</button>
-            <button class="tab-btn" data-tab="reset">Programa Reset</button>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Sesiones de Coaching</h1>
+            <p class="subtitle">Transformación real en 60 minutos</p>
         </div>
+    </section>
 
-        <!-- TAB 1: SESIÓN PUNTUAL -->
-        <div id="puntual" class="tab-content active">
-            <div class="producto">
-                <h3>Sesión Puntual</h3>
-                <p class="descripcion">1 sesión de coaching individual de 60 minutos</p>
-                <div class="precio">$1.000 CLP</div>
+    <!-- VIDEO -->
+    <section class="seccion">
+        <div class="container">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/4_98-U0fsjo" allowfullscreen></iframe>
+            </div>
+            <p class="video-descripcion">
+                Una invitación directa a descubrirte a ti mismo. Sin pretensiones, sin teoría. Solo presencia y transformación.
+            </p>
+        </div>
+    </section>
 
-                <div class="slot-selector">
-                    <label>Selecciona tu fecha y hora</label>
-                    <div class="slots-grid" id="slots-puntual"></div>
+    <!-- CÓMO FUNCIONA -->
+    <section class="seccion">
+        <div class="container">
+            <h2>Cómo funciona</h2>
+            <div class="pasos">
+                <div class="paso">
+                    <div class="paso-numero">1</div>
+                    <h3>Elige tu sesión</h3>
+                    <p>Una sesión puntual o un programa de 3 encuentros. Selecciona las fechas que mejor se ajusten a tu agenda.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="nombre-puntual">Tu nombre *</label>
-                    <input type="text" id="nombre-puntual" placeholder="Ej: Juan García">
+                <div class="paso">
+                    <div class="paso-numero">2</div>
+                    <h3>Conexión real</h3>
+                    <p>En los primeros minutos, establezco presencia genuina contigo. No hay evaluación, solo escucha profunda.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="email-puntual">Tu email *</label>
-                    <input type="email" id="email-puntual" placeholder="tu@email.com">
+                <div class="paso">
+                    <div class="paso-numero">3</div>
+                    <h3>Transformación</h3>
+                    <p>Hacemos el trabajo real. Con herramientas de coaching, hipnosis y PNL. Descubres tus propias respuestas.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="telefono-puntual">Teléfono (opcional)</label>
-                    <input type="tel" id="telefono-puntual" placeholder="+56 9 XXXX XXXX">
+                <div class="paso">
+                    <div class="paso-numero">4</div>
+                    <h3>Compromisos claros</h3>
+                    <p>Cierras con acciones concretas. Sabes exactamente qué hacer cuando termina la sesión.</p>
                 </div>
-
-                <div class="resumen" id="resumen-puntual" style="display:none;">
-                    <p><strong>Fecha seleccionada:</strong> <span id="fecha-puntual">-</span></p>
-                    <p><strong>Total:</strong> $1.000 CLP</p>
-                </div>
-
-                <button class="btn" id="btn-pagar-puntual" disabled>Pagar sesión</button>
-                <div class="mensaje" id="mensaje-puntual"></div>
             </div>
         </div>
+    </section>
 
-        <!-- TAB 2: PROGRAMA RESET -->
-        <div id="reset" class="tab-content">
-            <div class="producto">
-                <h3>Programa Sesiones Reset</h3>
-                <p class="descripcion">3 sesiones de coaching individual de 60 minutos cada una</p>
-                <div class="precio">$1.000 CLP</div>
-
-                <div class="slot-selector">
-                    <label>Selecciona 3 fechas y horas</label>
-                    <div class="slots-grid" id="slots-reset"></div>
+    <!-- BENEFICIOS -->
+    <section class="seccion">
+        <div class="container">
+            <h2>Lo que logras</h2>
+            <div class="beneficios">
+                <div class="beneficio">
+                    <h3>Claridad</h3>
+                    <p>Identificas exactamente qué te está bloqueando y por qué.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="nombre-reset">Tu nombre *</label>
-                    <input type="text" id="nombre-reset" placeholder="Ej: Juan García">
+                <div class="beneficio">
+                    <h3>Confianza</h3>
+                    <p>Recuperas la certeza en ti mismo. Ya la tenías, solo estaba dormida.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="email-reset">Tu email *</label>
-                    <input type="email" id="email-reset" placeholder="tu@email.com">
+                <div class="beneficio">
+                    <h3>Acción</h3>
+                    <p>Terminas sabiendo exactamente qué hacer. No es más pensamiento vacío.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="telefono-reset">Teléfono (opcional)</label>
-                    <input type="tel" id="telefono-reset" placeholder="+56 9 XXXX XXXX">
+                <div class="beneficio">
+                    <h3>Resultados reales</h3>
+                    <p>En 60 minutos pasa lo que otros procesos no logran en meses.</p>
                 </div>
-
-                <div class="resumen" id="resumen-reset" style="display:none;">
-                    <p><strong>Sesiones seleccionadas:</strong></p>
-                    <div id="lista-reset"></div>
-                    <p style="margin-top:12px;"><strong>Total:</strong> $1.000 CLP</p>
-                </div>
-
-                <button class="btn" id="btn-pagar-reset" disabled>Pagar programa</button>
-                <div class="mensaje" id="mensaje-reset"></div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- QUIÉN SOY -->
+    <section class="seccion">
+        <div class="container">
+            <h2 style="margin-bottom: 50px;">Quién soy</h2>
+            <div class="about">
+                <div class="about-foto">
+                    <img src="https://via.placeholder.com/400x500/1a1a1a/ffffff?text=Foto+Miguel" alt="Miguel Ángel Montenegro">
+                </div>
+                <div class="about-texto">
+                    <h3>Miguel Ángel Montenegro</h3>
+                    <p>
+                        Llevo 32 años adentro de empresas. Vi pasar gente brillante que se quedaba estancada. Ejecutivos que cumplían pero no vivían. Equipos que funcionaban pero sin alma.
+                    </p>
+                    <p>
+                        Lo que aprendí en esos años me llevó a la psicología, la hipnosis, el coaching y la PNL. Porque la transformación real no es conceptual. Es práctica. Es física.
+                    </p>
+                    <p>
+                        Hoy acompaño a personas que están cansadas de la mediocridad. Que quieren confiar en sí mismos de verdad, no como frase motivacional. Que quieren vivir, no solo existir.
+                    </p>
+                    <div class="about-credenciales">
+                        <div class="credencial">✓ Coach Certificado IAC (International Association of Coaching)</div>
+                        <div class="credencial">✓ Master en Hipnosis Clínica</div>
+                        <div class="credencial">✓ Practitioner en Programación Neurolingüística</div>
+                        <div class="credencial">✓ Licenciado en Psicología Organizacional</div>
+                        <div class="credencial">✓ Autor de 10 libros, incluido "Confía en Ti"</div>
+                        <div class="credencial">✓ Mentor de más de 200 coaches profesionales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS Y BOOKING -->
+    <section class="seccion">
+        <div class="container">
+            <h2>Elige tu sesión</h2>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="cero">Sesión Cero</button>
+                <button class="tab-btn" data-tab="reset">Sesiones Reset</button>
+            </div>
+
+            <!-- SESIÓN CERO -->
+            <div id="cero" class="tab-content active">
+                <div class="producto">
+                    <h3>Sesión Cero</h3>
+                    <p class="producto-desc">1 sesión de coaching individual de 60 minutos</p>
+                    <div class="precio">$80.000 CLP</div>
+
+                    <div class="slot-selector">
+                        <label>Selecciona tu fecha y hora</label>
+                        <div id="slots-cero"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre-cero">Tu nombre *</label>
+                        <input type="text" id="nombre-cero" placeholder="Ej: Juan García">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email-cero">Tu email *</label>
+                        <input type="email" id="email-cero" placeholder="tu@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono-cero">Teléfono (opcional)</label>
+                        <input type="tel" id="telefono-cero" placeholder="+56 9 XXXX XXXX">
+                    </div>
+
+                    <div class="resumen" id="resumen-cero" style="display:none;">
+                        <p><strong>Fecha:</strong> <span id="fecha-cero">-</span></p>
+                        <p><strong>Total:</strong> $80.000 CLP</p>
+                    </div>
+
+                    <button class="btn" id="btn-pagar-cero" disabled>Pagar sesión</button>
+                    <div class="mensaje" id="mensaje-cero"></div>
+                </div>
+            </div>
+
+            <!-- SESIONES RESET -->
+            <div id="reset" class="tab-content">
+                <div class="producto">
+                    <h3>Sesiones Reset</h3>
+                    <p class="producto-desc">3 sesiones de coaching individual de 60 minutos cada una</p>
+                    <div class="precio">$199.000 CLP</div>
+
+                    <div class="slot-selector">
+                        <label>Selecciona 3 fechas y horas</label>
+                        <div id="slots-reset"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre-reset">Tu nombre *</label>
+                        <input type="text" id="nombre-reset" placeholder="Ej: Juan García">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email-reset">Tu email *</label>
+                        <input type="email" id="email-reset" placeholder="tu@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono-reset">Teléfono (opcional)</label>
+                        <input type="tel" id="telefono-reset" placeholder="+56 9 XXXX XXXX">
+                    </div>
+
+                    <div class="resumen" id="resumen-reset" style="display:none;">
+                        <p><strong>Sesiones:</strong></p>
+                        <div id="lista-reset"></div>
+                        <p style="margin-top:8px;"><strong>Total:</strong> $199.000 CLP</p>
+                    </div>
+
+                    <button class="btn" id="btn-pagar-reset" disabled>Pagar programa</button>
+                    <div class="mensaje" id="mensaje-reset"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>¿Listo para empezar?</h2>
+            <p>No esperes más. La transformación comienza cuando decides que es ahora.</p>
+            <a href="#cero" class="cta-btn">Agendar mi sesión</a>
+        </div>
+    </section>
 
     <script>
         const CONFIG = {
-            puntual: {
-                monto: 1000,
-                sesiones: 1,
+            cero: {
+                monto: 80000,
                 horarios: ['09:00', '11:00', '16:00', '18:00', '20:00'],
-                diasSemana: [1, 2, 3, 4] // L, M, X, J
+                diasSemana: [1, 2, 3, 4]
             },
             reset: {
-                monto: 1000,
-                sesiones: 3,
+                monto: 199000,
                 horarios: ['09:00', '11:00', '16:00', '18:00', '20:00'],
                 diasSemana: [1, 2, 3, 4]
             }
         };
 
         const state = {
-            puntual: { slots: [], nombres: {}, emails: {}, telefonos: {} },
-            reset: { slots: [], nombres: {}, emails: {}, telefonos: {} }
+            cero: { slots: [] },
+            reset: { slots: [] }
         };
 
-        // Generar slots disponibles
         function generarSlots(tipo) {
             const hoy = new Date();
             hoy.setDate(hoy.getDate() + 1);
@@ -389,32 +710,53 @@
             return slots;
         }
 
-        // Renderizar slots
         function renderSlots(tipo) {
             const slots = generarSlots(tipo);
             const container = document.getElementById(`slots-${tipo}`);
             container.innerHTML = '';
 
-            slots.forEach((slot, idx) => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'slot-btn';
-                btn.textContent = slot.display;
-                btn.onclick = () => toggleSlot(tipo, idx, slot);
-                container.appendChild(btn);
+            const porMes = {};
+            slots.forEach((slot) => {
+                const fecha = new Date(slot.fecha);
+                const mesKey = fecha.toLocaleDateString('es-CL', { month: 'long', year: 'numeric' });
+                if (!porMes[mesKey]) porMes[mesKey] = [];
+                porMes[mesKey].push(slot);
+            });
+
+            Object.entries(porMes).forEach(([mes, items]) => {
+                const mesDiv = document.createElement('div');
+                mesDiv.className = 'mes-grupo';
+
+                const mesTitle = document.createElement('div');
+                mesTitle.className = 'mes-titulo';
+                mesTitle.textContent = mes.charAt(0).toUpperCase() + mes.slice(1);
+                mesDiv.appendChild(mesTitle);
+
+                const grid = document.createElement('div');
+                grid.className = 'slots-grid';
+
+                items.forEach((slot) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'slot-btn';
+                    btn.textContent = slot.display;
+                    btn.onclick = () => toggleSlot(tipo, slot);
+                    grid.appendChild(btn);
+                });
+
+                mesDiv.appendChild(grid);
+                container.appendChild(mesDiv);
             });
         }
 
-        // Toggle slot seleccionado
-        function toggleSlot(tipo, idx, slot) {
-            const slots = generarSlots(tipo);
+        function toggleSlot(tipo, slot) {
             const slotKey = `${slot.fecha}T${slot.hora}`;
             const index = state[tipo].slots.findIndex(s => s === slotKey);
 
             if (index > -1) {
                 state[tipo].slots.splice(index, 1);
             } else {
-                if (tipo === 'puntual' && state[tipo].slots.length >= 1) {
+                if (tipo === 'cero' && state[tipo].slots.length >= 1) {
                     state[tipo].slots = [slotKey];
                 } else if (tipo === 'reset' && state[tipo].slots.length >= 3) {
                     return;
@@ -426,23 +768,22 @@
             actualizarUI(tipo);
         }
 
-        // Actualizar UI
         function actualizarUI(tipo) {
             const slots = generarSlots(tipo);
             const btns = document.querySelectorAll(`#slots-${tipo} .slot-btn`);
 
-            btns.forEach((btn, idx) => {
-                const slotKey = `${slots[idx].fecha}T${slots[idx].hora}`;
-                btn.classList.toggle('selected', state[tipo].slots.includes(slotKey));
+            btns.forEach((btn) => {
+                const slotKey = `${btn.textContent.split(' ')[0]} ${btn.textContent.split(' ')[1]}T${btn.textContent.split(' ')[2]}`;
+                btn.classList.toggle('selected', state[tipo].slots.some(s => s.includes(btn.textContent.split(' ')[2])));
             });
 
             const resumen = document.getElementById(`resumen-${tipo}`);
             const btn = document.getElementById(`btn-pagar-${tipo}`);
 
-            if (tipo === 'puntual' && state[tipo].slots.length === 1) {
+            if (tipo === 'cero' && state[tipo].slots.length === 1) {
                 resumen.style.display = 'block';
-                document.getElementById('fecha-puntual').textContent = 
-                    slots.find(s => `${s.fecha}T${s.hora}` === state[tipo].slots[0]).display;
+                const slot = slots.find(s => `${s.fecha}T${s.hora}` === state[tipo].slots[0]);
+                document.getElementById('fecha-cero').textContent = slot ? slot.display : '-';
                 btn.disabled = false;
             } else if (tipo === 'reset' && state[tipo].slots.length === 3) {
                 resumen.style.display = 'block';
@@ -450,7 +791,7 @@
                 lista.innerHTML = state[tipo].slots
                     .map(slotKey => {
                         const slot = slots.find(s => `${s.fecha}T${s.hora}` === slotKey);
-                        return `<p>• ${slot.display}</p>`;
+                        return slot ? `<p>• ${slot.display}</p>` : '';
                     })
                     .join('');
                 btn.disabled = false;
@@ -460,7 +801,6 @@
             }
         }
 
-        // Enviar pago
         async function enviarPago(tipo) {
             const nombre = document.getElementById(`nombre-${tipo}`).value;
             const email = document.getElementById(`email-${tipo}`).value;
@@ -476,7 +816,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        tipo: tipo,
+                        tipo: tipo === 'cero' ? 'puntual' : 'reset',
                         email: email,
                         nombre: nombre,
                         telefono: telefono,
@@ -499,14 +839,12 @@
             }
         }
 
-        // Mostrar mensaje
         function mostrarMensaje(tipo, texto, clase) {
             const msg = document.getElementById(`mensaje-${tipo}`);
             msg.textContent = texto;
             msg.className = `mensaje ${clase}`;
         }
 
-        // Event listeners
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -516,11 +854,10 @@
             });
         });
 
-        document.getElementById('btn-pagar-puntual').addEventListener('click', () => enviarPago('puntual'));
+        document.getElementById('btn-pagar-cero').addEventListener('click', () => enviarPago('cero'));
         document.getElementById('btn-pagar-reset').addEventListener('click', () => enviarPago('reset'));
 
-        // Inicializar
-        renderSlots('puntual');
+        renderSlots('cero');
         renderSlots('reset');
     </script>
 </body>
