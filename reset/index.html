@@ -1,864 +1,500 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesiones de Coaching - Miguel Ángel Montenegro</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --accent: #FFFFFF;
-            --text: #FFFFFF;
-            --text-2: #E0E0E0;
-            --muted: #999999;
-            --line: #333333;
-            --bg: #000000;
-            --bg-deep: #1A1A1A;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* HERO */
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Fraunces', serif;
-            font-size: 56px;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .hero .subtitle {
-            font-size: 20px;
-            color: var(--muted);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* SECCIÓN VIDEO */
-        .seccion {
-            padding: 60px 0;
-            border-top: 1px solid var(--line);
-        }
-
-        .seccion h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 40px;
-            margin-bottom: 40px;
-            text-align: center;
-            color: var(--text);
-        }
-
-        .video-container {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
-        }
-
-        .video-descripcion {
-            text-align: center;
-            color: var(--text-2);
-            font-size: 16px;
-            margin-bottom: 60px;
-        }
-
-        /* CÓMO FUNCIONA */
-        .pasos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .paso {
-            text-align: center;
-        }
-
-        .paso-numero {
-            font-family: 'Fraunces', serif;
-            font-size: 48px;
-            font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
-
-        .paso h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        .paso p {
-            color: var(--text-2);
-            line-height: 1.8;
-        }
-
-        /* BENEFICIOS */
-        .beneficios {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .beneficio {
-            padding: 24px;
-            background: #1A1A1A;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-        }
-
-        .beneficio h3 {
-            font-size: 18px;
-            margin-bottom: 12px;
-            color: var(--accent);
-        }
-
-        .beneficio p {
-            color: var(--text-2);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        /* QUIÉN SOY */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-
-        .about-foto {
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .about-foto img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .about-texto h3 {
-            font-family: 'Fraunces', serif;
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .about-texto p {
-            color: var(--text-2);
-            margin-bottom: 16px;
-            line-height: 1.9;
-            font-size: 16px;
-        }
-
-        .about-credenciales {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid var(--line);
-        }
-
-        .credencial {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .seccion h2 {
-                font-size: 28px;
-            }
-        }
-
-        /* TABS PRODUCTOS */
-        .tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 40px;
-            border-bottom: 1px solid var(--line);
-            justify-content: center;
-        }
-
-        .tab-btn {
-            padding: 12px 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--muted);
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* PRODUCTOS */
-        .producto {
-            background: #1A1A1A;
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 40px;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .producto h3 {
-            font-size: 28px;
-            margin-bottom: 12px;
-            color: var(--accent);
-        }
-
-        .producto-desc {
-            color: var(--text-2);
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        .precio {
-            font-family: 'Fraunces', serif;
-            font-size: 36px;
-            font-weight: bold;
-            color: var(--text);
-            margin-bottom: 30px;
-        }
-
-        .slot-selector {
-            margin-bottom: 24px;
-        }
-
-        .slot-selector > label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        .mes-grupo {
-            margin-bottom: 24px;
-        }
-
-        .mes-titulo {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 6px;
-        }
-
-        .slots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 6px;
-        }
-
-        .slot-btn {
-            padding: 10px;
-            border: 1px solid var(--line);
-            background: #1A1A1A;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s;
-            color: var(--text);
-        }
-
-        .slot-btn:hover {
-            border-color: var(--accent);
-            background: #333333;
-        }
-
-        .slot-btn.selected {
-            background: var(--accent);
-            color: #000000;
-            border-color: var(--accent);
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text);
-            font-size: 14px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            font-size: 14px;
-            background: #1A1A1A;
-            color: var(--text);
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
-        }
-
-        .resumen {
-            background: var(--bg-deep);
-            padding: 16px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--accent);
-        }
-
-        .resumen p {
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: var(--text-2);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--accent);
-            color: #000000;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: #E0E0E0;
-        }
-
-        .btn:disabled {
-            background: var(--muted);
-            cursor: not-allowed;
-        }
-
-        .mensaje {
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 12px;
-            font-size: 13px;
-            display: none;
-        }
-
-        .mensaje.success {
-            background: #1B5E20;
-            color: #81C784;
-            display: block;
-        }
-
-        .mensaje.error {
-            background: #B71C1C;
-            color: #EF9A9A;
-            display: block;
-        }
-
-        /* CTA FINAL */
-        .cta-final {
-            text-align: center;
-            padding: 60px 0;
-        }
-
-        .cta-final h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .cta-final p {
-            font-size: 18px;
-            color: var(--text-2);
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 16px 48px;
-            background: var(--accent);
-            color: #000000;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            transition: background 0.3s;
-            cursor: pointer;
-        }
-
-        .cta-btn:hover {
-            background: #E0E0E0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesiones Reset · Miguel Ángel Montenegro</title>
+<meta name="description" content="3 sesiones de coaching online. Sabes que algo tiene que cambiar. No sabes por dónde empezar.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.video-bg{position:absolute;inset:0;z-index:0}
+.video-bg video{width:100%;height:100%;object-fit:cover;opacity:0.4}
+.video-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.55) 60%,rgba(0,0,0,1) 100%);z-index:1}
+.hero-content{position:relative;z-index:2;text-align:center;padding:4rem 2rem;max-width:700px}
+.eyebrow{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:2rem}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,8vw,72px);font-weight:300;line-height:1.1;color:#fff;margin-bottom:1.5rem}
+.hero-title em{font-style:italic;color:rgba(255,255,255,0.65)}
+.hero-sub{font-size:15px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.55);max-width:460px;margin:0 auto 2.5rem}
+.btn-hero{display:inline-block;background:#fff;color:#0a0a0a;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:15px 36px;border:none;cursor:pointer;transition:opacity 0.2s}
+.btn-hero:hover{opacity:0.85}
+.price-note{display:block;margin-top:1rem;font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.05em}
+.scroll-line{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:48px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.3));animation:fadeUp 2s ease-in-out infinite}
+@keyframes fadeUp{0%,100%{opacity:0}50%{opacity:1}}
+
+/* SECTIONS */
+.section{padding:5rem 2rem;max-width:660px;margin:0 auto}
+.section-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);display:block;margin-bottom:2.5rem}
+.statement{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,44px);font-weight:300;line-height:1.25;color:rgba(255,255,255,0.9);margin-bottom:3rem}
+.result-list{list-style:none;border-top:0.5px solid rgba(255,255,255,0.1)}
+.result-list li{padding:1.5rem 0;border-bottom:0.5px solid rgba(255,255,255,0.1);display:grid;grid-template-columns:90px 1fr;gap:1rem}
+.r-num{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.22);padding-top:3px}
+.r-title{font-size:15px;font-weight:500;color:#fff;margin-bottom:4px}
+.r-desc{font-size:13px;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.5)}
+.format-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.format-cell{background:#111;padding:1.75rem}
+.f-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.6rem}
+.f-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#fff;margin-bottom:1rem}
+.about-desc{font-size:13px;font-weight:300;line-height:1.9;color:rgba(255,255,255,0.5)}
+.cred-list{display:flex;flex-direction:column;gap:1rem}
+.cred{border-left:1px solid rgba(255,255,255,0.12);padding-left:1rem}
+.cred strong{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:2px}
+.cred span{font-size:11px;color:rgba(255,255,255,0.32)}
+
+/* SELECTOR */
+.selector-section{background:#0d0d0d;padding:5rem 2rem;scroll-margin-top:2rem}
+.selector-inner{max-width:660px;margin:0 auto}
+.sel-titulo{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,38px);font-weight:300;color:#fff;margin-bottom:0.75rem}
+.sel-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:3rem;line-height:1.7}
+.rs-progress{display:flex;gap:6px;margin-bottom:2.5rem}
+.rs-dot{height:3px;flex:1;background:rgba(255,255,255,0.12);border-radius:2px;transition:background 0.3s}
+.rs-dot.done{background:#1D9E75}
+.rs-eyebrow{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem}
+.rs-step-title{font-size:18px;font-weight:400;color:#fff;margin-bottom:0.5rem}
+.rs-step-sub{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:2rem;line-height:1.6}
+.rs-step{display:none}.rs-step.active{display:block}
+.rs-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.rs-field label{display:block;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:6px}
+.rs-field input{width:100%;padding:12px 14px;font-size:14px;background:#1a1a1a;border:0.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:4px;outline:none}
+.rs-field input:focus{border-color:rgba(255,255,255,0.4)}
+.rs-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(29,158,117,0.12);border:0.5px solid rgba(29,158,117,0.3);border-radius:100px;padding:5px 12px;font-size:11px;color:#1D9E75;margin-bottom:1.25rem}
+.rs-badge .dot{width:5px;height:5px;border-radius:50%;background:#1D9E75}
+
+/* SLOTS */
+.rs-slots-wrap{margin-bottom:1.5rem;max-height:360px;overflow-y:auto;padding-right:4px}
+.rs-mes-grupo{margin-bottom:1.75rem}
+.rs-mes-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.rs-dia-grupo{display:flex;align-items:center;gap:1rem;padding:0.6rem 0;border-bottom:0.5px solid rgba(255,255,255,0.05)}
+.rs-dia-label{font-size:12px;color:rgba(255,255,255,0.5);min-width:110px;flex-shrink:0}
+.rs-horas-row{display:flex;gap:6px;flex-wrap:wrap}
+.rs-hora-btn{padding:6px 12px;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.65);transition:all 0.15s;font-family:'Inter',sans-serif}
+.rs-hora-btn:hover{border-color:#1D9E75;color:#1D9E75}
+.rs-hora-btn.sel{background:#1D9E75;border-color:#1D9E75;color:#fff;font-weight:500}
+.rs-loading{font-size:13px;color:rgba(255,255,255,0.35);padding:1rem 0;font-style:italic}
+.rs-no-slots{font-size:13px;color:rgba(255,255,255,0.35);padding:1rem;border:0.5px solid rgba(255,255,255,0.08);border-radius:4px;text-align:center}
+
+/* BOTONES */
+.rs-btn{width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;font-family:'Inter',sans-serif}
+.rs-btn:hover{opacity:0.85}
+.rs-btn:disabled{opacity:0.25;cursor:default}
+.rs-btn-sec{width:100%;padding:12px;background:none;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.12);border-radius:4px;font-size:12px;cursor:pointer;margin-top:8px;font-family:'Inter',sans-serif}
+.rs-btn-sec:hover{border-color:rgba(255,255,255,0.3)}
+
+/* CARRITO */
+.rs-carrito-row{display:flex;justify-content:space-between;align-items:flex-start;padding:1rem 0;border-bottom:0.5px solid rgba(255,255,255,0.08);gap:1rem}
+.rs-c-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);flex-shrink:0;padding-top:2px}
+.rs-c-val{font-size:13px;color:#fff;text-align:right}
+.rs-total{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
+.rs-precio{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#fff}
+.rs-alert{background:rgba(29,158,117,0.08);border-left:2px solid #1D9E75;border-radius:0 4px 4px 0;padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;line-height:1.7}
+
+/* CLOSING */
+.closing{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.closing-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;font-style:italic;color:#fff;margin-bottom:1rem}
+.closing-price{font-size:12px;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-bottom:2rem;text-transform:uppercase}
+.closing-price span{color:rgba(255,255,255,0.75)}
+
+@media(max-width:600px){
+  .about-grid,.rs-form-row,.format-grid{grid-template-columns:1fr}
+  .result-list li{grid-template-columns:1fr}
+  .rs-dia-grupo{flex-direction:column;align-items:flex-start;gap:0.5rem}
+  .rs-dia-label{min-width:auto}
+}
+</style>
 </head>
 <body>
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <h1>Sesiones de Coaching</h1>
-            <p class="subtitle">Transformación real en 60 minutos</p>
+
+<section class="hero">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Coaching online · 1 a 1 · Miguel Ángel Montenegro</p>
+    <h1 class="hero-title">Sabes que algo<br>tiene que cambiar.<br><em>No sabes por dónde empezar.</em></h1>
+    <p class="hero-sub">Tres sesiones. Sin rodeos. Sin procesos interminables. Con un primer paso real.</p>
+    <button class="btn-hero" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar mi lugar</button>
+    <span class="price-note">$199.000 CLP · 3 sesiones · pago único</span>
+  </div>
+  <div class="scroll-line"></div>
+</section>
+
+<div style="background:#0d0d0d">
+<div class="section">
+  <span class="section-tag">Qué obtienes</span>
+  <p class="statement">No es motivación.<br>Es movimiento real.</p>
+  <ul class="result-list">
+    <li><span class="r-num">Claridad</span><div><p class="r-title">Entiendes qué te frena de verdad</p><p class="r-desc">No la historia que te contabas. Lo que realmente está detrás de la parálisis.</p></div></li>
+    <li><span class="r-num">Dirección</span><div><p class="r-title">Sales con un primer paso concreto</p><p class="r-desc">No con una lista de propósitos. Con algo que puedes hacer esta semana.</p></div></li>
+    <li><span class="r-num">Movimiento</span><div><p class="r-title">En tres sesiones pasan cosas</p><p class="r-desc">No es terapia. No es un curso. Es acción con acompañamiento real.</p></div></li>
+  </ul>
+</div>
+</div>
+
+<div style="background:#111">
+<div class="section">
+  <span class="section-tag">Cómo funciona</span>
+  <div class="format-grid">
+    <div class="format-cell"><span class="f-label">Modalidad</span><span class="f-val">Online · Zoom</span></div>
+    <div class="format-cell"><span class="f-label">Duración</span><span class="f-val">1 hora por sesión</span></div>
+    <div class="format-cell"><span class="f-label">Frecuencia</span><span class="f-val">Cada 7 a 15 días</span></div>
+    <div class="format-cell"><span class="f-label">Inversión</span><span class="f-val">$199.000 CLP</span></div>
+  </div>
+</div>
+</div>
+
+<div style="background:#0d0d0d">
+<div class="section">
+  <span class="section-tag">Con quién</span>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-name">Miguel Ángel<br>Montenegro</h2>
+      <p class="about-desc">Más de 30 años acompañando personas en procesos de cambio real. Sin guiones. Sin procesos enlatados. Con presencia en cada sesión.</p>
+    </div>
+    <div class="cred-list">
+      <div class="cred"><strong>Coach IAC certificado</strong><span>Masteries Practitioner Level</span></div>
+      <div class="cred"><strong>Psicólogo</strong><span>Psicología Organizacional</span></div>
+      <div class="cred"><strong>Hipnoterapeuta clínico</strong><span>Practitioner NLP</span></div>
+      <div class="cred"><strong>Autor</strong><span>10 libros · Confía en Ti</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="selector-section" id="reservar">
+  <div class="selector-inner">
+    <h2 class="sel-titulo">Elige tus fechas.</h2>
+    <p class="sel-sub">Selecciona los horarios para tus 3 sesiones. Luego pagas.</p>
+    <div class="rs-progress">
+      <div class="rs-dot done" id="dot0"></div>
+      <div class="rs-dot" id="dot1"></div>
+      <div class="rs-dot" id="dot2"></div>
+      <div class="rs-dot" id="dot3"></div>
+      <div class="rs-dot" id="dot4"></div>
+    </div>
+
+    <div class="rs-step active" id="step0">
+      <p class="rs-eyebrow">Paso 1 de 4</p>
+      <p class="rs-step-title">¿Con quién estamos hablando?</p>
+      <p class="rs-step-sub">Necesito tus datos para reservar tu lugar y enviarte la confirmación.</p>
+      <div class="rs-form-row">
+        <div class="rs-field"><label>Nombre</label><input type="text" id="inp-nombre" placeholder="Tu nombre"></div>
+        <div class="rs-field"><label>Email</label><input type="email" id="inp-email" placeholder="tu@email.com"></div>
+      </div>
+      <button class="rs-btn" onclick="irPaso(1)">Continuar</button>
+    </div>
+
+    <div class="rs-step" id="step1">
+      <p class="rs-eyebrow">Paso 2 de 4</p>
+      <div class="rs-badge"><span class="dot"></span>Sesión 1</div>
+      <p class="rs-step-title">Elige la fecha de tu primera sesión</p>
+      <p class="rs-step-sub">Horarios disponibles — lunes a jueves.</p>
+      <div id="slots1-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
+      <button class="rs-btn" onclick="irPaso(2)" id="btn1" disabled>Continuar</button>
+      <button class="rs-btn-sec" onclick="irPaso(0)">← Volver</button>
+    </div>
+
+    <div class="rs-step" id="step2">
+      <p class="rs-eyebrow">Paso 3 de 4</p>
+      <div class="rs-badge"><span class="dot"></span>Sesión 2</div>
+      <p class="rs-step-title">Elige la fecha de tu segunda sesión</p>
+      <p class="rs-step-sub">Mínimo 7 días después de la primera.</p>
+      <div id="slots2-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
+      <button class="rs-btn" onclick="irPaso(3)" id="btn2" disabled>Continuar</button>
+      <button class="rs-btn-sec" onclick="irPaso(1)">← Volver</button>
+    </div>
+
+    <div class="rs-step" id="step3">
+      <p class="rs-eyebrow">Paso 4 de 4</p>
+      <div class="rs-badge"><span class="dot"></span>Sesión 3</div>
+      <p class="rs-step-title">Elige la fecha de tu tercera sesión</p>
+      <p class="rs-step-sub">Mínimo 7 días después de la segunda.</p>
+      <div id="slots3-container"><p class="rs-loading">Cargando horarios disponibles...</p></div>
+      <button class="rs-btn" onclick="irCarrito()" id="btn3" disabled>Ver mi carrito →</button>
+      <button class="rs-btn-sec" onclick="irPaso(2)">← Volver</button>
+    </div>
+
+    <div class="rs-step" id="step4">
+      <p class="rs-eyebrow">Tu carrito</p>
+      <p class="rs-step-title">Resumen de tu reserva</p>
+      <div class="rs-alert">Tus horarios quedan reservados mientras completas el pago.</div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Para</span><span class="rs-c-val" id="r-nombre"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Sesión 1</span><span class="rs-c-val" id="r-s1"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Sesión 2</span><span class="rs-c-val" id="r-s2"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Sesión 3</span><span class="rs-c-val" id="r-s3"></span></div>
+      <div class="rs-carrito-row"><span class="rs-c-label">Modalidad</span><span class="rs-c-val">Online · Zoom · 1 hora c/u</span></div>
+      <div class="rs-total"><span class="rs-c-label">Total</span><span class="rs-precio">$199.000 CLP</span></div>
+      <button class="rs-btn" id="btn-pagar" onclick="irAPagar()">Ir a pagar</button>
+      <button class="rs-btn-sec" onclick="irPaso(3)">← Cambiar fechas</button>
+    </div>
+  </div>
+</div>
+
+<!-- SESIÓN PUNTUAL -->
+<div style="background:#111;padding:5rem 2rem" id="sesion-puntual">
+  <div style="max-width:660px;margin:0 auto">
+    <span class="section-tag">¿No estás seguro de las 3 sesiones?</span>
+    <p class="statement">Empieza con una.<br><em>Sin compromiso.</em></p>
+    <p class="body-text">¿El programa completo se siente lejos de tu presupuesto? ¿Necesitas resolver algo puntual antes de decidir? Puedes tomar una sola sesión. Si después quieres continuar, lo que pagaste se descuenta del programa.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,0.06);margin:2rem 0">
+      <div style="background:#1a1a1a;padding:1.75rem">
+        <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.6rem">Duración</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff">1 hora · Zoom</span>
+      </div>
+      <div style="background:#1a1a1a;padding:1.75rem">
+        <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.6rem">Inversión</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff">$80.000 CLP</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:2rem;line-height:1.7">Si luego decides continuar con las Sesiones Reset, los $80.000 se descuentan del precio total.</p>
+
+    <!-- Selector sesión puntual -->
+    <div id="sp-selector">
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:1.5rem">Elige tu horario:</p>
+      <div id="sp-slots-container"><p style="font-size:13px;color:rgba(255,255,255,0.35);font-style:italic">Cargando horarios disponibles...</p></div>
+      <div id="sp-datos" style="display:none;margin-top:1.5rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div><label style="display:block;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px">Nombre</label>
+          <input type="text" id="sp-nombre" placeholder="Tu nombre" style="width:100%;padding:12px 14px;font-size:14px;font-family:Inter,sans-serif;background:#1a1a1a;border:0.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:4px;outline:none"></div>
+          <div><label style="display:block;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px">Email</label>
+          <input type="email" id="sp-email" placeholder="tu@email.com" style="width:100%;padding:12px 14px;font-size:14px;font-family:Inter,sans-serif;background:#1a1a1a;border:0.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:4px;outline:none"></div>
         </div>
-    </section>
-
-    <!-- VIDEO -->
-    <section class="seccion">
-        <div class="container">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/REEMPLAZAR_CON_ID_VIDEO" allowfullscreen></iframe>
-            </div>
-            <p class="video-descripcion">
-                Una invitación directa a descubrirte a ti mismo. Sin pretensiones, sin teoría. Solo presencia y transformación.
-            </p>
+        <div style="background:rgba(255,255,255,0.04);border-left:2px solid rgba(255,255,255,0.15);padding:12px 16px;margin-bottom:1.5rem;font-size:12px;color:rgba(255,255,255,0.4)">
+          Sesión elegida: <strong id="sp-label-elegido" style="color:#fff"></strong>
         </div>
-    </section>
+        <button onclick="irAPagarPuntual()" id="sp-btn-pagar" style="width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:Inter,sans-serif">Ir a pagar · $80.000 CLP</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- CÓMO FUNCIONA -->
-    <section class="seccion">
-        <div class="container">
-            <h2>Cómo funciona</h2>
-            <div class="pasos">
-                <div class="paso">
-                    <div class="paso-numero">1</div>
-                    <h3>Elige tu sesión</h3>
-                    <p>Una sesión puntual o un programa de 3 encuentros. Selecciona las fechas que mejor se ajusten a tu agenda.</p>
-                </div>
-                <div class="paso">
-                    <div class="paso-numero">2</div>
-                    <h3>Conexión real</h3>
-                    <p>En los primeros minutos, establezco presencia genuina contigo. No hay evaluación, solo escucha profunda.</p>
-                </div>
-                <div class="paso">
-                    <div class="paso-numero">3</div>
-                    <h3>Transformación</h3>
-                    <p>Hacemos el trabajo real. Con herramientas de coaching, hipnosis y PNL. Descubres tus propias respuestas.</p>
-                </div>
-                <div class="paso">
-                    <div class="paso-numero">4</div>
-                    <h3>Compromisos claros</h3>
-                    <p>Cierras con acciones concretas. Sabes exactamente qué hacer cuando termina la sesión.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="closing">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+  <div style="position:relative;z-index:2;text-align:center;padding:4rem 2rem">
+    <h2 class="closing-title">¿Estás listo<br>para moverte?</h2>
+    <p class="closing-price">3 sesiones · <span>$199.000 CLP</span> · pago único</p>
+    <button class="btn-hero" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Empezar ahora</button>
+  </div>
+</section>
 
-    <!-- BENEFICIOS -->
-    <section class="seccion">
-        <div class="container">
-            <h2>Lo que logras</h2>
-            <div class="beneficios">
-                <div class="beneficio">
-                    <h3>Claridad</h3>
-                    <p>Identificas exactamente qué te está bloqueando y por qué.</p>
-                </div>
-                <div class="beneficio">
-                    <h3>Confianza</h3>
-                    <p>Recuperas la certeza en ti mismo. Ya la tenías, solo estaba dormida.</p>
-                </div>
-                <div class="beneficio">
-                    <h3>Acción</h3>
-                    <p>Terminas sabiendo exactamente qué hacer. No es más pensamiento vacío.</p>
-                </div>
-                <div class="beneficio">
-                    <h3>Resultados reales</h3>
-                    <p>En 60 minutos pasa lo que otros procesos no logran en meses.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+const BACKEND = 'https://disc-backend-production-0e6b.up.railway.app';
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS  = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 
-    <!-- QUIÉN SOY -->
-    <section class="seccion">
-        <div class="container">
-            <h2 style="margin-bottom: 50px;">Quién soy</h2>
-            <div class="about">
-                <div class="about-foto">
-                    <img src="https://via.placeholder.com/400x500/1a1a1a/ffffff?text=Foto+Miguel" alt="Miguel Ángel Montenegro">
-                </div>
-                <div class="about-texto">
-                    <h3>Miguel Ángel Montenegro</h3>
-                    <p>
-                        Llevo 32 años adentro de empresas. Vi pasar gente brillante que se quedaba estancada. Ejecutivos que cumplían pero no vivían. Equipos que funcionaban pero sin alma.
-                    </p>
-                    <p>
-                        Lo que aprendí en esos años me llevó a la psicología, la hipnosis, el coaching y la PNL. Porque la transformación real no es conceptual. Es práctica. Es física.
-                    </p>
-                    <p>
-                        Hoy acompaño a personas que están cansadas de la mediocridad. Que quieren confiar en sí mismos de verdad, no como frase motivacional. Que quieren vivir, no solo existir.
-                    </p>
-                    <div class="about-credenciales">
-                        <div class="credencial">✓ Coach Certificado IAC (International Association of Coaching)</div>
-                        <div class="credencial">✓ Master en Hipnosis Clínica</div>
-                        <div class="credencial">✓ Practitioner en Programación Neurolingüística</div>
-                        <div class="credencial">✓ Licenciado en Psicología Organizacional</div>
-                        <div class="credencial">✓ Autor de 10 libros, incluido "Confía en Ti"</div>
-                        <div class="credencial">✓ Mentor de más de 200 coaches profesionales</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+let E = { nombre:'', email:'', s1:null, s2:null, s3:null, l1:'', l2:'', l3:'' };
+let allSlots = [];
 
-    <!-- PRODUCTOS Y BOOKING -->
-    <section class="seccion">
-        <div class="container">
-            <h2>Elige tu sesión</h2>
-            
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="cero">Sesión Cero</button>
-                <button class="tab-btn" data-tab="reset">Sesiones Reset</button>
-            </div>
+function fmtLabel(iso) {
+  const dt = new Date(iso);
+  const d  = DIAS[dt.getDay()===0?6:dt.getDay()-1];
+  const m  = MESES[dt.getMonth()];
+  const h  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+  return d + ' ' + dt.getDate() + ' de ' + m + ' · ' + h + ' hs';
+}
 
-            <!-- SESIÓN CERO -->
-            <div id="cero" class="tab-content active">
-                <div class="producto">
-                    <h3>Sesión Cero</h3>
-                    <p class="producto-desc">1 sesión de coaching individual de 60 minutos</p>
-                    <div class="precio">$80.000 CLP</div>
+function slotsDesde(isoBase) {
+  if (!isoBase) return allSlots;
+  const min = new Date(isoBase);
+  min.setDate(min.getDate() + 7);
+  return allSlots.filter(s => new Date(s.start) >= min);
+}
 
-                    <div class="slot-selector">
-                        <label>Selecciona tu fecha y hora</label>
-                        <div id="slots-cero"></div>
-                    </div>
+function renderSlots(containerId, slots, sesion) {
+  const el = document.getElementById(containerId);
+  if (!slots.length) {
+    el.innerHTML = '<p class="rs-no-slots">No hay horarios disponibles. Contáctame directamente.</p>';
+    return;
+  }
+  const porMes = {};
+  slots.forEach(s => {
+    const dt  = new Date(s.start);
+    const mes = MESES[dt.getMonth()] + ' ' + dt.getFullYear();
+    const dia = DIAS[dt.getDay()===0?6:dt.getDay()-1] + ' ' + dt.getDate();
+    if (!porMes[mes]) porMes[mes] = {};
+    if (!porMes[mes][dia]) porMes[mes][dia] = [];
+    porMes[mes][dia].push(s);
+  });
+  let html = '<div class="rs-slots-wrap">';
+  Object.entries(porMes).forEach(([mes, dias]) => {
+    html += '<div class="rs-mes-grupo"><p class="rs-mes-label">' + mes + '</p>';
+    Object.entries(dias).forEach(([dia, horas]) => {
+      html += '<div class="rs-dia-grupo"><span class="rs-dia-label">' + dia + '</span><div class="rs-horas-row">';
+      horas.forEach(s => {
+        const sel = E['s'+sesion] === s.start ? ' sel' : '';
+        const dt  = new Date(s.start);
+        const hr  = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+        html += '<button class="rs-hora-btn' + sel + '" onclick="selSlot(' + sesion + ',\'' + s.start + '\',this)">' + hr + '</button>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
 
-                    <div class="form-group">
-                        <label for="nombre-cero">Tu nombre *</label>
-                        <input type="text" id="nombre-cero" placeholder="Ej: Juan García">
-                    </div>
+function selSlot(sesion, start, btn) {
+  E['s'+sesion] = start;
+  E['l'+sesion] = fmtLabel(start);
+  document.querySelectorAll('#slots'+sesion+'-container .rs-hora-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('btn'+sesion).disabled = false;
+}
 
-                    <div class="form-group">
-                        <label for="email-cero">Tu email *</label>
-                        <input type="email" id="email-cero" placeholder="tu@email.com">
-                    </div>
+async function irPaso(n) {
+  if (n === 1) {
+    const nom = document.getElementById('inp-nombre').value.trim();
+    const em  = document.getElementById('inp-email').value.trim();
+    if (!nom || !em || !em.includes('@')) { alert('Por favor completa tu nombre y email.'); return; }
+    E.nombre = nom; E.email = em;
+    if (!allSlots.length) {
+      document.getElementById('slots1-container').innerHTML = '<p class="rs-loading">Cargando horarios...</p>';
+      try {
+        const r = await fetch(BACKEND + '/reset/slots');
+        const d = await r.json();
+        allSlots = d.slots || [];
+      } catch(e) { allSlots = []; }
+    }
+    renderSlots('slots1-container', allSlots, 1);
+  }
+  if (n === 2) renderSlots('slots2-container', slotsDesde(E.s1), 2);
+  if (n === 3) renderSlots('slots3-container', slotsDesde(E.s2), 3);
+  document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.toggle('done', i <= n);
+  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
+}
 
-                    <div class="form-group">
-                        <label for="telefono-cero">Teléfono (opcional)</label>
-                        <input type="tel" id="telefono-cero" placeholder="+56 9 XXXX XXXX">
-                    </div>
+function irCarrito() {
+  document.querySelectorAll('.rs-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step4').classList.add('active');
+  for (let i = 0; i <= 4; i++) document.getElementById('dot'+i).classList.add('done');
+  document.getElementById('r-nombre').textContent = E.nombre;
+  document.getElementById('r-s1').textContent = E.l1;
+  document.getElementById('r-s2').textContent = E.l2;
+  document.getElementById('r-s3').textContent = E.l3;
+  document.getElementById('reservar').scrollIntoView({behavior:'smooth'});
+}
 
-                    <div class="resumen" id="resumen-cero" style="display:none;">
-                        <p><strong>Fecha:</strong> <span id="fecha-cero">-</span></p>
-                        <p><strong>Total:</strong> $80.000 CLP</p>
-                    </div>
+async function irAPagar() {
+  const btn = document.getElementById('btn-pagar');
+  btn.textContent = 'Procesando...'; btn.disabled = true;
+  try {
+    const r1 = await fetch(BACKEND + '/reset/carrito', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        nombre: E.nombre, email: E.email,
+        sesion1_start: E.s1,
+        sesion2_start: E.s2,
+        sesion3_start: E.s3
+      })
+    });
+    const d1 = await r1.json();
+    if (!d1.carrito_id) throw new Error('Sin carrito_id: ' + JSON.stringify(d1));
+    const r2 = await fetch(BACKEND + '/reset/pago/iniciar/' + d1.carrito_id, {method:'POST'});
+    const d2 = await r2.json();
+    if (d2.url_pago) window.location.href = d2.url_pago;
+    else throw new Error('Sin url_pago');
+  } catch(e) {
+    console.error(e);
+    btn.textContent = 'Error. Intenta de nuevo.'; btn.disabled = false;
+  }
+}
 
-                    <button class="btn" id="btn-pagar-cero" disabled>Pagar sesión</button>
-                    <div class="mensaje" id="mensaje-cero"></div>
-                </div>
-            </div>
+// ── SESIÓN PUNTUAL ───────────────────────────────────────────────────────────
+let spSlotElegido = null;
 
-            <!-- SESIONES RESET -->
-            <div id="reset" class="tab-content">
-                <div class="producto">
-                    <h3>Sesiones Reset</h3>
-                    <p class="producto-desc">3 sesiones de coaching individual de 60 minutos cada una</p>
-                    <div class="precio">$199.000 CLP</div>
+async function cargarSlotsPuntual() {
+  try {
+    const r = await fetch(BACKEND + '/reset/slots');
+    const d = await r.json();
+    renderSlotsPuntual((d.slots || []).slice(0, 30));
+  } catch(e) {
+    document.getElementById('sp-slots-container').innerHTML = '<p style="font-size:13px;color:rgba(255,255,255,0.35)">Error cargando horarios.</p>';
+  }
+}
 
-                    <div class="slot-selector">
-                        <label>Selecciona 3 fechas y horas</label>
-                        <div id="slots-reset"></div>
-                    </div>
+function renderSlotsPuntual(slots) {
+  const el = document.getElementById('sp-slots-container');
+  const porMes = {};
+  slots.forEach(s => {
+    const dt = new Date(s.start);
+    const mes = MESES[dt.getMonth()] + ' ' + dt.getFullYear();
+    const dia = DIAS[dt.getDay()===0?6:dt.getDay()-1] + ' ' + dt.getDate();
+    if (!porMes[mes]) porMes[mes] = {};
+    if (!porMes[mes][dia]) porMes[mes][dia] = [];
+    porMes[mes][dia].push(s);
+  });
+  let html = '<div style="max-height:280px;overflow-y:auto;padding-right:4px">';
+  Object.entries(porMes).forEach(([mes, dias]) => {
+    html += '<div style="margin-bottom:1.5rem"><p style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:0.5px solid rgba(255,255,255,0.08)">' + mes + '</p>';
+    Object.entries(dias).forEach(([dia, horas]) => {
+      html += '<div style="display:flex;align-items:center;gap:1rem;padding:0.5rem 0;border-bottom:0.5px solid rgba(255,255,255,0.05)"><span style="font-size:12px;color:rgba(255,255,255,0.5);min-width:110px;flex-shrink:0">' + dia + '</span><div style="display:flex;gap:6px;flex-wrap:wrap">';
+      horas.forEach(s => {
+        const dt = new Date(s.start);
+        const hr = String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+        html += '<button onclick="selSlotPuntual(\'' + s.start + '\',\'' + s.label + '\',this)" style="padding:6px 12px;font-size:12px;border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.65);font-family:Inter,sans-serif">' + hr + '</button>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html + '</div>';
+}
 
-                    <div class="form-group">
-                        <label for="nombre-reset">Tu nombre *</label>
-                        <input type="text" id="nombre-reset" placeholder="Ej: Juan García">
-                    </div>
+function selSlotPuntual(start, label, btn) {
+  spSlotElegido = start;
+  document.querySelectorAll('#sp-slots-container button').forEach(b => { b.style.background='transparent'; b.style.color='rgba(255,255,255,0.65)'; b.style.borderColor='rgba(255,255,255,0.15)'; });
+  btn.style.background = '#1D9E75'; btn.style.borderColor = '#1D9E75'; btn.style.color = '#fff';
+  document.getElementById('sp-label-elegido').textContent = label;
+  document.getElementById('sp-datos').style.display = 'block';
+}
 
-                    <div class="form-group">
-                        <label for="email-reset">Tu email *</label>
-                        <input type="email" id="email-reset" placeholder="tu@email.com">
-                    </div>
+async function irAPagarPuntual() {
+  const nombre = document.getElementById('sp-nombre').value.trim();
+  const email  = document.getElementById('sp-email').value.trim();
+  if (!nombre || !email || !email.includes('@')) { alert('Completa tu nombre y email.'); return; }
+  if (!spSlotElegido) { alert('Elige un horario primero.'); return; }
+  const btn = document.getElementById('sp-btn-pagar');
+  btn.textContent = 'Procesando...'; btn.disabled = true;
+  try {
+    const r1 = await fetch(BACKEND + '/reset/puntual/carrito', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ nombre, email, sesion_start: spSlotElegido })
+    });
+    const d1 = await r1.json();
+    if (!d1.carrito_id) throw new Error();
+    const r2 = await fetch(BACKEND + '/reset/puntual/pago/iniciar/' + d1.carrito_id, { method: 'POST' });
+    const d2 = await r2.json();
+    if (d2.url_pago) window.location.href = d2.url_pago;
+    else throw new Error();
+  } catch(e) {
+    btn.textContent = 'Error. Intenta de nuevo.'; btn.disabled = false;
+  }
+}
 
-                    <div class="form-group">
-                        <label for="telefono-reset">Teléfono (opcional)</label>
-                        <input type="tel" id="telefono-reset" placeholder="+56 9 XXXX XXXX">
-                    </div>
-
-                    <div class="resumen" id="resumen-reset" style="display:none;">
-                        <p><strong>Sesiones:</strong></p>
-                        <div id="lista-reset"></div>
-                        <p style="margin-top:8px;"><strong>Total:</strong> $199.000 CLP</p>
-                    </div>
-
-                    <button class="btn" id="btn-pagar-reset" disabled>Pagar programa</button>
-                    <div class="mensaje" id="mensaje-reset"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="cta-final">
-        <div class="container">
-            <h2>¿Listo para empezar?</h2>
-            <p>No esperes más. La transformación comienza cuando decides que es ahora.</p>
-            <a href="#cero" class="cta-btn">Agendar mi sesión</a>
-        </div>
-    </section>
-
-    <script>
-        const CONFIG = {
-            cero: {
-                monto: 80000,
-                horarios: ['09:00', '11:00', '16:00', '18:00', '20:00'],
-                diasSemana: [1, 2, 3, 4]
-            },
-            reset: {
-                monto: 199000,
-                horarios: ['09:00', '11:00', '16:00', '18:00', '20:00'],
-                diasSemana: [1, 2, 3, 4]
-            }
-        };
-
-        const state = {
-            cero: { slots: [] },
-            reset: { slots: [] }
-        };
-
-        function generarSlots(tipo) {
-            const hoy = new Date();
-            hoy.setDate(hoy.getDate() + 1);
-            const slots = [];
-
-            for (let i = 0; i < 28; i++) {
-                const fecha = new Date(hoy);
-                fecha.setDate(hoy.getDate() + i);
-                const diaSemana = fecha.getDay();
-
-                if (CONFIG[tipo].diasSemana.includes(diaSemana)) {
-                    const fechaFormato = fecha.toLocaleDateString('es-CL', {
-                        weekday: 'short',
-                        day: '2-digit',
-                        month: '2-digit'
-                    });
-
-                    CONFIG[tipo].horarios.forEach(hora => {
-                        slots.push({
-                            fecha: fecha.toISOString().split('T')[0],
-                            hora: hora,
-                            display: `${fechaFormato} ${hora}`
-                        });
-                    });
-                }
-            }
-
-            return slots;
-        }
-
-        function renderSlots(tipo) {
-            const slots = generarSlots(tipo);
-            const container = document.getElementById(`slots-${tipo}`);
-            container.innerHTML = '';
-
-            const porMes = {};
-            slots.forEach((slot) => {
-                const fecha = new Date(slot.fecha);
-                const mesKey = fecha.toLocaleDateString('es-CL', { month: 'long', year: 'numeric' });
-                if (!porMes[mesKey]) porMes[mesKey] = [];
-                porMes[mesKey].push(slot);
-            });
-
-            Object.entries(porMes).forEach(([mes, items]) => {
-                const mesDiv = document.createElement('div');
-                mesDiv.className = 'mes-grupo';
-
-                const mesTitle = document.createElement('div');
-                mesTitle.className = 'mes-titulo';
-                mesTitle.textContent = mes.charAt(0).toUpperCase() + mes.slice(1);
-                mesDiv.appendChild(mesTitle);
-
-                const grid = document.createElement('div');
-                grid.className = 'slots-grid';
-
-                items.forEach((slot) => {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = 'slot-btn';
-                    btn.textContent = slot.display;
-                    btn.onclick = () => toggleSlot(tipo, slot);
-                    grid.appendChild(btn);
-                });
-
-                mesDiv.appendChild(grid);
-                container.appendChild(mesDiv);
-            });
-        }
-
-        function toggleSlot(tipo, slot) {
-            const slotKey = `${slot.fecha}T${slot.hora}`;
-            const index = state[tipo].slots.findIndex(s => s === slotKey);
-
-            if (index > -1) {
-                state[tipo].slots.splice(index, 1);
-            } else {
-                if (tipo === 'cero' && state[tipo].slots.length >= 1) {
-                    state[tipo].slots = [slotKey];
-                } else if (tipo === 'reset' && state[tipo].slots.length >= 3) {
-                    return;
-                } else {
-                    state[tipo].slots.push(slotKey);
-                }
-            }
-
-            actualizarUI(tipo);
-        }
-
-        function actualizarUI(tipo) {
-            const slots = generarSlots(tipo);
-            const btns = document.querySelectorAll(`#slots-${tipo} .slot-btn`);
-
-            btns.forEach((btn) => {
-                const slotKey = `${btn.textContent.split(' ')[0]} ${btn.textContent.split(' ')[1]}T${btn.textContent.split(' ')[2]}`;
-                btn.classList.toggle('selected', state[tipo].slots.some(s => s.includes(btn.textContent.split(' ')[2])));
-            });
-
-            const resumen = document.getElementById(`resumen-${tipo}`);
-            const btn = document.getElementById(`btn-pagar-${tipo}`);
-
-            if (tipo === 'cero' && state[tipo].slots.length === 1) {
-                resumen.style.display = 'block';
-                const slot = slots.find(s => `${s.fecha}T${s.hora}` === state[tipo].slots[0]);
-                document.getElementById('fecha-cero').textContent = slot ? slot.display : '-';
-                btn.disabled = false;
-            } else if (tipo === 'reset' && state[tipo].slots.length === 3) {
-                resumen.style.display = 'block';
-                const lista = document.getElementById('lista-reset');
-                lista.innerHTML = state[tipo].slots
-                    .map(slotKey => {
-                        const slot = slots.find(s => `${s.fecha}T${s.hora}` === slotKey);
-                        return slot ? `<p>• ${slot.display}</p>` : '';
-                    })
-                    .join('');
-                btn.disabled = false;
-            } else {
-                resumen.style.display = 'none';
-                btn.disabled = true;
-            }
-        }
-
-        async function enviarPago(tipo) {
-            const nombre = document.getElementById(`nombre-${tipo}`).value;
-            const email = document.getElementById(`email-${tipo}`).value;
-            const telefono = document.getElementById(`telefono-${tipo}`).value;
-
-            if (!nombre || !email) {
-                mostrarMensaje(tipo, 'Por favor completa nombre y email', 'error');
-                return;
-            }
-
-            try {
-                const response = await fetch('https://disc-backend-production-0e6b.up.railway.app/api/sesiones/crear-orden', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        tipo: tipo === 'cero' ? 'puntual' : 'reset',
-                        email: email,
-                        nombre: nombre,
-                        telefono: telefono,
-                        slots: state[tipo].slots
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.flow_url) {
-                    mostrarMensaje(tipo, 'Redirigiendo a Flow...', 'success');
-                    setTimeout(() => {
-                        window.location.href = data.flow_url;
-                    }, 2000);
-                } else {
-                    mostrarMensaje(tipo, `Error: ${data.detail || 'Error desconocido'}`, 'error');
-                }
-            } catch (error) {
-                mostrarMensaje(tipo, `Error: ${error.message}`, 'error');
-            }
-        }
-
-        function mostrarMensaje(tipo, texto, clase) {
-            const msg = document.getElementById(`mensaje-${tipo}`);
-            msg.textContent = texto;
-            msg.className = `mensaje ${clase}`;
-        }
-
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                e.target.classList.add('active');
-                document.getElementById(e.target.dataset.tab).classList.add('active');
-            });
-        });
-
-        document.getElementById('btn-pagar-cero').addEventListener('click', () => enviarPago('cero'));
-        document.getElementById('btn-pagar-reset').addEventListener('click', () => enviarPago('reset'));
-
-        renderSlots('cero');
-        renderSlots('reset');
-    </script>
+const spObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) { cargarSlotsPuntual(); spObs.disconnect(); }
+}, { threshold: 0.1 });
+spObs.observe(document.getElementById('sesion-puntual'));
+</script>
 </body>
 </html>
